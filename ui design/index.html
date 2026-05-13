@@ -1,0 +1,2581 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KPI Portal</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary: #837fd8;
+        --primary-dark: #6e6ac0;
+        --primary-light: #f3e4de;
+        --success: #10b981;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --purple: #856043;
+        --sidebar: #002134;
+        --bg: #edeff1;
+        --card: #fdf8f5;
+        --text: #002134;
+        --muted: #7a7067;
+        --border: #f3e4de;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          -apple-system,
+          sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+      }
+
+      /* ── LOGIN ─────────────────────────────── */
+      #loginPage {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(
+          135deg,
+          #001527 0%,
+          #002134 50%,
+          #001527 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      #loginPage::before {
+        content: "";
+        position: absolute;
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(
+          circle,
+          rgba(131, 127, 216, 0.18) 0%,
+          transparent 65%
+        );
+        top: -250px;
+        right: -250px;
+        pointer-events: none;
+      }
+
+      #loginPage::after {
+        content: "";
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          rgba(133, 96, 67, 0.12) 0%,
+          transparent 65%
+        );
+        bottom: -150px;
+        left: -150px;
+        pointer-events: none;
+      }
+
+      .login-wrap {
+        width: 100%;
+        max-width: 420px;
+        padding: 20px;
+        z-index: 1;
+      }
+
+      .login-brand {
+        text-align: center;
+        margin-bottom: 32px;
+      }
+
+      .login-logo-wrap {
+        background: #fff;
+        border-radius: 16px;
+        padding: 10px 22px;
+        display: inline-block;
+        margin-bottom: 18px;
+        box-shadow: 0 8px 28px rgba(0,0,0,.15);
+      }
+      .login-logo-wrap img {
+        height: 52px;
+        display: block;
+      }
+
+      .login-brand .brand-icon i {
+        font-size: 26px;
+        color: #fff;
+      }
+
+      .login-brand h1 {
+        font-size: 26px;
+        font-weight: 800;
+        color: #fff;
+        letter-spacing: -0.5px;
+      }
+      .login-brand p {
+        color: #64748b;
+        font-size: 14px;
+        margin-top: 4px;
+      }
+
+      .login-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(24px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 22px;
+        padding: 36px;
+      }
+
+      .login-card h2 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 6px;
+      }
+      .login-card > p {
+        color: #94a3b8;
+        font-size: 14px;
+        margin-bottom: 28px;
+      }
+
+      .fgroup {
+        margin-bottom: 20px;
+      }
+      .fgroup label {
+        display: block;
+        font-size: 13px;
+        font-weight: 500;
+        color: #edeff1;
+        margin-bottom: 7px;
+      }
+      .fgroup .inp-wrap {
+        position: relative;
+      }
+      .fgroup .inp-wrap i {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #475569;
+        font-size: 14px;
+      }
+
+      .fgroup input {
+        width: 100%;
+        padding: 12px 14px 12px 42px;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.11);
+        border-radius: 11px;
+        color: #fff;
+        font-size: 14px;
+        font-family: inherit;
+        outline: none;
+        transition: all 0.2s;
+      }
+
+      .fgroup input::placeholder {
+        color: #475569;
+      }
+      .fgroup input:focus {
+        border-color: var(--primary);
+        background: rgba(131, 127, 216, 0.12);
+        box-shadow: 0 0 0 3px rgba(131, 127, 216, 0.2);
+      }
+
+      .login-btn {
+        width: 100%;
+        padding: 13px;
+        background: var(--primary);
+        color: #fff;
+        border: none;
+        border-radius: 11px;
+        font-size: 15px;
+        font-weight: 600;
+        font-family: inherit;
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-top: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .login-btn:hover {
+        background: var(--primary-dark);
+        transform: translateY(-1px);
+        box-shadow: 0 10px 28px rgba(131, 127, 216, 0.4);
+      }
+      .login-btn:active {
+        transform: translateY(0);
+      }
+
+      .demo-box {
+        margin-top: 22px;
+        padding: 16px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 12px;
+      }
+
+      .demo-box h4 {
+        font-size: 11px;
+        font-weight: 700;
+        color: #475569;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+      }
+
+      .demo-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .demo-row:last-child {
+        border-bottom: none;
+      }
+      .demo-row .role {
+        font-size: 12px;
+        color: #64748b;
+      }
+      .demo-row .cred {
+        font-size: 12px;
+        color: #94a3b8;
+        font-family: monospace;
+      }
+      .demo-row .cred .fill {
+        color: #a09ddf;
+        cursor: pointer;
+        text-decoration: underline;
+      }
+
+      .err-msg {
+        display: none;
+        margin-top: 12px;
+        padding: 10px 14px;
+        background: rgba(239, 68, 68, 0.1);
+        border: 1px solid rgba(239, 68, 68, 0.2);
+        border-radius: 9px;
+        color: #fca5a5;
+        font-size: 13px;
+        gap: 8px;
+        align-items: center;
+      }
+      .err-msg.show {
+        display: flex;
+      }
+
+      /* ── APP SHELL ─────────────────────────── */
+      #app {
+        display: none;
+        min-height: 100vh;
+      }
+
+      .sidebar {
+        width: 256px;
+        background: var(--sidebar);
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        z-index: 200;
+        overflow-y: auto;
+      }
+
+      .sb-header {
+        padding: 22px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .sb-logo {
+        display: flex;
+        align-items: center;
+        gap: 11px;
+      }
+      .sb-logo-img-wrap {
+        background: #fff;
+        border-radius: 10px;
+        padding: 6px 12px;
+        display: inline-block;
+      }
+      .sb-logo-img-wrap img {
+        height: 32px;
+        display: block;
+      }
+
+      .sb-user {
+        padding: 14px 18px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        display: flex;
+        align-items: center;
+        gap: 11px;
+      }
+
+      .avatar {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 13px;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+      .avatar.admin {
+        background: linear-gradient(135deg, #837fd8, #a09ddf);
+        color: #fff;
+      }
+      .avatar.employee {
+        background: linear-gradient(135deg, #856043, #a07d56);
+        color: #fff;
+      }
+
+      .sb-user-info h4 {
+        font-size: 13px;
+        font-weight: 600;
+        color: #fff;
+      }
+      .sb-user-info span {
+        font-size: 11px;
+        color: #475569;
+      }
+
+      .role-pill {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 20px;
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .role-pill.admin {
+        background: rgba(131, 127, 216, 0.2);
+        color: #a09ddf;
+      }
+      .role-pill.employee {
+        background: rgba(133, 96, 67, 0.2);
+        color: #c49a78;
+      }
+
+      .sb-nav {
+        flex: 1;
+        padding: 10px 10px;
+      }
+
+      .nav-section-label {
+        font-size: 10px;
+        font-weight: 700;
+        color: #475569;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 10px 10px 4px;
+      }
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 12px;
+        border-radius: 8px;
+        color: #64748b;
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.15s;
+        margin-bottom: 2px;
+        user-select: none;
+      }
+      .nav-item i {
+        width: 17px;
+        font-size: 14px;
+        text-align: center;
+      }
+      .nav-item:hover {
+        background: rgba(255, 255, 255, 0.05);
+        color: #edeff1;
+      }
+      .nav-item.active {
+        background: rgba(131, 127, 216, 0.16);
+        color: #a09ddf;
+      }
+      .nav-item.active i {
+        color: var(--primary);
+      }
+
+      .sb-footer {
+        padding: 14px 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .logout-btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding: 9px 12px;
+        border-radius: 8px;
+        background: none;
+        border: none;
+        font-family: inherit;
+        font-size: 13px;
+        font-weight: 500;
+        color: #64748b;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .logout-btn:hover {
+        background: rgba(239, 68, 68, 0.1);
+        color: #f87171;
+      }
+
+      /* ── MAIN ──────────────────────────────── */
+      .main {
+        margin-left: 256px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .topbar {
+        background: var(--card);
+        border-bottom: 1px solid var(--border);
+        height: 62px;
+        padding: 0 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .topbar h1 {
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .topbar-date {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .content {
+        flex: 1;
+        padding: 28px 30px;
+      }
+
+      /* ── CARDS ─────────────────────────────── */
+      .card {
+        background: var(--card);
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+      }
+
+      .card-head {
+        padding: 18px 22px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .card-head h3 {
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .card-body {
+        padding: 22px;
+      }
+
+      /* ── STATS GRID ────────────────────────── */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+        gap: 18px;
+        margin-bottom: 28px;
+      }
+
+      .stat-card {
+        background: var(--card);
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        padding: 22px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .stat-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      }
+
+      .stat-ico {
+        width: 50px;
+        height: 50px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        flex-shrink: 0;
+      }
+      .stat-ico.blue {
+        background: #f3e4de;
+        color: #837fd8;
+      }
+      .stat-ico.green {
+        background: #d1fae5;
+        color: #059669;
+      }
+      .stat-ico.purple {
+        background: #f0e4da;
+        color: #856043;
+      }
+      .stat-ico.amber {
+        background: #fef3c7;
+        color: #d97706;
+      }
+
+      .stat-info h3 {
+        font-size: 28px;
+        font-weight: 800;
+        color: var(--text);
+        line-height: 1;
+      }
+      .stat-info p {
+        font-size: 13px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+
+      /* ── BUTTONS ───────────────────────────── */
+      .btn {
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-weight: 600;
+        font-family: inherit;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .btn-primary {
+        background: var(--primary);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: var(--primary-dark);
+        box-shadow: 0 4px 14px rgba(131, 127, 216, 0.35);
+      }
+      .btn-danger {
+        background: #fee2e2;
+        color: #dc2626;
+      }
+      .btn-danger:hover {
+        background: #fecaca;
+      }
+      .btn-ghost {
+        background: #edeff1;
+        color: var(--text);
+      }
+      .btn-ghost:hover {
+        background: #dde0e3;
+      }
+      .btn-sm {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+
+      /* ── TABLE ─────────────────────────────── */
+      .tbl-wrap {
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      thead {
+        background: #edeff1;
+      }
+      thead th {
+        padding: 11px 16px;
+        text-align: left;
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        border-bottom: 1px solid var(--border);
+      }
+      tbody td {
+        padding: 14px 16px;
+        font-size: 13px;
+        color: var(--text);
+        border-bottom: 1px solid #edeff1;
+      }
+      tbody tr:last-child td {
+        border-bottom: none;
+      }
+      tbody tr:hover {
+        background: #edeff1;
+      }
+
+      /* ── BADGES ────────────────────────────── */
+      .badge {
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .badge.excellent {
+        background: #d1fae5;
+        color: #065f46;
+      }
+      .badge.good {
+        background: #f3e4de;
+        color: #6e6ac0;
+      }
+      .badge.warning {
+        background: #fef3c7;
+        color: #92400e;
+      }
+      .badge.poor {
+        background: #fee2e2;
+        color: #991b1b;
+      }
+      .badge.neutral {
+        background: #edeff1;
+        color: #475569;
+      }
+
+      /* ── KPI CARDS ─────────────────────────── */
+      .kpi-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 18px;
+      }
+
+      .kpi-card {
+        background: var(--card);
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        padding: 22px;
+        position: relative;
+        overflow: hidden;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+      .kpi-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+      }
+      .kpi-card.excellent::before {
+        background: var(--success);
+      }
+      .kpi-card.good::before {
+        background: var(--primary);
+      }
+      .kpi-card.warning::before {
+        background: var(--warning);
+      }
+      .kpi-card.poor::before {
+        background: var(--danger);
+      }
+      .kpi-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+      }
+
+      .kpi-card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 18px;
+      }
+      .kpi-card-name {
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .kpi-card-desc {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 3px;
+      }
+
+      .kpi-big {
+        display: flex;
+        align-items: baseline;
+        gap: 6px;
+        margin-bottom: 14px;
+      }
+      .kpi-val {
+        font-size: 38px;
+        font-weight: 800;
+        line-height: 1;
+      }
+      .kpi-unit {
+        font-size: 16px;
+        color: var(--muted);
+      }
+      .kpi-tgt {
+        font-size: 12px;
+        color: var(--muted);
+        margin-left: auto;
+        align-self: flex-end;
+      }
+
+      .progress {
+        height: 7px;
+        background: #edeff1;
+        border-radius: 20px;
+        overflow: hidden;
+      }
+      .progress-bar {
+        height: 100%;
+        border-radius: 20px;
+        transition: width 0.8s ease;
+      }
+      .progress-bar.excellent {
+        background: linear-gradient(90deg, #10b981, #34d399);
+      }
+      .progress-bar.good {
+        background: linear-gradient(90deg, #837fd8, #a09ddf);
+      }
+      .progress-bar.warning {
+        background: linear-gradient(90deg, #f59e0b, #fbbf24);
+      }
+      .progress-bar.poor {
+        background: linear-gradient(90deg, #ef4444, #f87171);
+      }
+
+      .kpi-footer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+
+      .kpi-note {
+        margin-top: 12px;
+        padding: 9px 12px;
+        background: #edeff1;
+        border-radius: 8px;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .kpi-note i {
+        font-size: 10px;
+        margin-right: 5px;
+      }
+
+      /* ── PERFORMANCE HERO ──────────────────── */
+      .perf-hero {
+        background: linear-gradient(135deg, #002134, #003557);
+        border-radius: 20px;
+        padding: 28px;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 26px;
+      }
+      .perf-hero::before {
+        content: "";
+        position: absolute;
+        right: -60px;
+        top: -60px;
+        width: 240px;
+        height: 240px;
+        background: rgba(131, 127, 216, 0.15);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+      .perf-hero::after {
+        content: "";
+        position: absolute;
+        left: 40%;
+        bottom: -80px;
+        width: 200px;
+        height: 200px;
+        background: rgba(133, 96, 67, 0.08);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .perf-hero-label {
+        font-size: 13px;
+        color: #64748b;
+        font-weight: 500;
+        margin-bottom: 6px;
+      }
+      .perf-hero-score {
+        font-size: 60px;
+        font-weight: 800;
+        line-height: 1;
+        margin-bottom: 6px;
+      }
+      .perf-hero-score span {
+        font-size: 22px;
+        font-weight: 400;
+        color: #94a3b8;
+      }
+      .perf-hero-sub {
+        font-size: 14px;
+        color: #94a3b8;
+      }
+
+      .perf-stats {
+        display: flex;
+        gap: 28px;
+        margin-top: 22px;
+      }
+      .perf-stat-val {
+        font-size: 22px;
+        font-weight: 800;
+      }
+      .perf-stat-lbl {
+        font-size: 11px;
+        color: #64748b;
+        margin-top: 2px;
+      }
+
+      /* ── FORMS ─────────────────────────────── */
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .form-row-full {
+        grid-column: 1 / -1;
+      }
+
+      .ff {
+        margin-bottom: 14px;
+      }
+      .ff label {
+        display: block;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--text);
+        margin-bottom: 6px;
+      }
+      .ff input,
+      .ff select,
+      .ff textarea {
+        width: 100%;
+        padding: 9px 13px;
+        border: 1px solid var(--border);
+        border-radius: 9px;
+        font-size: 13px;
+        font-family: inherit;
+        color: var(--text);
+        background: var(--card);
+        outline: none;
+        transition: all 0.2s;
+      }
+      .ff input:focus,
+      .ff select:focus,
+      .ff textarea:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(131, 127, 216, 0.1);
+      }
+      .ff textarea {
+        resize: vertical;
+        min-height: 76px;
+      }
+
+      /* ── MODAL ─────────────────────────────── */
+      #modalBg {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      #modalBg.show {
+        display: flex;
+      }
+
+      .modal {
+        background: var(--card);
+        border-radius: 20px;
+        width: 100%;
+        max-width: 490px;
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.22);
+        animation: slideUp 0.22s ease;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .modal-head {
+        padding: 22px 26px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .modal-head h3 {
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .modal-close {
+        width: 30px;
+        height: 30px;
+        border-radius: 7px;
+        border: none;
+        background: #edeff1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--muted);
+        font-size: 13px;
+        transition: background 0.15s;
+      }
+      .modal-close:hover {
+        background: #dde0e3;
+      }
+
+      .modal-body {
+        padding: 22px 26px;
+      }
+      .modal-footer {
+        padding: 14px 26px 22px;
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+      }
+
+      /* ── TOAST ─────────────────────────────── */
+      .toast-wrap {
+        position: fixed;
+        bottom: 22px;
+        right: 22px;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .toast {
+        padding: 13px 18px;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14);
+        animation: tIn 0.22s ease;
+      }
+      @keyframes tIn {
+        from {
+          opacity: 0;
+          transform: translateX(16px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      .toast.success {
+        background: #064e3b;
+        color: #a7f3d0;
+      }
+      .toast.error {
+        background: #7f1d1d;
+        color: #fca5a5;
+      }
+      .toast.info {
+        background: #002134;
+        color: #b8d0e0;
+      }
+
+      /* ── EMPTY STATE ───────────────────────── */
+      .empty {
+        text-align: center;
+        padding: 52px 20px;
+        color: var(--muted);
+      }
+      .empty i {
+        font-size: 44px;
+        opacity: 0.25;
+        margin-bottom: 14px;
+        display: block;
+      }
+      .empty h3 {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 6px;
+      }
+      .empty p {
+        font-size: 13px;
+      }
+
+      /* ── PERIOD PILLS ──────────────────────── */
+      .period-pills {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .pp {
+        padding: 5px 13px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+        cursor: pointer;
+        border: 1px solid var(--border);
+        background: var(--card);
+        color: var(--muted);
+        font-family: inherit;
+        transition: all 0.15s;
+      }
+      .pp.active {
+        background: var(--primary);
+        color: #fff;
+        border-color: var(--primary);
+      }
+      .pp:hover:not(.active) {
+        background: #edeff1;
+      }
+
+      /* ── SECTION HEADING ───────────────────── */
+      .section-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 18px;
+      }
+      .section-head h2 {
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      /* ── TWO-COL LAYOUT ────────────────────── */
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .assign-layout {
+        display: grid;
+        grid-template-columns: 400px 1fr;
+        gap: 20px;
+        align-items: start;
+      }
+
+      /* ── MISC ──────────────────────────────── */
+      select option {
+        color: #002134;
+      }
+      ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #d0c8c4;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #a89e9a;
+      }
+
+      @media (max-width: 900px) {
+        .two-col,
+        .assign-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ═══════════════════ LOGIN ═══════════════════ -->
+    <div id="loginPage">
+      <div class="login-wrap">
+        <div class="login-brand">
+          <div class="login-logo-wrap">
+            <img src="alinma logo.png" alt="Alinma">
+          </div>
+          <h1>KPI Portal</h1>
+          <p>Performance Management System</p>
+        </div>
+        <div class="login-card">
+          <h2>Welcome back</h2>
+          <p>Sign in to access your performance dashboard</p>
+          <form onsubmit="doLogin(event)">
+            <div class="fgroup">
+              <label>Username</label>
+              <div class="inp-wrap">
+                <i class="fas fa-user"></i>
+                <input
+                  type="text"
+                  id="lu"
+                  placeholder="Enter your username"
+                  autocomplete="username"
+                />
+              </div>
+            </div>
+            <div class="fgroup">
+              <label>Password</label>
+              <div class="inp-wrap">
+                <i class="fas fa-lock"></i>
+                <input
+                  type="password"
+                  id="lp"
+                  placeholder="Enter your password"
+                  autocomplete="current-password"
+                />
+              </div>
+            </div>
+            <div class="err-msg" id="loginErr">
+              <i class="fas fa-exclamation-circle"></i> Invalid username or
+              password.
+            </div>
+            <button type="submit" class="login-btn">
+              <i class="fas fa-sign-in-alt"></i> Sign In
+            </button>
+          </form>
+          <div class="demo-box">
+            <h4>Demo Credentials</h4>
+            <div class="demo-row">
+              <span class="role">Admin</span>
+              <span class="cred"
+                ><span class="fill" onclick="fc('admin', 'admin123')"
+                  >admin</span
+                >
+                / admin123</span
+              >
+            </div>
+            <div class="demo-row">
+              <span class="role">Abdulaziz Alnemer</span>
+              <span class="cred"
+                ><span class="fill" onclick="fc('abdulaziz', 'pass123')"
+                  >abdulaziz</span
+                >
+                / pass123</span
+              >
+            </div>
+            <div class="demo-row">
+              <span class="role">Fahad Alodan</span>
+              <span class="cred"
+                ><span class="fill" onclick="fc('fahad', 'pass123')"
+                  >fahad</span
+                >
+                / pass123</span
+              >
+            </div>
+            <div class="demo-row">
+              <span class="role">Sultan Aljuaid</span>
+              <span class="cred"
+                ><span class="fill" onclick="fc('sultan', 'pass123')"
+                  >sultan</span
+                >
+                / pass123</span
+              >
+            </div>
+            <div class="demo-row">
+              <span class="role">Mohamed Hamoda</span>
+              <span class="cred"
+                ><span class="fill" onclick="fc('mohamed', 'pass123')"
+                  >mohamed</span
+                >
+                / pass123</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════ APP ═══════════════════ -->
+    <div id="app">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sb-header">
+          <div class="sb-logo">
+            <div class="sb-logo-img-wrap">
+              <img src="alinma logo.png" alt="Alinma">
+            </div>
+          </div>
+        </div>
+        <div class="sb-user">
+          <div class="avatar" id="sbAvatar"></div>
+          <div class="sb-user-info">
+            <h4 id="sbName"></h4>
+            <span id="sbRole" class="role-pill"></span>
+          </div>
+        </div>
+        <nav class="sb-nav" id="sbNav"></nav>
+        <div class="sb-footer">
+          <button class="logout-btn" onclick="doLogout()">
+            <i class="fas fa-sign-out-alt"></i> Sign Out
+          </button>
+        </div>
+      </aside>
+
+      <!-- Main -->
+      <div class="main">
+        <header class="topbar">
+          <h1 id="pageTitle">Dashboard</h1>
+          <span class="topbar-date" id="topDate"></span>
+        </header>
+        <main class="content" id="content"></main>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modalBg" onclick="bgClose(event)">
+      <div class="modal">
+        <div class="modal-head">
+          <h3 id="mTitle"></h3>
+          <button class="modal-close" onclick="closeModal()">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal-body" id="mBody"></div>
+        <div class="modal-footer" id="mFooter"></div>
+      </div>
+    </div>
+
+    <!-- Toasts -->
+    <div class="toast-wrap" id="toasts"></div>
+
+    <!-- ═══════════════════ SCRIPT ═══════════════════ -->
+    <script>
+      // ──────────────────────────────────────────
+      // DATA
+      // ──────────────────────────────────────────
+      const SEED = {
+        users: [
+          {
+            id: 1,
+            username: "admin",
+            password: "admin123",
+            role: "admin",
+            name: "Admin User",
+            email: "admin@company.com",
+            department: "",
+          },
+          {
+            id: 2,
+            username: "abdulaziz",
+            password: "pass123",
+            role: "employee",
+            name: "Abdulaziz Alnemer",
+            email: "abdulaziz@company.com",
+            department: "Sales",
+          },
+          {
+            id: 3,
+            username: "fahad",
+            password: "pass123",
+            role: "employee",
+            name: "Fahad Alodan",
+            email: "fahad@company.com",
+            department: "Marketing",
+          },
+          {
+            id: 4,
+            username: "sultan",
+            password: "pass123",
+            role: "employee",
+            name: "Sultan Aljuaid",
+            email: "sultan@company.com",
+            department: "Engineering",
+          },
+          {
+            id: 5,
+            username: "mohamed",
+            password: "pass123",
+            role: "employee",
+            name: "Mohamed Hamoda",
+            email: "mohamed@company.com",
+            department: "Operations",
+          },
+        ],
+        kpis: [
+          {
+            id: 1,
+            name: "Defects Aging XP for 5+ days",
+            description: "Number of XP defects open for 5 or more days",
+            unit: "defects",
+            target: 3,
+            category: "Quality",
+            lowerIsBetter: true,
+          },
+          {
+            id: 2,
+            name: "Defects Aging SME/NCIB/MAR/Other Squads for 10+ days",
+            description:
+              "Number of defects open 10+ days across SME/NCIB/MAR/Other squads",
+            unit: "defects",
+            target: 5,
+            category: "Quality",
+            lowerIsBetter: true,
+          },
+          {
+            id: 3,
+            name: "BRs Exceeded Dev Planned / Re-planned",
+            description:
+              "Business requirements that exceeded the development planned date",
+            unit: "BRs",
+            target: 3,
+            category: "Delivery",
+            lowerIsBetter: true,
+          },
+          {
+            id: 4,
+            name: "ICRs/TRs Exceeded Dev Planned / Re-planned",
+            description:
+              "ICRs and TRs that exceeded the development planned or re-planned date",
+            unit: "items",
+            target: 5,
+            category: "Delivery",
+            lowerIsBetter: true,
+          },
+          {
+            id: 5,
+            name: "KT Sessions Execution",
+            description: "Knowledge transfer sessions executed vs. planned",
+            unit: "%",
+            target: 100,
+            category: "Learning",
+            lowerIsBetter: false,
+          },
+          {
+            id: 6,
+            name: "BRs Pushed Back",
+            description:
+              "Business requirements pushed back from the planned release",
+            unit: "BRs",
+            target: 2,
+            category: "Delivery",
+            lowerIsBetter: true,
+          },
+        ],
+        assignments: [
+          // Abdulaziz Alnemer — May 2026
+          {
+            id: 1,
+            employeeId: 2,
+            kpiId: 1,
+            value: 1,
+            period: "May 2026",
+            notes: "Only 1 aging defect, well managed",
+          },
+          {
+            id: 2,
+            employeeId: 2,
+            kpiId: 3,
+            value: 2,
+            period: "May 2026",
+            notes: "",
+          },
+          {
+            id: 3,
+            employeeId: 2,
+            kpiId: 5,
+            value: 90,
+            period: "May 2026",
+            notes: "All planned KT sessions delivered",
+          },
+          {
+            id: 4,
+            employeeId: 2,
+            kpiId: 6,
+            value: 1,
+            period: "May 2026",
+            notes: "One BR pushed back due to dependency",
+          },
+          // Fahad Alodan — May 2026
+          {
+            id: 5,
+            employeeId: 3,
+            kpiId: 1,
+            value: 4,
+            period: "May 2026",
+            notes: "Above threshold — needs attention",
+          },
+          {
+            id: 6,
+            employeeId: 3,
+            kpiId: 2,
+            value: 2,
+            period: "May 2026",
+            notes: "",
+          },
+          {
+            id: 7,
+            employeeId: 3,
+            kpiId: 5,
+            value: 75,
+            period: "May 2026",
+            notes: "One session missed",
+          },
+          {
+            id: 8,
+            employeeId: 3,
+            kpiId: 6,
+            value: 3,
+            period: "May 2026",
+            notes: "Over limit — escalate",
+          },
+          // Sultan Aljuaid — May 2026
+          {
+            id: 9,
+            employeeId: 4,
+            kpiId: 1,
+            value: 0,
+            period: "May 2026",
+            notes: "Zero aging defects this period",
+          },
+          {
+            id: 10,
+            employeeId: 4,
+            kpiId: 2,
+            value: 3,
+            period: "May 2026",
+            notes: "",
+          },
+          {
+            id: 11,
+            employeeId: 4,
+            kpiId: 4,
+            value: 2,
+            period: "May 2026",
+            notes: "Within threshold",
+          },
+          {
+            id: 12,
+            employeeId: 4,
+            kpiId: 5,
+            value: 100,
+            period: "May 2026",
+            notes: "All KT sessions executed on time",
+          },
+          // Mohamed Hamoda — May 2026
+          {
+            id: 13,
+            employeeId: 5,
+            kpiId: 3,
+            value: 1,
+            period: "May 2026",
+            notes: "",
+          },
+          {
+            id: 14,
+            employeeId: 5,
+            kpiId: 4,
+            value: 6,
+            period: "May 2026",
+            notes: "Exceeded threshold — review capacity",
+          },
+          {
+            id: 15,
+            employeeId: 5,
+            kpiId: 5,
+            value: 80,
+            period: "May 2026",
+            notes: "",
+          },
+          {
+            id: 16,
+            employeeId: 5,
+            kpiId: 6,
+            value: 0,
+            period: "May 2026",
+            notes: "No BRs pushed back — excellent",
+          },
+          // April 2026
+          {
+            id: 17,
+            employeeId: 2,
+            kpiId: 1,
+            value: 2,
+            period: "April 2026",
+            notes: "",
+          },
+          {
+            id: 18,
+            employeeId: 2,
+            kpiId: 5,
+            value: 85,
+            period: "April 2026",
+            notes: "",
+          },
+          {
+            id: 19,
+            employeeId: 3,
+            kpiId: 1,
+            value: 5,
+            period: "April 2026",
+            notes: "",
+          },
+          {
+            id: 20,
+            employeeId: 3,
+            kpiId: 6,
+            value: 2,
+            period: "April 2026",
+            notes: "",
+          },
+          {
+            id: 21,
+            employeeId: 4,
+            kpiId: 2,
+            value: 4,
+            period: "April 2026",
+            notes: "",
+          },
+          {
+            id: 22,
+            employeeId: 4,
+            kpiId: 5,
+            value: 95,
+            period: "April 2026",
+            notes: "",
+          },
+          {
+            id: 23,
+            employeeId: 5,
+            kpiId: 4,
+            value: 4,
+            period: "April 2026",
+            notes: "",
+          },
+          {
+            id: 24,
+            employeeId: 5,
+            kpiId: 5,
+            value: 70,
+            period: "April 2026",
+            notes: "",
+          },
+        ],
+      };
+
+      function db() {
+        const raw = localStorage.getItem("kpiPortal_v3");
+        return raw ? JSON.parse(raw) : (save(SEED), SEED);
+      }
+      function save(d) {
+        localStorage.setItem("kpiPortal_v3", JSON.stringify(d));
+      }
+      function nid(arr) {
+        return arr.length ? Math.max(...arr.map((x) => x.id)) + 1 : 1;
+      }
+
+      // ──────────────────────────────────────────
+      // AUTH
+      // ──────────────────────────────────────────
+      let me = null;
+
+      function fc(u, p) {
+        document.getElementById("lu").value = u;
+        document.getElementById("lp").value = p;
+      }
+
+      function doLogin(e) {
+        e.preventDefault();
+        const u = document.getElementById("lu").value.trim();
+        const p = document.getElementById("lp").value;
+        const user = db().users.find(
+          (x) => x.username === u && x.password === p,
+        );
+        const err = document.getElementById("loginErr");
+        if (!user) {
+          err.classList.add("show");
+          return;
+        }
+        err.classList.remove("show");
+        me = user;
+        document.getElementById("loginPage").style.display = "none";
+        document.getElementById("app").style.display = "flex";
+        bootApp();
+      }
+
+      function doLogout() {
+        me = null;
+        document.getElementById("app").style.display = "none";
+        document.getElementById("loginPage").style.display = "flex";
+        document.getElementById("lu").value = "";
+        document.getElementById("lp").value = "";
+      }
+
+      // ──────────────────────────────────────────
+      // BOOT
+      // ──────────────────────────────────────────
+      function bootApp() {
+        const av = document.getElementById("sbAvatar");
+        av.textContent = initials(me.name);
+        av.className = `avatar ${me.role}`;
+        document.getElementById("sbName").textContent = me.name;
+        const rb = document.getElementById("sbRole");
+        rb.textContent = me.role;
+        rb.className = `role-pill ${me.role}`;
+        document.getElementById("topDate").textContent =
+          new Date().toLocaleDateString("en-US", {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          });
+        buildNav();
+        go(me.role === "admin" ? "dashboard" : "emp-dashboard");
+      }
+
+      function initials(name) {
+        return name
+          .split(" ")
+          .map((w) => w[0])
+          .join("")
+          .slice(0, 2)
+          .toUpperCase();
+      }
+
+      function buildNav() {
+        const nav = document.getElementById("sbNav");
+        if (me.role === "admin") {
+          nav.innerHTML = `
+      <div class="nav-section-label">Overview</div>
+      <div class="nav-item" data-v="dashboard"  onclick="go('dashboard')"><i class="fas fa-th-large"></i> Dashboard</div>
+      <div class="nav-section-label">Management</div>
+      <div class="nav-item" data-v="kpis"       onclick="go('kpis')"><i class="fas fa-bullseye"></i> KPI Metrics</div>
+      <div class="nav-item" data-v="assign"      onclick="go('assign')"><i class="fas fa-tasks"></i> Assign KPIs</div>
+      <div class="nav-item" data-v="employees"   onclick="go('employees')"><i class="fas fa-users"></i> Employees</div>
+      <div class="nav-section-label">Reports</div>
+      <div class="nav-item" data-v="report"      onclick="go('report')"><i class="fas fa-chart-bar"></i> Performance Report</div>
+    `;
+        } else {
+          nav.innerHTML = `
+      <div class="nav-section-label">My Performance</div>
+      <div class="nav-item" data-v="emp-dashboard" onclick="go('emp-dashboard')"><i class="fas fa-th-large"></i> Dashboard</div>
+      <div class="nav-item" data-v="emp-kpis"      onclick="go('emp-kpis')"><i class="fas fa-chart-line"></i> My KPIs</div>
+    `;
+        }
+      }
+
+      function go(v) {
+        document
+          .querySelectorAll(".nav-item")
+          .forEach((n) => n.classList.toggle("active", n.dataset.v === v));
+        const titles = {
+          dashboard: "Dashboard",
+          kpis: "KPI Metrics",
+          assign: "Assign KPIs",
+          employees: "Employees",
+          report: "Performance Report",
+          "emp-dashboard": `Welcome, ${me.name.split(" ")[0]}`,
+          "emp-kpis": "My KPIs",
+        };
+        document.getElementById("pageTitle").textContent = titles[v] || "";
+        const views = {
+          dashboard,
+          kpis,
+          assign,
+          employees,
+          report,
+          "emp-dashboard": empDashboard,
+          "emp-kpis": empKpis,
+        };
+        document.getElementById("content").innerHTML = (
+          views[v] || (() => "")
+        )();
+      }
+
+      // ──────────────────────────────────────────
+      // HELPERS
+      // ──────────────────────────────────────────
+      function status(pct) {
+        return pct >= 90
+          ? "excellent"
+          : pct >= 75
+            ? "good"
+            : pct >= 60
+              ? "warning"
+              : "poor";
+      }
+      function statusLabel(pct) {
+        return pct >= 90
+          ? "Excellent"
+          : pct >= 75
+            ? "On Track"
+            : pct >= 60
+              ? "Fair"
+              : "Needs Work";
+      }
+      function achievement(pct) {
+        return pct >= 90
+          ? "Excellent"
+          : pct >= 75
+            ? "Good"
+            : pct >= 60
+              ? "Fair"
+              : "Needs Work";
+      }
+      function periods() {
+        return [...new Set(db().assignments.map((a) => a.period))]
+          .sort()
+          .reverse();
+      }
+      function empPeriods(empId) {
+        return [
+          ...new Set(
+            db()
+              .assignments.filter((a) => a.employeeId === empId)
+              .map((a) => a.period),
+          ),
+        ]
+          .sort()
+          .reverse();
+      }
+      // For lowerIsBetter KPIs: achievement = 100% when value=0, 50% when value=target, 0% when value=2×target
+      function calcPct(value, kpi) {
+        if (kpi.lowerIsBetter) {
+          if (kpi.target === 0) return value === 0 ? 100 : 0;
+          return Math.max(
+            0,
+            Math.min(100, Math.round((1 - value / (kpi.target * 2)) * 100)),
+          );
+        }
+        return Math.max(
+          0,
+          Math.min(100, Math.round((value / kpi.target) * 100)),
+        );
+      }
+      function avgPercent(assignments, kpis) {
+        if (!assignments.length) return null;
+        const scores = assignments
+          .map((a) => {
+            const kpi = kpis.find((k) => k.id === a.kpiId);
+            return kpi ? calcPct(a.value, kpi) : null;
+          })
+          .filter((s) => s !== null);
+        return scores.length
+          ? Math.round(scores.reduce((s, v) => s + v, 0) / scores.length)
+          : null;
+      }
+      function empAvatar(emp, size = 34) {
+        return `<div class="avatar employee" style="width:${size}px;height:${size}px;font-size:${Math.round(size * 0.36)}px;border-radius:${Math.round(size * 0.26)}px;flex-shrink:0">${initials(emp.name)}</div>`;
+      }
+
+      // ──────────────────────────────────────────
+      // ADMIN: DASHBOARD
+      // ──────────────────────────────────────────
+      function dashboard() {
+        const d = db();
+        const emps = d.users.filter((u) => u.role === "employee");
+        const latest = periods()[0] || "";
+        const la = d.assignments.filter((a) => a.period === latest);
+        const avg = avgPercent(la, d.kpis);
+
+        const empRows = emps
+          .map((emp) => {
+            const ea = la.filter((a) => a.employeeId === emp.id);
+            const sc = avgPercent(ea, d.kpis);
+            const st = sc === null ? "neutral" : status(sc);
+            const sl = sc === null ? "No Data" : achievement(sc);
+            return `<tr>
+      <td><div style="display:flex;align-items:center;gap:10px">
+        ${empAvatar(emp)}
+        <div><div style="font-weight:600">${emp.name}</div><div style="font-size:12px;color:var(--muted)">${emp.department || ""}</div></div>
+      </div></td>
+      <td>${ea.length}</td>
+      <td><strong>${sc !== null ? sc + "%" : "—"}</strong></td>
+      <td><span class="badge ${st}">${sl}</span></td>
+    </tr>`;
+          })
+          .join("");
+
+        const kpiRows = d.kpis
+          .map((kpi) => {
+            const cnt = la.filter((a) => a.kpiId === kpi.id).length;
+            return `<tr>
+      <td><strong>${kpi.name}</strong></td>
+      <td><span class="badge neutral">${kpi.category || "General"}</span></td>
+      <td>${kpi.unit}</td>
+      <td>${cnt} employee${cnt !== 1 ? "s" : ""}</td>
+    </tr>`;
+          })
+          .join("");
+
+        return `
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-ico blue"><i class="fas fa-users"></i></div><div class="stat-info"><h3>${emps.length}</h3><p>Total Employees</p></div></div>
+      <div class="stat-card"><div class="stat-ico green"><i class="fas fa-bullseye"></i></div><div class="stat-info"><h3>${d.kpis.length}</h3><p>KPI Metrics</p></div></div>
+      <div class="stat-card"><div class="stat-ico purple"><i class="fas fa-tasks"></i></div><div class="stat-info"><h3>${la.length}</h3><p>Assignments (${latest || "—"})</p></div></div>
+      <div class="stat-card"><div class="stat-ico amber"><i class="fas fa-chart-line"></i></div><div class="stat-info"><h3>${avg !== null ? avg + "%" : "—"}</h3><p>Avg Performance</p></div></div>
+    </div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-head"><h3>Employee Performance — ${latest || "No data"}</h3>
+          <button class="btn btn-primary btn-sm" onclick="go('assign')"><i class="fas fa-plus"></i> Assign</button></div>
+        <div class="tbl-wrap"><table>
+          <thead><tr><th>Employee</th><th>KPIs</th><th>Avg Score</th><th>Status</th></tr></thead>
+          <tbody>${empRows}</tbody>
+        </table></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>KPI Metrics</h3>
+          <button class="btn btn-primary btn-sm" onclick="go('kpis')"><i class="fas fa-plus"></i> Add KPI</button></div>
+        <div class="tbl-wrap"><table>
+          <thead><tr><th>KPI</th><th>Category</th><th>Unit</th><th>Assigned</th></tr></thead>
+          <tbody>${kpiRows}</tbody>
+        </table></div>
+      </div>
+    </div>
+  `;
+      }
+
+      // ──────────────────────────────────────────
+      // ADMIN: KPI MANAGEMENT
+      // ──────────────────────────────────────────
+      function kpis() {
+        const d = db();
+        const rows = d.kpis
+          .map(
+            (k) => `<tr>
+    <td><strong>${k.name}</strong></td>
+    <td style="color:var(--muted);max-width:200px">${k.description || "—"}</td>
+    <td><span class="badge neutral">${k.category || "General"}</span></td>
+    <td>${k.unit}</td>
+    <td>${k.lowerIsBetter ? `Max ${k.target} ${k.unit}` : `${k.target} ${k.unit}`}</td>
+    <td><span class="badge ${k.lowerIsBetter ? "warning" : "good"}" style="font-size:10px">${k.lowerIsBetter ? "Lower=Better" : "Higher=Better"}</span></td>
+    <td><div style="display:flex;gap:6px">
+      <button class="btn btn-ghost btn-sm" onclick="editKpi(${k.id})"><i class="fas fa-edit"></i></button>
+      <button class="btn btn-danger btn-sm" onclick="delKpi(${k.id})"><i class="fas fa-trash"></i></button>
+    </div></td>
+  </tr>`,
+          )
+          .join("");
+
+        return `
+    <div class="card">
+      <div class="card-head"><h3>KPI Metrics (${d.kpis.length})</h3>
+        <button class="btn btn-primary" onclick="addKpi()"><i class="fas fa-plus"></i> Add KPI</button></div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Name</th><th>Description</th><th>Category</th><th>Unit</th><th>Threshold</th><th>Direction</th><th>Actions</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      ${d.kpis.length === 0 ? '<div class="empty"><i class="fas fa-bullseye"></i><h3>No KPIs yet</h3><p>Click "Add KPI" to create your first metric</p></div>' : ""}</div>
+    </div>`;
+      }
+
+      function kpiForm(k) {
+        const units = [
+          "%",
+          "defects",
+          "BRs",
+          "items",
+          "hrs",
+          "count",
+          "score",
+          "$",
+        ]
+          .map(
+            (u) =>
+              `<option value="${u}" ${k && k.unit === u ? "selected" : ""}>${u}</option>`,
+          )
+          .join("");
+        const lib = k?.lowerIsBetter;
+        return `
+    <div class="ff"><label>KPI Name *</label><input id="kn" value="${k ? k.name : ""}" placeholder="e.g. Defects Aging XP"></div>
+    <div class="ff"><label>Description</label><textarea id="kd" placeholder="What does this KPI measure?">${k ? k.description : ""}</textarea></div>
+    <div class="form-grid">
+      <div class="ff"><label>Category</label><input id="kc" value="${k ? k.category || "" : ""}" placeholder="e.g. Quality"></div>
+      <div class="ff"><label>Unit *</label><select id="ku">${units}</select></div>
+      <div class="ff"><label>Direction *</label>
+        <select id="klib">
+          <option value="lower" ${lib !== false ? "selected" : ""}>Lower is better (count of issues)</option>
+          <option value="higher" ${lib === false ? "selected" : ""}>Higher is better (score / %)</option>
+        </select>
+      </div>
+      <div class="ff"><label id="ktLabel">Max Threshold *</label><input id="kt" type="number" value="${k ? k.target : ""}" placeholder="e.g. 5" min="0" step="0.1"></div>
+    </div>`;
+      }
+
+      function addKpi() {
+        modal(
+          "Add KPI Metric",
+          kpiForm(null),
+          `
+    <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+    <button class="btn btn-primary" onclick="saveKpi()"><i class="fas fa-save"></i> Save KPI</button>`,
+        );
+      }
+
+      function editKpi(id) {
+        const k = db().kpis.find((x) => x.id === id);
+        modal(
+          "Edit KPI Metric",
+          kpiForm(k),
+          `
+    <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+    <button class="btn btn-primary" onclick="saveKpi(${id})"><i class="fas fa-save"></i> Update</button>`,
+        );
+      }
+
+      function saveKpi(id) {
+        const name = v("kn"),
+          desc = v("kd"),
+          cat = v("kc"),
+          unit = v("ku"),
+          tgt = parseFloat(v("kt"));
+        const lowerIsBetter = v("klib") === "lower";
+        if (!name) return toast("KPI name is required", "error");
+        if (isNaN(tgt))
+          return toast("Target / threshold value is required", "error");
+        const d = db();
+        if (id) {
+          Object.assign(
+            d.kpis.find((x) => x.id === id),
+            {
+              name,
+              description: desc,
+              category: cat,
+              unit,
+              target: tgt,
+              lowerIsBetter,
+            },
+          );
+          toast("KPI updated", "success");
+        } else {
+          d.kpis.push({
+            id: nid(d.kpis),
+            name,
+            description: desc,
+            category: cat,
+            unit,
+            target: tgt,
+            lowerIsBetter,
+          });
+          toast("KPI added", "success");
+        }
+        save(d);
+        closeModal();
+        go("kpis");
+      }
+
+      function delKpi(id) {
+        const d = db();
+        const k = d.kpis.find((x) => x.id === id);
+        if (
+          !confirm(
+            `Delete "${k.name}"? All assignments for this KPI will also be removed.`,
+          )
+        )
+          return;
+        d.kpis = d.kpis.filter((x) => x.id !== id);
+        d.assignments = d.assignments.filter((a) => a.kpiId !== id);
+        save(d);
+        toast("KPI deleted", "info");
+        go("kpis");
+      }
+
+      // ──────────────────────────────────────────
+      // ADMIN: ASSIGN
+      // ──────────────────────────────────────────
+      function assign() {
+        const d = db();
+        const emps = d.users.filter((u) => u.role === "employee");
+        const pp = periods();
+
+        const empOpts = emps
+          .map(
+            (e) =>
+              `<option value="${e.id}">${e.name} (${e.department || "No dept"})</option>`,
+          )
+          .join("");
+        const kpiOpts = d.kpis
+          .map((k) => `<option value="${k.id}">${k.name} (${k.unit})</option>`)
+          .join("");
+        const pillsHtml = pp.length
+          ? pp
+              .map(
+                (p, i) =>
+                  `<button class="pp ${i === 0 ? "active" : ""}" onclick="filterAssign('${p}',this)">${p}</button>`,
+              )
+              .join("")
+          : "";
+
+        return `
+    <div class="assign-layout">
+      <div class="card">
+        <div class="card-head"><h3>Assign KPI Value</h3></div>
+        <div class="card-body">
+          <div class="ff"><label>Employee *</label>
+            <select id="aEmp"><option value="">Select employee…</option>${empOpts}</select></div>
+          <div class="ff"><label>KPI Metric *</label>
+            <select id="aKpi"><option value="">Select KPI…</option>${kpiOpts}</select></div>
+          <div class="form-grid">
+            <div class="ff"><label>Value *</label><input id="aVal" type="number" placeholder="e.g. 85" min="0" step="0.1"></div>
+            <div class="ff"><label>Period *</label><input id="aPer" value="May 2026" placeholder="e.g. May 2026"></div>
+          </div>
+          <div class="ff"><label>Notes</label><textarea id="aNotes" placeholder="Optional notes…"></textarea></div>
+          <button class="btn btn-primary" style="width:100%" onclick="doAssign()">
+            <i class="fas fa-save"></i> Save Assignment
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <h3>Current Assignments</h3>
+          <div class="period-pills" id="assignPills">${pillsHtml}</div>
+        </div>
+        <div id="assignTbl">${assignTable(pp[0] || "")}</div>
+      </div>
+    </div>`;
+      }
+
+      function assignTable(period) {
+        const d = db();
+        const rows = d.assignments
+          .filter((a) => !period || a.period === period)
+          .map((a) => {
+            const emp = d.users.find((u) => u.id === a.employeeId);
+            const kpi = d.kpis.find((k) => k.id === a.kpiId);
+            return `<tr>
+      <td>${emp ? emp.name : "?"}</td>
+      <td>${kpi ? kpi.name : "?"}</td>
+      <td><strong>${a.value}${kpi && kpi.unit === "%" ? "%" : kpi ? " " + kpi.unit : ""}</strong></td>
+      <td>${a.period}</td>
+      <td style="font-size:12px;color:var(--muted);max-width:140px">${a.notes || "—"}</td>
+      <td><button class="btn btn-danger btn-sm" onclick="delAssign(${a.id})"><i class="fas fa-trash"></i></button></td>
+    </tr>`;
+          })
+          .join("");
+
+        if (!rows)
+          return '<div class="empty"><i class="fas fa-tasks"></i><h3>No assignments</h3><p>No KPI assignments for this period</p></div>';
+        return `<div class="tbl-wrap"><table>
+    <thead><tr><th>Employee</th><th>KPI</th><th>Value</th><th>Period</th><th>Notes</th><th></th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table></div>`;
+      }
+
+      function filterAssign(period, btn) {
+        document
+          .querySelectorAll("#assignPills .pp")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById("assignTbl").innerHTML = assignTable(period);
+      }
+
+      function doAssign() {
+        const empId = parseInt(v("aEmp")),
+          kpiId = parseInt(v("aKpi"));
+        const val = parseFloat(v("aVal")),
+          per = v("aPer").trim(),
+          notes = v("aNotes").trim();
+        if (!empId) return toast("Select an employee", "error");
+        if (!kpiId) return toast("Select a KPI", "error");
+        if (isNaN(val)) return toast("Enter a value", "error");
+        if (!per) return toast("Enter a period", "error");
+        const d = db();
+        const existing = d.assignments.find(
+          (a) =>
+            a.employeeId === empId && a.kpiId === kpiId && a.period === per,
+        );
+        if (existing) {
+          existing.value = val;
+          existing.notes = notes;
+          toast("Assignment updated", "success");
+        } else {
+          d.assignments.push({
+            id: nid(d.assignments),
+            employeeId: empId,
+            kpiId,
+            value: val,
+            period: per,
+            notes,
+          });
+          toast("KPI assigned", "success");
+        }
+        save(d);
+        go("assign");
+      }
+
+      function delAssign(id) {
+        if (!confirm("Remove this assignment?")) return;
+        const d = db();
+        d.assignments = d.assignments.filter((a) => a.id !== id);
+        save(d);
+        toast("Assignment removed", "info");
+        go("assign");
+      }
+
+      // ──────────────────────────────────────────
+      // ADMIN: EMPLOYEES
+      // ──────────────────────────────────────────
+      function employees() {
+        const d = db();
+        const emps = d.users.filter((u) => u.role === "employee");
+        const rows = emps
+          .map((emp) => {
+            const cnt = d.assignments.filter(
+              (a) => a.employeeId === emp.id,
+            ).length;
+            return `<tr>
+      <td><div style="display:flex;align-items:center;gap:10px">
+        ${empAvatar(emp, 36)}<strong>${emp.name}</strong>
+      </div></td>
+      <td style="font-family:monospace;font-size:13px">${emp.username}</td>
+      <td style="color:var(--muted)">${emp.email || "—"}</td>
+      <td>${emp.department || "—"}</td>
+      <td>${cnt} assignment${cnt !== 1 ? "s" : ""}</td>
+      <td><div style="display:flex;gap:6px">
+        <button class="btn btn-ghost btn-sm" onclick="editEmp(${emp.id})"><i class="fas fa-edit"></i></button>
+        <button class="btn btn-danger btn-sm" onclick="delEmp(${emp.id})"><i class="fas fa-trash"></i></button>
+      </div></td>
+    </tr>`;
+          })
+          .join("");
+
+        return `
+    <div class="card">
+      <div class="card-head"><h3>Employees (${emps.length})</h3>
+        <button class="btn btn-primary" onclick="addEmp()"><i class="fas fa-plus"></i> Add Employee</button></div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Name</th><th>Username</th><th>Email</th><th>Department</th><th>Assignments</th><th>Actions</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      ${emps.length === 0 ? '<div class="empty"><i class="fas fa-users"></i><h3>No employees</h3><p>Add employees to start tracking performance</p></div>' : ""}</div>
+    </div>`;
+      }
+
+      function empForm(e) {
+        return `
+    <div class="form-grid">
+      <div class="ff"><label>Full Name *</label><input id="en" value="${e ? e.name : ""}" placeholder="Jane Smith"></div>
+      <div class="ff"><label>Department</label><input id="ed" value="${e ? e.department || "" : ""}" placeholder="e.g. Sales"></div>
+      <div class="ff form-row-full"><label>Email</label><input id="ee" value="${e ? e.email || "" : ""}" placeholder="employee@company.com"></div>
+      <div class="ff"><label>Username *</label><input id="eu" value="${e ? e.username : ""}" placeholder="jsmith"></div>
+      <div class="ff"><label>Password ${e ? "(leave blank to keep)" : "*"}</label><input id="ep" type="password" placeholder="${e ? "Leave blank to keep" : "Set password"}"></div>
+    </div>`;
+      }
+
+      function addEmp() {
+        modal(
+          "Add Employee",
+          empForm(null),
+          `
+    <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+    <button class="btn btn-primary" onclick="saveEmp()"><i class="fas fa-save"></i> Add Employee</button>`,
+        );
+      }
+
+      function editEmp(id) {
+        const emp = db().users.find((u) => u.id === id);
+        modal(
+          "Edit Employee",
+          empForm(emp),
+          `
+    <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+    <button class="btn btn-primary" onclick="saveEmp(${id})"><i class="fas fa-save"></i> Update</button>`,
+        );
+      }
+
+      function saveEmp(id) {
+        const name = v("en"),
+          dept = v("ed"),
+          email = v("ee"),
+          username = v("eu"),
+          pass = v("ep");
+        if (!name) return toast("Name is required", "error");
+        if (!username) return toast("Username is required", "error");
+        const d = db();
+        if (d.users.find((u) => u.username === username && u.id !== id))
+          return toast("Username already taken", "error");
+        if (id) {
+          const emp = d.users.find((u) => u.id === id);
+          Object.assign(emp, { name, department: dept, email, username });
+          if (pass) emp.password = pass;
+          toast("Employee updated", "success");
+        } else {
+          if (!pass) return toast("Password is required", "error");
+          d.users.push({
+            id: nid(d.users),
+            username,
+            password: pass,
+            role: "employee",
+            name,
+            email,
+            department: dept,
+          });
+          toast("Employee added", "success");
+        }
+        save(d);
+        closeModal();
+        go("employees");
+      }
+
+      function delEmp(id) {
+        const d = db();
+        const emp = d.users.find((u) => u.id === id);
+        if (
+          !confirm(
+            `Delete ${emp?.name}? All their KPI assignments will also be removed.`,
+          )
+        )
+          return;
+        d.users = d.users.filter((u) => u.id !== id);
+        d.assignments = d.assignments.filter((a) => a.employeeId !== id);
+        save(d);
+        toast("Employee deleted", "info");
+        go("employees");
+      }
+
+      // ──────────────────────────────────────────
+      // ADMIN: REPORT
+      // ──────────────────────────────────────────
+      function report() {
+        const pp = periods();
+        return `
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px">
+      <label style="font-size:13px;font-weight:600">Period:</label>
+      <select id="repSel" onchange="updReport(this.value)"
+        style="padding:8px 14px;border:1px solid var(--border);border-radius:9px;font-family:inherit;font-size:13px;outline:none">
+        ${pp.map((p) => `<option value="${p}">${p}</option>`).join("")}
+      </select>
+    </div>
+    <div id="repContent">${reportContent(pp[0] || "")}</div>`;
+      }
+
+      function reportContent(period) {
+        const d = db();
+        const emps = d.users.filter((u) => u.role === "employee");
+        const pAssign = d.assignments.filter((a) => a.period === period);
+        if (!pAssign.length)
+          return '<div class="empty"><i class="fas fa-chart-bar"></i><h3>No data for this period</h3><p>Assign KPI values to generate a report</p></div>';
+
+        return emps
+          .map((emp) => {
+            const ea = pAssign.filter((a) => a.employeeId === emp.id);
+            if (!ea.length) return "";
+            const sc = avgPercent(ea, d.kpis);
+            const rows = ea
+              .map((a) => {
+                const kpi = d.kpis.find((k) => k.id === a.kpiId);
+                const pct = kpi ? calcPct(a.value, kpi) : null;
+                const st = pct !== null ? status(pct) : "";
+                const sl = pct !== null ? achievement(pct) : "—";
+                const valDisp = kpi ? `${a.value} ${kpi.unit}` : a.value;
+                const tgtDisp = kpi
+                  ? kpi.lowerIsBetter
+                    ? `Max ${kpi.target} ${kpi.unit}`
+                    : `${kpi.target} ${kpi.unit}`
+                  : "—";
+                return `<tr>
+        <td><strong>${kpi ? kpi.name : "?"}</strong></td>
+        <td><span class="badge neutral">${kpi ? kpi.category || "General" : ""}</span></td>
+        <td>${valDisp}</td>
+        <td>${tgtDisp}</td>
+        <td>${pct !== null ? `<span class="badge ${st}">${sl} (${pct}%)</span>` : "—"}</td>
+        <td style="font-size:12px;color:var(--muted)">${a.notes || "—"}</td>
+      </tr>`;
+              })
+              .join("");
+
+            return `
+      <div class="card" style="margin-bottom:18px">
+        <div class="card-head">
+          <div style="display:flex;align-items:center;gap:12px">
+            ${empAvatar(emp, 42)}
+            <div><div style="font-weight:700;font-size:15px">${emp.name}</div>
+            <div style="font-size:12px;color:var(--muted)">${emp.department || ""}${emp.department ? " • " : ""}${period}</div></div>
+          </div>
+          ${sc !== null ? `<div style="text-align:right"><div style="font-size:26px;font-weight:800;color:var(--primary)">${sc}%</div><div style="font-size:12px;color:var(--muted)">Overall Score</div></div>` : ""}
+        </div>
+        <div class="tbl-wrap"><table>
+          <thead><tr><th>KPI</th><th>Category</th><th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table></div>
+      </div>`;
+          })
+          .join("");
+      }
+
+      function updReport(p) {
+        document.getElementById("repContent").innerHTML = reportContent(p);
+      }
+
+      // ──────────────────────────────────────────
+      // EMPLOYEE: DASHBOARD
+      // ──────────────────────────────────────────
+      function empDashboard() {
+        const d = db();
+        const pp = empPeriods(me.id);
+        const cur = pp[0] || "";
+        const la = d.assignments.filter(
+          (a) => a.employeeId === me.id && a.period === cur,
+        );
+        const sc = avgPercent(la, d.kpis);
+        const excellent = la.filter((a) => {
+          const k = d.kpis.find((k) => k.id === a.kpiId);
+          return k && calcPct(a.value, k) >= 90;
+        }).length;
+        const needsWork = la.filter((a) => {
+          const k = d.kpis.find((k) => k.id === a.kpiId);
+          return k && calcPct(a.value, k) < 60;
+        }).length;
+        const sl =
+          sc === null
+            ? "No Data"
+            : sc >= 90
+              ? "Excellent Performance"
+              : sc >= 75
+                ? "Good Performance"
+                : sc >= 60
+                  ? "Fair Performance"
+                  : "Needs Improvement";
+
+        const pills = pp
+          .map(
+            (p, i) =>
+              `<button class="pp ${i === 0 ? "active" : ""}" onclick="filterEmpDash('${p}',this)">${p}</button>`,
+          )
+          .join("");
+
+        return `
+    <div class="perf-hero">
+      <div class="perf-hero-label">Overall Performance Score</div>
+      <div class="perf-hero-score">${sc !== null ? sc : "—"}<span> / 100</span></div>
+      <div class="perf-hero-sub">${sl} — ${cur || "No period"}</div>
+      <div class="perf-stats">
+        <div><div class="perf-stat-val">${la.length}</div><div class="perf-stat-lbl">KPIs Tracked</div></div>
+        <div><div class="perf-stat-val">${excellent}</div><div class="perf-stat-lbl">Excellent</div></div>
+        <div><div class="perf-stat-val">${needsWork}</div><div class="perf-stat-lbl">Needs Work</div></div>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <h2>KPI Results</h2>
+      <div class="period-pills" id="empPills">${pills}</div>
+    </div>
+
+    <div class="kpi-grid" id="empKpiGrid">${kpiCards(cur)}</div>
+    ${la.length === 0 ? '<div class="empty"><i class="fas fa-chart-line"></i><h3>No KPIs assigned yet</h3><p>Your manager will assign KPI values to track your performance</p></div>' : ""}
+  `;
+      }
+
+      function filterEmpDash(period, btn) {
+        document
+          .querySelectorAll("#empPills .pp")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById("empKpiGrid").innerHTML = kpiCards(period);
+      }
+
+      function kpiCards(period) {
+        const d = db();
+        const assignments = d.assignments.filter(
+          (a) => a.employeeId === me.id && a.period === period,
+        );
+        return assignments
+          .map((a) => {
+            const kpi = d.kpis.find((k) => k.id === a.kpiId);
+            if (!kpi) return "";
+            const pct = calcPct(a.value, kpi);
+            const st = status(pct);
+            const sl = statusLabel(pct);
+            const tgtLabel = kpi.lowerIsBetter
+              ? `Max: ${kpi.target} ${kpi.unit}`
+              : `Target: ${kpi.target} ${kpi.unit}`;
+            const scoreLabel = kpi.lowerIsBetter
+              ? `Score: ${pct}%`
+              : `${pct}% of target`;
+            return `
+      <div class="kpi-card ${st}">
+        <div class="kpi-card-top">
+          <div>
+            <div class="kpi-card-name">${kpi.name}</div>
+            <div class="kpi-card-desc">${kpi.description || ""}</div>
+          </div>
+          <span class="badge ${st}">${sl}</span>
+        </div>
+        <div class="kpi-big">
+          <div class="kpi-val">${a.value}</div>
+          <div class="kpi-unit">${kpi.unit}</div>
+          <div class="kpi-tgt">${tgtLabel}</div>
+        </div>
+        <div class="progress">
+          <div class="progress-bar ${st}" style="width:${pct}%"></div>
+        </div>
+        <div class="kpi-footer">
+          <span><i class="fas fa-calendar-alt" style="font-size:10px;margin-right:4px"></i>${a.period}</span>
+          <span>${scoreLabel}</span>
+        </div>
+        ${a.notes ? `<div class="kpi-note"><i class="fas fa-comment"></i>${a.notes}</div>` : ""}
+      </div>`;
+          })
+          .join("");
+      }
+
+      // ──────────────────────────────────────────
+      // EMPLOYEE: MY KPIs
+      // ──────────────────────────────────────────
+      function empKpis() {
+        const pp = empPeriods(me.id);
+        return `
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px">
+      <label style="font-size:13px;font-weight:600">Period:</label>
+      <select id="mySel" onchange="updMyKpis(this.value)"
+        style="padding:8px 14px;border:1px solid var(--border);border-radius:9px;font-family:inherit;font-size:13px;outline:none">
+        ${pp.map((p) => `<option value="${p}">${p}</option>`).join("")}
+      </select>
+    </div>
+    <div id="myContent">${myKpisContent(pp[0] || "")}</div>`;
+      }
+
+      function myKpisContent(period) {
+        const d = db();
+        const la = d.assignments.filter(
+          (a) => a.employeeId === me.id && a.period === period,
+        );
+        if (!la.length)
+          return '<div class="empty"><i class="fas fa-chart-line"></i><h3>No KPIs for this period</h3><p>Check with your manager to assign KPI values</p></div>';
+        const sc = avgPercent(la, d.kpis);
+
+        const rows = la
+          .map((a) => {
+            const kpi = d.kpis.find((k) => k.id === a.kpiId);
+            const pct = kpi ? calcPct(a.value, kpi) : null;
+            const st = pct !== null ? status(pct) : "";
+            const valDisp = kpi ? `${a.value} ${kpi.unit}` : a.value;
+            const tgtDisp = kpi
+              ? kpi.lowerIsBetter
+                ? `Max ${kpi.target} ${kpi.unit}`
+                : `${kpi.target} ${kpi.unit}`
+              : "—";
+            return `<tr>
+      <td><strong>${kpi ? kpi.name : "?"}</strong></td>
+      <td><span class="badge neutral">${kpi ? kpi.category || "General" : ""}</span></td>
+      <td>${valDisp}</td>
+      <td>${tgtDisp}</td>
+      <td>${
+        pct !== null
+          ? `
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:72px;height:5px;background:#edeff1;border-radius:20px;overflow:hidden">
+            <div style="width:${pct}%;height:100%;border-radius:20px;background:${pct >= 90 ? "#10b981" : pct >= 75 ? "#837fd8" : pct >= 60 ? "#f59e0b" : "#ef4444"}"></div>
+          </div>
+          <span class="badge ${st}">${pct}%</span>
+        </div>`
+          : "—"
+      }</td>
+      <td style="font-size:12px;color:var(--muted)">${a.notes || "—"}</td>
+    </tr>`;
+          })
+          .join("");
+
+        return `
+    <div class="card" style="margin-bottom:20px">
+      <div class="card-head">
+        <h3>Performance Summary — ${period}</h3>
+        ${sc !== null ? `<div style="font-size:22px;font-weight:800;color:var(--primary)">${sc}% Overall</div>` : ""}
+      </div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>KPI</th><th>Category</th><th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div>
+    </div>
+    <div class="kpi-grid">${kpiCards(period)}</div>`;
+      }
+
+      function updMyKpis(p) {
+        document.getElementById("myContent").innerHTML = myKpisContent(p);
+      }
+
+      // ──────────────────────────────────────────
+      // MODAL / TOAST UTILS
+      // ──────────────────────────────────────────
+      function modal(title, body, footer) {
+        document.getElementById("mTitle").textContent = title;
+        document.getElementById("mBody").innerHTML = body;
+        document.getElementById("mFooter").innerHTML = footer;
+        document.getElementById("modalBg").classList.add("show");
+      }
+
+      function closeModal() {
+        document.getElementById("modalBg").classList.remove("show");
+      }
+
+      function bgClose(e) {
+        if (e.target === document.getElementById("modalBg")) closeModal();
+      }
+
+      function toast(msg, type = "info") {
+        const icons = {
+          success: "fa-check-circle",
+          error: "fa-exclamation-circle",
+          info: "fa-info-circle",
+        };
+        const t = document.createElement("div");
+        t.className = `toast ${type}`;
+        t.innerHTML = `<i class="fas ${icons[type]}"></i>${msg}`;
+        document.getElementById("toasts").appendChild(t);
+        setTimeout(() => t.remove(), 3000);
+      }
+
+      function v(id) {
+        const el = document.getElementById(id);
+        return el ? el.value.trim() : "";
+      }
+    </script>
+  </body>
+</html>
