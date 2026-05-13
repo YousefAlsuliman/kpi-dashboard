@@ -1135,6 +1135,39 @@
         background: #a89e9a;
       }
 
+      /* ── TYPE TABS ─────────────────────────── */
+      .type-tabs {
+        display: flex;
+        gap: 4px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 4px;
+        margin-bottom: 22px;
+        width: fit-content;
+      }
+      .type-tab {
+        padding: 8px 20px;
+        border-radius: 9px;
+        border: none;
+        font-size: 13px;
+        font-weight: 600;
+        font-family: inherit;
+        cursor: pointer;
+        color: var(--muted);
+        background: transparent;
+        transition: all 0.15s;
+      }
+      .type-tab.active {
+        background: var(--primary);
+        color: #fff;
+        box-shadow: 0 2px 8px rgba(131, 127, 216, 0.35);
+      }
+      .type-tab:hover:not(.active) {
+        background: #edeff1;
+        color: var(--text);
+      }
+
       @media (max-width: 900px) {
         .two-col,
         .assign-layout {
@@ -1357,6 +1390,7 @@
             target: 3,
             category: "Quality",
             lowerIsBetter: true,
+            periodType: "month",
           },
           {
             id: 2,
@@ -1367,6 +1401,7 @@
             target: 5,
             category: "Quality",
             lowerIsBetter: true,
+            periodType: "month",
           },
           {
             id: 3,
@@ -1377,6 +1412,7 @@
             target: 3,
             category: "Delivery",
             lowerIsBetter: true,
+            periodType: "month",
           },
           {
             id: 4,
@@ -1387,6 +1423,7 @@
             target: 5,
             category: "Delivery",
             lowerIsBetter: true,
+            periodType: "month",
           },
           {
             id: 5,
@@ -1396,6 +1433,7 @@
             target: 100,
             category: "Learning",
             lowerIsBetter: false,
+            periodType: "month",
           },
           {
             id: 6,
@@ -1406,6 +1444,67 @@
             target: 2,
             category: "Delivery",
             lowerIsBetter: true,
+            periodType: "month",
+          },
+          {
+            id: 7,
+            name: "Annual Training Hours",
+            description: "Total training hours completed during the year",
+            unit: "hrs",
+            target: 40,
+            category: "Learning",
+            lowerIsBetter: false,
+            periodType: "year",
+          },
+          {
+            id: 8,
+            name: "Quarterly Project Delivery Rate",
+            description: "Percentage of projects delivered on time this quarter",
+            unit: "%",
+            target: 100,
+            category: "Delivery",
+            lowerIsBetter: false,
+            periodType: "quarter",
+          },
+          {
+            id: 9,
+            name: "Weekly Defects Resolved",
+            description: "Number of defects resolved and closed per week",
+            unit: "defects",
+            target: 5,
+            category: "Quality",
+            lowerIsBetter: false,
+            periodType: "week",
+          },
+          {
+            id: 10,
+            name: "Annual Performance Review Score",
+            description: "Overall performance score from the annual review cycle",
+            unit: "%",
+            target: 80,
+            category: "Performance",
+            lowerIsBetter: false,
+            periodType: "year",
+          },
+          {
+            id: 11,
+            name: "Quarterly Sprint Velocity",
+            description: "Total story points delivered across all sprints in the quarter",
+            unit: "pts",
+            target: 40,
+            category: "Delivery",
+            lowerIsBetter: false,
+            periodType: "quarter",
+          },
+          {
+            id: 12,
+            name: "Weekly PR Merge Rate",
+            description: "Percentage of pull requests reviewed and merged on time each week",
+            unit: "%",
+            target: 90,
+            category: "Engineering",
+            lowerIsBetter: false,
+            periodType: "week",
           },
         ],
         assignments: [
@@ -1606,15 +1705,135 @@
             period: "April 2026",
             notes: "",
           },
+          // Yearly — 2026 (KPI 7: Annual Training Hours)
+          { id: 25, employeeId: 2, kpiId: 7, value: 35, period: "2026", notes: "Completed most planned training" },
+          { id: 26, employeeId: 3, kpiId: 7, value: 42, period: "2026", notes: "Exceeded annual training target" },
+          { id: 27, employeeId: 4, kpiId: 7, value: 28, period: "2026", notes: "Behind on training — schedule sessions" },
+          { id: 28, employeeId: 5, kpiId: 7, value: 40, period: "2026", notes: "Met annual training target" },
+          // Yearly — 2025 (KPI 7)
+          { id: 29, employeeId: 2, kpiId: 7, value: 38, period: "2025", notes: "" },
+          { id: 30, employeeId: 4, kpiId: 7, value: 45, period: "2025", notes: "" },
+          // Quarterly — Q2 2026 (KPI 8: Quarterly Project Delivery Rate)
+          { id: 31, employeeId: 2, kpiId: 8, value: 90, period: "Q2 2026", notes: "1 project delayed" },
+          { id: 32, employeeId: 3, kpiId: 8, value: 75, period: "Q2 2026", notes: "2 projects missed deadline" },
+          { id: 33, employeeId: 4, kpiId: 8, value: 100, period: "Q2 2026", notes: "All projects on time" },
+          { id: 34, employeeId: 5, kpiId: 8, value: 85, period: "Q2 2026", notes: "" },
+          // Quarterly — Q1 2026 (KPI 8)
+          { id: 35, employeeId: 2, kpiId: 8, value: 80, period: "Q1 2026", notes: "" },
+          { id: 36, employeeId: 3, kpiId: 8, value: 95, period: "Q1 2026", notes: "" },
+          // Weekly — W19 2026 (KPI 9: Weekly Defects Resolved)
+          { id: 37, employeeId: 2, kpiId: 9, value: 6, period: "W19 2026", notes: "Resolved 6 defects this week" },
+          { id: 38, employeeId: 3, kpiId: 9, value: 3, period: "W19 2026", notes: "" },
+          { id: 39, employeeId: 4, kpiId: 9, value: 8, period: "W19 2026", notes: "High productivity week" },
+          { id: 40, employeeId: 5, kpiId: 9, value: 2, period: "W19 2026", notes: "Capacity was limited" },
+          // Weekly — W18 2026 (KPI 9)
+          { id: 41, employeeId: 2, kpiId: 9, value: 4, period: "W18 2026", notes: "" },
+          { id: 42, employeeId: 4, kpiId: 9, value: 7, period: "W18 2026", notes: "" },
+
+          // ── Yearly — KPI 10: Annual Performance Review Score ──────────────
+          // 2026
+          { id: 43, employeeId: 2, kpiId: 10, value: 82, period: "2026", notes: "Strong results across all review areas" },
+          { id: 44, employeeId: 3, kpiId: 10, value: 71, period: "2026", notes: "Below target — improvement plan initiated" },
+          { id: 45, employeeId: 4, kpiId: 10, value: 90, period: "2026", notes: "Exceeded expectations in all categories" },
+          { id: 46, employeeId: 5, kpiId: 10, value: 78, period: "2026", notes: "Solid performance, close to target" },
+          // 2025 — KPI 7 (fill remaining employees) + KPI 10
+          { id: 47, employeeId: 3, kpiId: 7, value: 36, period: "2025", notes: "" },
+          { id: 48, employeeId: 5, kpiId: 7, value: 32, period: "2025", notes: "Training deferrals due to project load" },
+          { id: 49, employeeId: 2, kpiId: 10, value: 78, period: "2025", notes: "" },
+          { id: 50, employeeId: 3, kpiId: 10, value: 68, period: "2025", notes: "Needs improvement" },
+          { id: 51, employeeId: 4, kpiId: 10, value: 85, period: "2025", notes: "Consistently high performer" },
+          { id: 52, employeeId: 5, kpiId: 10, value: 75, period: "2025", notes: "" },
+          // 2024 — KPI 7 + KPI 10
+          { id: 53, employeeId: 2, kpiId: 7, value: 40, period: "2024", notes: "Met target exactly" },
+          { id: 54, employeeId: 3, kpiId: 7, value: 30, period: "2024", notes: "" },
+          { id: 55, employeeId: 4, kpiId: 7, value: 50, period: "2024", notes: "Completed additional optional courses" },
+          { id: 56, employeeId: 5, kpiId: 7, value: 35, period: "2024", notes: "" },
+          { id: 57, employeeId: 2, kpiId: 10, value: 74, period: "2024", notes: "" },
+          { id: 58, employeeId: 3, kpiId: 10, value: 65, period: "2024", notes: "" },
+          { id: 59, employeeId: 4, kpiId: 10, value: 88, period: "2024", notes: "" },
+          { id: 60, employeeId: 5, kpiId: 10, value: 72, period: "2024", notes: "" },
+
+          // ── Quarterly — KPI 11: Sprint Velocity ───────────────────────────
+          // Q2 2026
+          { id: 61, employeeId: 2, kpiId: 11, value: 38, period: "Q2 2026", notes: "Slightly under velocity target" },
+          { id: 62, employeeId: 3, kpiId: 11, value: 45, period: "Q2 2026", notes: "Exceeded target — great sprint planning" },
+          { id: 63, employeeId: 4, kpiId: 11, value: 42, period: "Q2 2026", notes: "" },
+          { id: 64, employeeId: 5, kpiId: 11, value: 31, period: "Q2 2026", notes: "Capacity reduced due to on-call rotation" },
+          // Q1 2026 — KPI 8 (fill Sultan, Mohamed) + KPI 11 (all)
+          { id: 65, employeeId: 4, kpiId: 8, value: 88, period: "Q1 2026", notes: "1 project slipped by a week" },
+          { id: 66, employeeId: 5, kpiId: 8, value: 92, period: "Q1 2026", notes: "" },
+          { id: 67, employeeId: 2, kpiId: 11, value: 35, period: "Q1 2026", notes: "" },
+          { id: 68, employeeId: 3, kpiId: 11, value: 48, period: "Q1 2026", notes: "Best quarter on record" },
+          { id: 69, employeeId: 4, kpiId: 11, value: 40, period: "Q1 2026", notes: "Hit target precisely" },
+          { id: 70, employeeId: 5, kpiId: 11, value: 28, period: "Q1 2026", notes: "Team size reduced mid-quarter" },
+          // Q4 2025 — KPI 8 + KPI 11
+          { id: 71, employeeId: 2, kpiId: 8, value: 85, period: "Q4 2025", notes: "" },
+          { id: 72, employeeId: 3, kpiId: 8, value: 70, period: "Q4 2025", notes: "End-of-year scope creep" },
+          { id: 73, employeeId: 4, kpiId: 8, value: 95, period: "Q4 2025", notes: "" },
+          { id: 74, employeeId: 5, kpiId: 8, value: 80, period: "Q4 2025", notes: "" },
+          { id: 75, employeeId: 2, kpiId: 11, value: 33, period: "Q4 2025", notes: "" },
+          { id: 76, employeeId: 3, kpiId: 11, value: 41, period: "Q4 2025", notes: "" },
+          { id: 77, employeeId: 4, kpiId: 11, value: 37, period: "Q4 2025", notes: "" },
+          { id: 78, employeeId: 5, kpiId: 11, value: 44, period: "Q4 2025", notes: "Strong finish to the year" },
+          // Q3 2025 — KPI 8 + KPI 11
+          { id: 79, employeeId: 2, kpiId: 8, value: 90, period: "Q3 2025", notes: "" },
+          { id: 80, employeeId: 3, kpiId: 8, value: 78, period: "Q3 2025", notes: "" },
+          { id: 81, employeeId: 4, kpiId: 8, value: 100, period: "Q3 2025", notes: "Perfect delivery quarter" },
+          { id: 82, employeeId: 5, kpiId: 8, value: 85, period: "Q3 2025", notes: "" },
+          { id: 83, employeeId: 2, kpiId: 11, value: 40, period: "Q3 2025", notes: "" },
+          { id: 84, employeeId: 3, kpiId: 11, value: 38, period: "Q3 2025", notes: "" },
+          { id: 85, employeeId: 4, kpiId: 11, value: 46, period: "Q3 2025", notes: "" },
+          { id: 86, employeeId: 5, kpiId: 11, value: 35, period: "Q3 2025", notes: "" },
+
+          // ── Weekly — KPI 12: PR Merge Rate ────────────────────────────────
+          // W20 2026
+          { id: 87, employeeId: 2, kpiId: 9, value: 7, period: "W20 2026", notes: "High output week" },
+          { id: 88, employeeId: 3, kpiId: 9, value: 4, period: "W20 2026", notes: "" },
+          { id: 89, employeeId: 4, kpiId: 9, value: 9, period: "W20 2026", notes: "Outstanding week" },
+          { id: 90, employeeId: 5, kpiId: 9, value: 3, period: "W20 2026", notes: "" },
+          { id: 91, employeeId: 2, kpiId: 12, value: 92, period: "W20 2026", notes: "" },
+          { id: 92, employeeId: 3, kpiId: 12, value: 83, period: "W20 2026", notes: "2 PRs pending review at week end" },
+          { id: 93, employeeId: 4, kpiId: 12, value: 97, period: "W20 2026", notes: "" },
+          { id: 94, employeeId: 5, kpiId: 12, value: 78, period: "W20 2026", notes: "Backlog of reviews carried over" },
+          // W19 2026 — KPI 12
+          { id: 95, employeeId: 2, kpiId: 12, value: 95, period: "W19 2026", notes: "" },
+          { id: 96, employeeId: 3, kpiId: 12, value: 80, period: "W19 2026", notes: "" },
+          { id: 97, employeeId: 4, kpiId: 12, value: 100, period: "W19 2026", notes: "All PRs merged on time" },
+          { id: 98, employeeId: 5, kpiId: 12, value: 75, period: "W19 2026", notes: "" },
+          // W18 2026 — KPI 9 (fill Fahad, Mohamed) + KPI 12
+          { id: 99, employeeId: 3, kpiId: 9, value: 5, period: "W18 2026", notes: "" },
+          { id: 100, employeeId: 5, kpiId: 9, value: 3, period: "W18 2026", notes: "" },
+          { id: 101, employeeId: 2, kpiId: 12, value: 88, period: "W18 2026", notes: "" },
+          { id: 102, employeeId: 3, kpiId: 12, value: 72, period: "W18 2026", notes: "Several large PRs delayed review" },
+          { id: 103, employeeId: 4, kpiId: 12, value: 100, period: "W18 2026", notes: "" },
+          { id: 104, employeeId: 5, kpiId: 12, value: 85, period: "W18 2026", notes: "" },
+          // W17 2026 — KPI 9 + KPI 12
+          { id: 105, employeeId: 2, kpiId: 9, value: 3, period: "W17 2026", notes: "" },
+          { id: 106, employeeId: 3, kpiId: 9, value: 2, period: "W17 2026", notes: "Low week due to planning overhead" },
+          { id: 107, employeeId: 4, kpiId: 9, value: 6, period: "W17 2026", notes: "" },
+          { id: 108, employeeId: 5, kpiId: 9, value: 4, period: "W17 2026", notes: "" },
+          { id: 109, employeeId: 2, kpiId: 12, value: 85, period: "W17 2026", notes: "" },
+          { id: 110, employeeId: 3, kpiId: 12, value: 90, period: "W17 2026", notes: "" },
+          { id: 111, employeeId: 4, kpiId: 12, value: 93, period: "W17 2026", notes: "" },
+          { id: 112, employeeId: 5, kpiId: 12, value: 82, period: "W17 2026", notes: "" },
+          // W16 2026 — KPI 9 + KPI 12
+          { id: 113, employeeId: 2, kpiId: 9, value: 5, period: "W16 2026", notes: "" },
+          { id: 114, employeeId: 3, kpiId: 9, value: 6, period: "W16 2026", notes: "" },
+          { id: 115, employeeId: 4, kpiId: 9, value: 8, period: "W16 2026", notes: "" },
+          { id: 116, employeeId: 5, kpiId: 9, value: 4, period: "W16 2026", notes: "" },
+          { id: 117, employeeId: 2, kpiId: 12, value: 91, period: "W16 2026", notes: "" },
+          { id: 118, employeeId: 3, kpiId: 12, value: 77, period: "W16 2026", notes: "" },
+          { id: 119, employeeId: 4, kpiId: 12, value: 100, period: "W16 2026", notes: "Perfect merge week" },
+          { id: 120, employeeId: 5, kpiId: 12, value: 88, period: "W16 2026", notes: "" },
         ],
       };
 
       function db() {
-        const raw = localStorage.getItem("kpiPortal_v3");
+        const raw = localStorage.getItem("kpiPortal_v5");
         return raw ? JSON.parse(raw) : (save(SEED), SEED);
       }
       function save(d) {
-        localStorage.setItem("kpiPortal_v3", JSON.stringify(d));
+        localStorage.setItem("kpiPortal_v5", JSON.stringify(d));
       }
       function nid(arr) {
         return arr.length ? Math.max(...arr.map((x) => x.id)) + 1 : 1;
@@ -1624,6 +1843,11 @@
       // AUTH
       // ──────────────────────────────────────────
       let me = null;
+      let _empDashType = 'month';
+      let _empKpisType = 'month';
+      let _reportType = 'month';
+      let _kpisType = 'month';
+      let _assignType = 'month';
 
       function fc(u, p) {
         document.getElementById("lu").value = u;
@@ -1784,6 +2008,26 @@
           .sort()
           .reverse();
       }
+      function periodsForType(type) {
+        const d = db();
+        const ids = new Set(d.kpis.filter(k => (k.periodType || 'month') === type).map(k => k.id));
+        return [...new Set(
+          d.assignments.filter(a => ids.has(a.kpiId)).map(a => a.period)
+        )].sort().reverse();
+      }
+      function empPeriodsForType(empId, type) {
+        const d = db();
+        const ids = new Set(d.kpis.filter(k => (k.periodType || 'month') === type).map(k => k.id));
+        return [...new Set(
+          d.assignments.filter(a => a.employeeId === empId && ids.has(a.kpiId)).map(a => a.period)
+        )].sort().reverse();
+      }
+      function ptBadge(type) {
+        const colors = { year: 'excellent', quarter: 'good', month: 'neutral', week: 'warning' };
+        const labels = { year: 'Yearly', quarter: 'Quarterly', month: 'Monthly', week: 'Weekly' };
+        const t = type || 'month';
+        return `<span class="badge ${colors[t]}" style="font-size:10px">${labels[t]}</span>`;
+      }
       // For lowerIsBetter KPIs: achievement = 100% when value=0, 50% when value=target, 0% when value=2×target
       function calcPct(value, kpi) {
         if (kpi.lowerIsBetter) {
@@ -1887,12 +2131,18 @@
       // ──────────────────────────────────────────
       function kpis() {
         const d = db();
-        const rows = d.kpis
-          .map(
-            (k) => `<tr>
+        const type = _kpisType;
+        const ptLabelMap = {year:'Yearly',quarter:'Quarterly',month:'Monthly',week:'Weekly'};
+        const typeTabs = ['year','quarter','month','week'].map(t =>
+          `<button class="type-tab ${t === type ? 'active' : ''}" onclick="setKpisType('${t}')">${ptLabelMap[t]}</button>`
+        ).join('');
+
+        const filtered = d.kpis.filter(k => (k.periodType || 'month') === type);
+        const rows = filtered.map((k) => `<tr>
     <td><strong>${k.name}</strong></td>
     <td style="color:var(--muted);max-width:200px">${k.description || "—"}</td>
     <td><span class="badge neutral">${k.category || "General"}</span></td>
+    <td>${ptBadge(k.periodType)}</td>
     <td>${k.unit}</td>
     <td>${k.lowerIsBetter ? `Max ${k.target} ${k.unit}` : `${k.target} ${k.unit}`}</td>
     <td><span class="badge ${k.lowerIsBetter ? "warning" : "good"}" style="font-size:10px">${k.lowerIsBetter ? "Lower=Better" : "Higher=Better"}</span></td>
@@ -1900,20 +2150,25 @@
       <button class="btn btn-ghost btn-sm" onclick="editKpi(${k.id})"><i class="fas fa-edit"></i></button>
       <button class="btn btn-danger btn-sm" onclick="delKpi(${k.id})"><i class="fas fa-trash"></i></button>
     </div></td>
-  </tr>`,
-          )
-          .join("");
+  </tr>`).join("");
 
         return `
+    <div class="type-tabs">${typeTabs}</div>
     <div class="card">
-      <div class="card-head"><h3>KPI Metrics (${d.kpis.length})</h3>
+      <div class="card-head"><h3>${ptLabelMap[type]} KPIs (${filtered.length})</h3>
         <button class="btn btn-primary" onclick="addKpi()"><i class="fas fa-plus"></i> Add KPI</button></div>
       <div class="tbl-wrap"><table>
-        <thead><tr><th>Name</th><th>Description</th><th>Category</th><th>Unit</th><th>Threshold</th><th>Direction</th><th>Actions</th></tr></thead>
+        <thead><tr><th>Name</th><th>Description</th><th>Category</th><th>Period</th><th>Unit</th><th>Threshold</th><th>Direction</th><th>Actions</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
-      ${d.kpis.length === 0 ? '<div class="empty"><i class="fas fa-bullseye"></i><h3>No KPIs yet</h3><p>Click "Add KPI" to create your first metric</p></div>' : ""}</div>
+      ${filtered.length === 0 ? '<div class="empty"><i class="fas fa-bullseye"></i><h3>No KPIs yet</h3><p>Click "Add KPI" to create your first metric</p></div>' : ""}</div>
     </div>`;
+
+      }
+
+      function setKpisType(type) {
+        _kpisType = type;
+        document.getElementById("content").innerHTML = kpis();
       }
 
       function kpiForm(k) {
@@ -1933,19 +2188,28 @@
           )
           .join("");
         const lib = k?.lowerIsBetter;
+        const pt = k?.periodType || 'month';
         return `
     <div class="ff"><label>KPI Name *</label><input id="kn" value="${k ? k.name : ""}" placeholder="e.g. Defects Aging XP"></div>
     <div class="ff"><label>Description</label><textarea id="kd" placeholder="What does this KPI measure?">${k ? k.description : ""}</textarea></div>
     <div class="form-grid">
       <div class="ff"><label>Category</label><input id="kc" value="${k ? k.category || "" : ""}" placeholder="e.g. Quality"></div>
       <div class="ff"><label>Unit *</label><select id="ku">${units}</select></div>
+      <div class="ff"><label>Period Type *</label>
+        <select id="kpt">
+          <option value="month" ${pt === 'month' ? 'selected' : ''}>Monthly</option>
+          <option value="quarter" ${pt === 'quarter' ? 'selected' : ''}>Quarterly</option>
+          <option value="year" ${pt === 'year' ? 'selected' : ''}>Yearly</option>
+          <option value="week" ${pt === 'week' ? 'selected' : ''}>Weekly</option>
+        </select>
+      </div>
       <div class="ff"><label>Direction *</label>
         <select id="klib">
           <option value="lower" ${lib !== false ? "selected" : ""}>Lower is better (count of issues)</option>
           <option value="higher" ${lib === false ? "selected" : ""}>Higher is better (score / %)</option>
         </select>
       </div>
-      <div class="ff"><label id="ktLabel">Max Threshold *</label><input id="kt" type="number" value="${k ? k.target : ""}" placeholder="e.g. 5" min="0" step="0.1"></div>
+      <div class="ff form-row-full"><label id="ktLabel">Max Threshold *</label><input id="kt" type="number" value="${k ? k.target : ""}" placeholder="e.g. 5" min="0" step="0.1"></div>
     </div>`;
       }
 
@@ -1977,6 +2241,7 @@
           unit = v("ku"),
           tgt = parseFloat(v("kt"));
         const lowerIsBetter = v("klib") === "lower";
+        const periodType = v("kpt") || "month";
         if (!name) return toast("KPI name is required", "error");
         if (isNaN(tgt))
           return toast("Target / threshold value is required", "error");
@@ -1991,6 +2256,7 @@
               unit,
               target: tgt,
               lowerIsBetter,
+              periodType,
             },
           );
           toast("KPI updated", "success");
@@ -2003,6 +2269,7 @@
             unit,
             target: tgt,
             lowerIsBetter,
+            periodType,
           });
           toast("KPI added", "success");
         }
@@ -2033,25 +2300,23 @@
       function assign() {
         const d = db();
         const emps = d.users.filter((u) => u.role === "employee");
-        const pp = periods();
+        const type = _assignType;
+        const ptLabelMap = {year:'Yearly',quarter:'Quarterly',month:'Monthly',week:'Weekly'};
 
         const empOpts = emps
-          .map(
-            (e) =>
-              `<option value="${e.id}">${e.name} (${e.department || "No dept"})</option>`,
-          )
+          .map((e) => `<option value="${e.id}">${e.name} (${e.department || "No dept"})</option>`)
           .join("");
         const kpiOpts = d.kpis
-          .map((k) => `<option value="${k.id}">${k.name} (${k.unit})</option>`)
+          .map((k) => `<option value="${k.id}">${k.name} [${ptLabelMap[k.periodType||'month']}]</option>`)
           .join("");
-        const pillsHtml = pp.length
-          ? pp
-              .map(
-                (p, i) =>
-                  `<button class="pp ${i === 0 ? "active" : ""}" onclick="filterAssign('${p}',this)">${p}</button>`,
-              )
-              .join("")
-          : "";
+
+        const typeTabs = ['year','quarter','month','week'].map(t =>
+          `<button class="type-tab ${t === type ? 'active' : ''}" onclick="setAssignType('${t}')">${ptLabelMap[t]}</button>`
+        ).join('');
+        const pp = periodsForType(type);
+        const pillsHtml = pp.map((p, i) =>
+          `<button class="pp ${i === 0 ? 'active' : ''}" onclick="filterAssign('${p}',this)">${p}</button>`
+        ).join('');
 
         return `
     <div class="assign-layout">
@@ -2061,10 +2326,10 @@
           <div class="ff"><label>Employee *</label>
             <select id="aEmp"><option value="">Select employee…</option>${empOpts}</select></div>
           <div class="ff"><label>KPI Metric *</label>
-            <select id="aKpi"><option value="">Select KPI…</option>${kpiOpts}</select></div>
+            <select id="aKpi" onchange="updatePeriodHint()"><option value="">Select KPI…</option>${kpiOpts}</select></div>
           <div class="form-grid">
             <div class="ff"><label>Value *</label><input id="aVal" type="number" placeholder="e.g. 85" min="0" step="0.1"></div>
-            <div class="ff"><label>Period *</label><input id="aPer" value="May 2026" placeholder="e.g. May 2026"></div>
+            <div class="ff"><label>Period *</label><input id="aPer" placeholder="Select a KPI first…"><small id="aPeriodHint" style="font-size:11px;color:var(--muted);margin-top:4px;display:block"></small></div>
           </div>
           <div class="ff"><label>Notes</label><textarea id="aNotes" placeholder="Optional notes…"></textarea></div>
           <button class="btn btn-primary" style="width:100%" onclick="doAssign()">
@@ -2073,19 +2338,26 @@
         </div>
       </div>
       <div class="card">
-        <div class="card-head">
-          <h3>Current Assignments</h3>
-          <div class="period-pills" id="assignPills">${pillsHtml}</div>
+        <div class="card-head"><h3>Current Assignments</h3></div>
+        <div style="padding:14px 22px 0">
+          <div class="type-tabs">${typeTabs}</div>
+          <div class="period-pills" id="assignPills" style="margin-bottom:14px">${pillsHtml || '<span style="font-size:13px;color:var(--muted)">No periods yet</span>'}</div>
         </div>
-        <div id="assignTbl">${assignTable(pp[0] || "")}</div>
+        <div id="assignTbl">${assignTable(type, pp[0] || "")}</div>
       </div>
     </div>`;
       }
 
-      function assignTable(period) {
+      function setAssignType(type) {
+        _assignType = type;
+        document.getElementById("content").innerHTML = assign();
+      }
+
+      function assignTable(type, period) {
         const d = db();
+        const typeIds = type ? new Set(d.kpis.filter(k => (k.periodType||'month') === type).map(k => k.id)) : null;
         const rows = d.assignments
-          .filter((a) => !period || a.period === period)
+          .filter((a) => (!period || a.period === period) && (!typeIds || typeIds.has(a.kpiId)))
           .map((a) => {
             const emp = d.users.find((u) => u.id === a.employeeId);
             const kpi = d.kpis.find((k) => k.id === a.kpiId);
@@ -2109,11 +2381,9 @@
       }
 
       function filterAssign(period, btn) {
-        document
-          .querySelectorAll("#assignPills .pp")
-          .forEach((b) => b.classList.remove("active"));
+        document.querySelectorAll("#assignPills .pp").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
-        document.getElementById("assignTbl").innerHTML = assignTable(period);
+        document.getElementById("assignTbl").innerHTML = assignTable(_assignType, period);
       }
 
       function doAssign() {
@@ -2157,6 +2427,20 @@
         save(d);
         toast("Assignment removed", "info");
         go("assign");
+      }
+
+      function updatePeriodHint() {
+        const kpiId = parseInt(v("aKpi"));
+        const kpi = kpiId ? db().kpis.find(k => k.id === kpiId) : null;
+        const hint = document.getElementById('aPeriodHint');
+        const inp = document.getElementById('aPer');
+        if (!hint || !inp) return;
+        if (!kpi) { hint.textContent = ''; inp.placeholder = 'Select a KPI first…'; return; }
+        const examples = {year:'e.g. 2026, 2025', quarter:'e.g. Q2 2026, Q1 2026', month:'e.g. May 2026, April 2026', week:'e.g. W19 2026, W18 2026'};
+        const labels = {year:'Yearly', quarter:'Quarterly', month:'Monthly', week:'Weekly'};
+        const pt = kpi.periodType || 'month';
+        hint.textContent = `${labels[pt]} KPI — ${examples[pt]}`;
+        inp.placeholder = examples[pt].replace('e.g. ','').split(',')[0].trim();
       }
 
       // ──────────────────────────────────────────
@@ -2284,8 +2568,14 @@
       // ADMIN: REPORT
       // ──────────────────────────────────────────
       function report() {
-        const pp = periods();
+        const type = _reportType;
+        const ptLabelMap = {year:'Yearly',quarter:'Quarterly',month:'Monthly',week:'Weekly'};
+        const pp = periodsForType(type);
+        const typeTabs = ['year','quarter','month','week'].map(t =>
+          `<button class="type-tab ${t === type ? 'active' : ''}" onclick="setReportType('${t}')">${ptLabelMap[t]}</button>`
+        ).join('');
         return `
+    <div class="type-tabs">${typeTabs}</div>
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px">
       <label style="font-size:13px;font-weight:600">Period:</label>
       <select id="repSel" onchange="updReport(this.value)"
@@ -2293,13 +2583,20 @@
         ${pp.map((p) => `<option value="${p}">${p}</option>`).join("")}
       </select>
     </div>
-    <div id="repContent">${reportContent(pp[0] || "")}</div>`;
+    <div id="repContent">${reportContent(pp[0] || "", type)}</div>`;
       }
 
-      function reportContent(period) {
+      function setReportType(type) {
+        _reportType = type;
+        document.getElementById("content").innerHTML = report();
+      }
+
+      function reportContent(period, type) {
         const d = db();
+        const resolvedType = type || _reportType || 'month';
+        const typeIds = new Set(d.kpis.filter(k => (k.periodType||'month') === resolvedType).map(k => k.id));
         const emps = d.users.filter((u) => u.role === "employee");
-        const pAssign = d.assignments.filter((a) => a.period === period);
+        const pAssign = d.assignments.filter((a) => a.period === period && typeIds.has(a.kpiId));
         if (!pAssign.length)
           return '<div class="empty"><i class="fas fa-chart-bar"></i><h3>No data for this period</h3><p>Assign KPI values to generate a report</p></div>';
 
@@ -2351,7 +2648,7 @@
       }
 
       function updReport(p) {
-        document.getElementById("repContent").innerHTML = reportContent(p);
+        document.getElementById("repContent").innerHTML = reportContent(p, _reportType);
       }
 
       // ──────────────────────────────────────────
@@ -2359,41 +2656,28 @@
       // ──────────────────────────────────────────
       function empDashboard() {
         const d = db();
-        const pp = empPeriods(me.id);
+        const type = _empDashType;
+        const ptLabelMap = {year:'Yearly',quarter:'Quarterly',month:'Monthly',week:'Weekly'};
+        const pp = empPeriodsForType(me.id, type);
         const cur = pp[0] || "";
-        const la = d.assignments.filter(
-          (a) => a.employeeId === me.id && a.period === cur,
-        );
+        const typeIds = new Set(d.kpis.filter(k => (k.periodType||'month') === type).map(k => k.id));
+        const la = d.assignments.filter(a => a.employeeId === me.id && a.period === cur && typeIds.has(a.kpiId));
         const sc = avgPercent(la, d.kpis);
-        const excellent = la.filter((a) => {
-          const k = d.kpis.find((k) => k.id === a.kpiId);
-          return k && calcPct(a.value, k) >= 90;
-        }).length;
-        const needsWork = la.filter((a) => {
-          const k = d.kpis.find((k) => k.id === a.kpiId);
-          return k && calcPct(a.value, k) < 60;
-        }).length;
-        const sl =
-          sc === null
-            ? "No Data"
-            : sc >= 90
-              ? "Excellent Performance"
-              : sc >= 75
-                ? "Good Performance"
-                : sc >= 60
-                  ? "Fair Performance"
-                  : "Needs Improvement";
+        const excellent = la.filter(a => { const k = d.kpis.find(k => k.id === a.kpiId); return k && calcPct(a.value, k) >= 90; }).length;
+        const needsWork = la.filter(a => { const k = d.kpis.find(k => k.id === a.kpiId); return k && calcPct(a.value, k) < 60; }).length;
+        const sl = sc === null ? "No Data" : sc >= 90 ? "Excellent Performance" : sc >= 75 ? "Good Performance" : sc >= 60 ? "Fair Performance" : "Needs Improvement";
 
-        const pills = pp
-          .map(
-            (p, i) =>
-              `<button class="pp ${i === 0 ? "active" : ""}" onclick="filterEmpDash('${p}',this)">${p}</button>`,
-          )
-          .join("");
+        const typeTabs = ['year','quarter','month','week'].map(t =>
+          `<button class="type-tab ${t === type ? 'active' : ''}" onclick="setEmpDashType('${t}')">${ptLabelMap[t]}</button>`
+        ).join('');
+
+        const pills = pp.map((p, i) =>
+          `<button class="pp ${i === 0 ? 'active' : ''}" onclick="filterEmpDash('${p}',this)">${p}</button>`
+        ).join('');
 
         return `
     <div class="perf-hero">
-      <div class="perf-hero-label">Overall Performance Score</div>
+      <div class="perf-hero-label">Overall Performance Score — ${ptLabelMap[type]}</div>
       <div class="perf-hero-score">${sc !== null ? sc : "—"}<span> / 100</span></div>
       <div class="perf-hero-sub">${sl} — ${cur || "No period"}</div>
       <div class="perf-stats">
@@ -2403,28 +2687,34 @@
       </div>
     </div>
 
+    <div class="type-tabs">${typeTabs}</div>
+
     <div class="section-head">
-      <h2>KPI Results</h2>
-      <div class="period-pills" id="empPills">${pills}</div>
+      <h2>KPI Results — ${ptLabelMap[type]}</h2>
+      <div class="period-pills" id="empPills">${pills || '<span style="font-size:13px;color:var(--muted)">No periods assigned yet</span>'}</div>
     </div>
 
-    <div class="kpi-grid" id="empKpiGrid">${kpiCards(cur)}</div>
-    ${la.length === 0 ? '<div class="empty"><i class="fas fa-chart-line"></i><h3>No KPIs assigned yet</h3><p>Your manager will assign KPI values to track your performance</p></div>' : ""}
+    <div class="kpi-grid" id="empKpiGrid">${kpiCards(cur, type)}</div>
+    ${la.length === 0 && cur ? '<div class="empty"><i class="fas fa-chart-line"></i><h3>No KPIs assigned yet</h3><p>Your manager will assign KPI values to track your performance</p></div>' : ""}
   `;
       }
 
-      function filterEmpDash(period, btn) {
-        document
-          .querySelectorAll("#empPills .pp")
-          .forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
-        document.getElementById("empKpiGrid").innerHTML = kpiCards(period);
+      function setEmpDashType(type) {
+        _empDashType = type;
+        document.getElementById("content").innerHTML = empDashboard();
       }
 
-      function kpiCards(period) {
+      function filterEmpDash(period, btn) {
+        document.querySelectorAll("#empPills .pp").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById("empKpiGrid").innerHTML = kpiCards(period, _empDashType);
+      }
+
+      function kpiCards(period, type) {
         const d = db();
+        const typeIds = type ? new Set(d.kpis.filter(k => (k.periodType||'month') === type).map(k => k.id)) : null;
         const assignments = d.assignments.filter(
-          (a) => a.employeeId === me.id && a.period === period,
+          (a) => a.employeeId === me.id && a.period === period && (!typeIds || typeIds.has(a.kpiId)),
         );
         return assignments
           .map((a) => {
@@ -2470,8 +2760,14 @@
       // EMPLOYEE: MY KPIs
       // ──────────────────────────────────────────
       function empKpis() {
-        const pp = empPeriods(me.id);
+        const type = _empKpisType;
+        const ptLabelMap = {year:'Yearly',quarter:'Quarterly',month:'Monthly',week:'Weekly'};
+        const pp = empPeriodsForType(me.id, type);
+        const typeTabs = ['year','quarter','month','week'].map(t =>
+          `<button class="type-tab ${t === type ? 'active' : ''}" onclick="setEmpKpisType('${t}')">${ptLabelMap[t]}</button>`
+        ).join('');
         return `
+    <div class="type-tabs">${typeTabs}</div>
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px">
       <label style="font-size:13px;font-weight:600">Period:</label>
       <select id="mySel" onchange="updMyKpis(this.value)"
@@ -2479,13 +2775,20 @@
         ${pp.map((p) => `<option value="${p}">${p}</option>`).join("")}
       </select>
     </div>
-    <div id="myContent">${myKpisContent(pp[0] || "")}</div>`;
+    <div id="myContent">${myKpisContent(pp[0] || "", type)}</div>`;
       }
 
-      function myKpisContent(period) {
+      function setEmpKpisType(type) {
+        _empKpisType = type;
+        document.getElementById("content").innerHTML = empKpis();
+      }
+
+      function myKpisContent(period, type) {
         const d = db();
+        const resolvedType = type || _empKpisType || 'month';
+        const typeIds = new Set(d.kpis.filter(k => (k.periodType||'month') === resolvedType).map(k => k.id));
         const la = d.assignments.filter(
-          (a) => a.employeeId === me.id && a.period === period,
+          (a) => a.employeeId === me.id && a.period === period && typeIds.has(a.kpiId),
         );
         if (!la.length)
           return '<div class="empty"><i class="fas fa-chart-line"></i><h3>No KPIs for this period</h3><p>Check with your manager to assign KPI values</p></div>';
@@ -2534,11 +2837,11 @@
         <tbody>${rows}</tbody>
       </table></div>
     </div>
-    <div class="kpi-grid">${kpiCards(period)}</div>`;
+    <div class="kpi-grid">${kpiCards(period, resolvedType)}</div>`;
       }
 
       function updMyKpis(p) {
-        document.getElementById("myContent").innerHTML = myKpisContent(p);
+        document.getElementById("myContent").innerHTML = myKpisContent(p, _empKpisType);
       }
 
       // ──────────────────────────────────────────
