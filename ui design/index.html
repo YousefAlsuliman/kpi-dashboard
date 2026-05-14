@@ -1843,11 +1843,11 @@
       // AUTH
       // ──────────────────────────────────────────
       let me = null;
-      let _empDashType = 'month';
-      let _empKpisType = 'month';
-      let _reportType = 'month';
-      let _kpisType = 'month';
-      let _assignType = 'month';
+      let _empDashType = 'all';
+      let _empKpisType = 'all';
+      let _reportType = 'all';
+      let _kpisType = 'all';
+      let _assignType = 'all';
 
       function fc(u, p) {
         document.getElementById("lu").value = u;
@@ -2028,6 +2028,23 @@
         const t = type || 'month';
         return `<span class="badge ${colors[t]}" style="font-size:10px">${labels[t]}</span>`;
       }
+      function latestAssignments(empId) {
+        const d = db();
+        const byKpi = {};
+        d.assignments.filter(a => a.employeeId === empId).forEach(a => {
+          if (!byKpi[a.kpiId] || a.id > byKpi[a.kpiId].id) byKpi[a.kpiId] = a;
+        });
+        return Object.values(byKpi);
+      }
+      function latestAssignmentsAll() {
+        const d = db();
+        const byEmpKpi = {};
+        d.assignments.forEach(a => {
+          const key = `${a.employeeId}-${a.kpiId}`;
+          if (!byEmpKpi[key] || a.id > byEmpKpi[key].id) byEmpKpi[key] = a;
+        });
+        return Object.values(byEmpKpi);
+      }
       // For lowerIsBetter KPIs: achievement = 100% when value=0, 50% when value=target, 0% when value=2×target
       function calcPct(value, kpi) {
         if (kpi.lowerIsBetter) {
@@ -2132,12 +2149,12 @@
       function kpis() {
         const d = db();
         const type = _kpisType;
-        const ptLabelMap = {year:'Yearly',quarter:'Quarterly',month:'Monthly',week:'Weekly'};
-        const typeTabs = ['year','quarter','month','week'].map(t =>
+        const ptLabelMap = {all:'Overview', year:'Yearly', quarter:'Quarterly', month:'Monthly', week:'Weekly'};
+        const typeTabs = ['all','year','quarter','month','week'].map(t =>
           `<button class="type-tab ${t === type ? 'active' : ''}" onclick="setKpisType('${t}')">${ptLabelMap[t]}</button>`
         ).join('');
 
-        const filtered = d.kpis.filter(k => (k.periodType || 'month') === type);
+        const filtered = type === 'all' ? d.kpis : d.kpis.filter(k => (k.periodType || 'month') === type);
         const rows = filtered.map((k) => `<tr>
     <td><strong>${k.name}</strong></td>
     <td style="color:var(--muted);max-width:200px">${k.description || "—"}</td>
@@ -2155,7 +2172,7 @@
         return `
     <div class="type-tabs">${typeTabs}</div>
     <div class="card">
-      <div class="card-head"><h3>${ptLabelMap[type]} KPIs (${filtered.length})</h3>
+      <div class="card-head"><h3>${type === 'all' ? `All KPIs (${filtered.length})` : `${ptLabelMap[type]} KPIs (${filtered.length})`}</h3>
         <button class="btn btn-primary" onclick="addKpi()"><i class="fas fa-plus"></i> Add KPI</button></div>
       <div class="tbl-wrap"><table>
         <thead><tr><th>Name</th><th>Description</th><th>Category</th><th>Period</th><th>Unit</th><th>Threshold</th><th>Direction</th><th>Actions</th></tr></thead>
@@ -2301,7 +2318,7 @@
         const d = db();
         const emps = d.users.filter((u) => u.role === "employee");
         const type = _assignType;
-        const ptLabelMap = {year:'Yearly',quarter:'Quarterly',month:'Monthly',week:'Weekly'};
+        const ptLabelMap = {all:'Overview', year:'Yearly', quarter:'Quarterly', month:'Monthly', week:'Weekly'};
 
         const empOpts = emps
           .map((e) => `<option value="${e.id}">${e.name} (${e.department || "No dept"})</option>`)
@@ -2310,10 +2327,10 @@
           .map((k) => `<option value="${k.id}">${k.name} [${ptLabelMap[k.periodType||'month']}]</option>`)
           .join("");
 
-        const typeTabs = ['year','quarter','month','week'].map(t =>
+        const typeTabs = ['all','year','quarter','month','week'].map(t =>
           `<button class="type-tab ${t === type ? 'active' : ''}" onclick="setAssignType('${t}')">${ptLabelMap[t]}</button>`
         ).join('');
-        const pp = periodsForType(type);
+        const pp = type === 'all' ? periods() : periodsForType(type);
         const pillsHtml = pp.map((p, i) =>
           `<button class="pp ${i === 0 ? 'active' : ''}" onclick="filterAssign('${p}',this)">${p}</button>`
         ).join('');
@@ -2355,7 +2372,7 @@
 
       function assignTable(type, period) {
         const d = db();
-        const typeIds = type ? new Set(d.kpis.filter(k => (k.periodType||'month') === type).map(k => k.id)) : null;
+        const typeIds = (type && type !== 'all') ? new Set(d.kpis.filter(k => (k.periodType||'month') === type).map(k => k.id)) : null;
         const rows = d.assignments
           .filter((a) => (!period || a.period === period) && (!typeIds || typeIds.has(a.kpiId)))
           .map((a) => {
@@ -2569,11 +2586,16 @@
       // ──────────────────────────────────────────
       function report() {
         const type = _reportType;
-        const ptLabelMap = {year:'Yearly',quarter:'Quarterly',month:'Monthly',week:'Weekly'};
-        const pp = periodsForType(type);
-        const typeTabs = ['year','quarter','month','week'].map(t =>
+        const ptLabelMap = {all:'Overview', year:'Yearly', quarter:'Quarterly', month:'Monthly', week:'Weekly'};
+        const typeTabs = ['all','year','quarter','month','week'].map(t =>
           `<button class="type-tab ${t === type ? 'active' : ''}" onclick="setReportType('${t}')">${ptLabelMap[t]}</button>`
         ).join('');
+        if (type === 'all') {
+          return `
+    <div class="type-tabs">${typeTabs}</div>
+    <div id="repContent">${reportContent(null, 'all')}</div>`;
+        }
+        const pp = periodsForType(type);
         return `
     <div class="type-tabs">${typeTabs}</div>
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px">
@@ -2594,9 +2616,15 @@
       function reportContent(period, type) {
         const d = db();
         const resolvedType = type || _reportType || 'month';
-        const typeIds = new Set(d.kpis.filter(k => (k.periodType||'month') === resolvedType).map(k => k.id));
         const emps = d.users.filter((u) => u.role === "employee");
-        const pAssign = d.assignments.filter((a) => a.period === period && typeIds.has(a.kpiId));
+        const isAll = resolvedType === 'all';
+        let pAssign;
+        if (isAll) {
+          pAssign = latestAssignmentsAll();
+        } else {
+          const typeIds = new Set(d.kpis.filter(k => (k.periodType||'month') === resolvedType).map(k => k.id));
+          pAssign = d.assignments.filter((a) => a.period === period && typeIds.has(a.kpiId));
+        }
         if (!pAssign.length)
           return '<div class="empty"><i class="fas fa-chart-bar"></i><h3>No data for this period</h3><p>Assign KPI values to generate a report</p></div>';
 
@@ -2620,6 +2648,7 @@
                 return `<tr>
         <td><strong>${kpi ? kpi.name : "?"}</strong></td>
         <td><span class="badge neutral">${kpi ? kpi.category || "General" : ""}</span></td>
+        ${isAll ? `<td>${ptBadge(kpi?.periodType)} <span style="font-size:11px;color:var(--muted)">${a.period}</span></td>` : ''}
         <td>${valDisp}</td>
         <td>${tgtDisp}</td>
         <td>${pct !== null ? `<span class="badge ${st}">${sl} (${pct}%)</span>` : "—"}</td>
@@ -2634,12 +2663,12 @@
           <div style="display:flex;align-items:center;gap:12px">
             ${empAvatar(emp, 42)}
             <div><div style="font-weight:700;font-size:15px">${emp.name}</div>
-            <div style="font-size:12px;color:var(--muted)">${emp.department || ""}${emp.department ? " • " : ""}${period}</div></div>
+            <div style="font-size:12px;color:var(--muted)">${emp.department || ""}${emp.department ? " • " : ""}${isAll ? 'All KPIs — Latest' : period}</div></div>
           </div>
           ${sc !== null ? `<div style="text-align:right"><div style="font-size:26px;font-weight:800;color:var(--primary)">${sc}%</div><div style="font-size:12px;color:var(--muted)">Overall Score</div></div>` : ""}
         </div>
         <div class="tbl-wrap"><table>
-          <thead><tr><th>KPI</th><th>Category</th><th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
+          <thead><tr><th>KPI</th><th>Category</th>${isAll ? '<th>Period</th>' : ''}<th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
           <tbody>${rows}</tbody>
         </table></div>
       </div>`;
@@ -2657,29 +2686,45 @@
       function empDashboard() {
         const d = db();
         const type = _empDashType;
-        const ptLabelMap = {year:'Yearly',quarter:'Quarterly',month:'Monthly',week:'Weekly'};
-        const pp = empPeriodsForType(me.id, type);
-        const cur = pp[0] || "";
-        const typeIds = new Set(d.kpis.filter(k => (k.periodType||'month') === type).map(k => k.id));
-        const la = d.assignments.filter(a => a.employeeId === me.id && a.period === cur && typeIds.has(a.kpiId));
+        const ptLabelMap = {all:'Overview', year:'Yearly', quarter:'Quarterly', month:'Monthly', week:'Weekly'};
+
+        let la, periodLabel, sectionContent, cur = '';
+        if (type === 'all') {
+          la = latestAssignments(me.id);
+          periodLabel = 'All KPIs — Latest Values';
+          sectionContent = `<div class="section-head"><h2>All KPIs — Latest Results</h2></div>`;
+        } else {
+          const pp = empPeriodsForType(me.id, type);
+          cur = pp[0] || '';
+          const typeIds = new Set(d.kpis.filter(k => (k.periodType||'month') === type).map(k => k.id));
+          la = d.assignments.filter(a => a.employeeId === me.id && a.period === cur && typeIds.has(a.kpiId));
+          periodLabel = `${ptLabelMap[type]} — ${cur || 'No period'}`;
+          const pills = pp.map((p, i) =>
+            `<button class="pp ${i === 0 ? 'active' : ''}" onclick="filterEmpDash('${p}',this)">${p}</button>`
+          ).join('');
+          sectionContent = `
+    <div class="section-head">
+      <h2>KPI Results — ${ptLabelMap[type]}</h2>
+      <div class="period-pills" id="empPills">${pills || '<span style="font-size:13px;color:var(--muted)">No periods assigned yet</span>'}</div>
+    </div>`;
+        }
+
         const sc = avgPercent(la, d.kpis);
         const excellent = la.filter(a => { const k = d.kpis.find(k => k.id === a.kpiId); return k && calcPct(a.value, k) >= 90; }).length;
         const needsWork = la.filter(a => { const k = d.kpis.find(k => k.id === a.kpiId); return k && calcPct(a.value, k) < 60; }).length;
         const sl = sc === null ? "No Data" : sc >= 90 ? "Excellent Performance" : sc >= 75 ? "Good Performance" : sc >= 60 ? "Fair Performance" : "Needs Improvement";
 
-        const typeTabs = ['year','quarter','month','week'].map(t =>
+        const typeTabs = ['all','year','quarter','month','week'].map(t =>
           `<button class="type-tab ${t === type ? 'active' : ''}" onclick="setEmpDashType('${t}')">${ptLabelMap[t]}</button>`
         ).join('');
 
-        const pills = pp.map((p, i) =>
-          `<button class="pp ${i === 0 ? 'active' : ''}" onclick="filterEmpDash('${p}',this)">${p}</button>`
-        ).join('');
+        const gridContent = type === 'all' ? kpiCards(null, null, la) : kpiCards(cur, type);
 
         return `
     <div class="perf-hero">
-      <div class="perf-hero-label">Overall Performance Score — ${ptLabelMap[type]}</div>
+      <div class="perf-hero-label">Overall Performance Score</div>
       <div class="perf-hero-score">${sc !== null ? sc : "—"}<span> / 100</span></div>
-      <div class="perf-hero-sub">${sl} — ${cur || "No period"}</div>
+      <div class="perf-hero-sub">${sl} — ${periodLabel}</div>
       <div class="perf-stats">
         <div><div class="perf-stat-val">${la.length}</div><div class="perf-stat-lbl">KPIs Tracked</div></div>
         <div><div class="perf-stat-val">${excellent}</div><div class="perf-stat-lbl">Excellent</div></div>
@@ -2688,14 +2733,9 @@
     </div>
 
     <div class="type-tabs">${typeTabs}</div>
-
-    <div class="section-head">
-      <h2>KPI Results — ${ptLabelMap[type]}</h2>
-      <div class="period-pills" id="empPills">${pills || '<span style="font-size:13px;color:var(--muted)">No periods assigned yet</span>'}</div>
-    </div>
-
-    <div class="kpi-grid" id="empKpiGrid">${kpiCards(cur, type)}</div>
-    ${la.length === 0 && cur ? '<div class="empty"><i class="fas fa-chart-line"></i><h3>No KPIs assigned yet</h3><p>Your manager will assign KPI values to track your performance</p></div>' : ""}
+    ${sectionContent}
+    <div class="kpi-grid" id="empKpiGrid">${gridContent}</div>
+    ${la.length === 0 ? '<div class="empty"><i class="fas fa-chart-line"></i><h3>No KPIs assigned yet</h3><p>Your manager will assign KPI values to track your performance</p></div>' : ""}
   `;
       }
 
@@ -2710,12 +2750,17 @@
         document.getElementById("empKpiGrid").innerHTML = kpiCards(period, _empDashType);
       }
 
-      function kpiCards(period, type) {
+      function kpiCards(period, type, overrideList) {
         const d = db();
-        const typeIds = type ? new Set(d.kpis.filter(k => (k.periodType||'month') === type).map(k => k.id)) : null;
-        const assignments = d.assignments.filter(
-          (a) => a.employeeId === me.id && a.period === period && (!typeIds || typeIds.has(a.kpiId)),
-        );
+        let assignments;
+        if (overrideList) {
+          assignments = overrideList;
+        } else {
+          const typeIds = (type && type !== 'all') ? new Set(d.kpis.filter(k => (k.periodType||'month') === type).map(k => k.id)) : null;
+          assignments = d.assignments.filter(
+            (a) => a.employeeId === me.id && a.period === period && (!typeIds || typeIds.has(a.kpiId)),
+          );
+        }
         return assignments
           .map((a) => {
             const kpi = d.kpis.find((k) => k.id === a.kpiId);
@@ -2761,11 +2806,16 @@
       // ──────────────────────────────────────────
       function empKpis() {
         const type = _empKpisType;
-        const ptLabelMap = {year:'Yearly',quarter:'Quarterly',month:'Monthly',week:'Weekly'};
-        const pp = empPeriodsForType(me.id, type);
-        const typeTabs = ['year','quarter','month','week'].map(t =>
+        const ptLabelMap = {all:'Overview', year:'Yearly', quarter:'Quarterly', month:'Monthly', week:'Weekly'};
+        const typeTabs = ['all','year','quarter','month','week'].map(t =>
           `<button class="type-tab ${t === type ? 'active' : ''}" onclick="setEmpKpisType('${t}')">${ptLabelMap[t]}</button>`
         ).join('');
+        if (type === 'all') {
+          return `
+    <div class="type-tabs">${typeTabs}</div>
+    <div id="myContent">${myKpisContent(null, 'all')}</div>`;
+        }
+        const pp = empPeriodsForType(me.id, type);
         return `
     <div class="type-tabs">${typeTabs}</div>
     <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px">
@@ -2786,10 +2836,16 @@
       function myKpisContent(period, type) {
         const d = db();
         const resolvedType = type || _empKpisType || 'month';
-        const typeIds = new Set(d.kpis.filter(k => (k.periodType||'month') === resolvedType).map(k => k.id));
-        const la = d.assignments.filter(
-          (a) => a.employeeId === me.id && a.period === period && typeIds.has(a.kpiId),
-        );
+        const isAll = resolvedType === 'all';
+        let la;
+        if (isAll) {
+          la = latestAssignments(me.id);
+        } else {
+          const typeIds = new Set(d.kpis.filter(k => (k.periodType||'month') === resolvedType).map(k => k.id));
+          la = d.assignments.filter(
+            (a) => a.employeeId === me.id && a.period === period && typeIds.has(a.kpiId),
+          );
+        }
         if (!la.length)
           return '<div class="empty"><i class="fas fa-chart-line"></i><h3>No KPIs for this period</h3><p>Check with your manager to assign KPI values</p></div>';
         const sc = avgPercent(la, d.kpis);
@@ -2808,6 +2864,7 @@
             return `<tr>
       <td><strong>${kpi ? kpi.name : "?"}</strong></td>
       <td><span class="badge neutral">${kpi ? kpi.category || "General" : ""}</span></td>
+      ${isAll ? `<td>${ptBadge(kpi?.periodType)} <span style="font-size:11px;color:var(--muted)">${a.period}</span></td>` : ''}
       <td>${valDisp}</td>
       <td>${tgtDisp}</td>
       <td>${
@@ -2826,18 +2883,19 @@
           })
           .join("");
 
+        const headingText = isAll ? 'Overview — All KPIs (Latest)' : `Performance Summary — ${period}`;
         return `
     <div class="card" style="margin-bottom:20px">
       <div class="card-head">
-        <h3>Performance Summary — ${period}</h3>
+        <h3>${headingText}</h3>
         ${sc !== null ? `<div style="font-size:22px;font-weight:800;color:var(--primary)">${sc}% Overall</div>` : ""}
       </div>
       <div class="tbl-wrap"><table>
-        <thead><tr><th>KPI</th><th>Category</th><th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
+        <thead><tr><th>KPI</th><th>Category</th>${isAll ? '<th>Period</th>' : ''}<th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
         <tbody>${rows}</tbody>
       </table></div>
     </div>
-    <div class="kpi-grid">${kpiCards(period, resolvedType)}</div>`;
+    <div class="kpi-grid">${isAll ? kpiCards(null, null, la) : kpiCards(period, resolvedType)}</div>`;
       }
 
       function updMyKpis(p) {
