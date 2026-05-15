@@ -1558,7 +1558,6 @@
       // ──────────────────────────────────────────
       let me = null;
       let _empDashType = 'all';
-      let _empKpisType = 'all';
       let _reportType = 'all';
       let _kpisType = 'all';
       let _assignType = 'all';
@@ -1643,7 +1642,6 @@
           nav.innerHTML = `
       <div class="nav-section-label">My Performance</div>
       <div class="nav-item" data-v="emp-dashboard" onclick="go('emp-dashboard')"><i class="fas fa-th-large"></i> Dashboard</div>
-      <div class="nav-item" data-v="emp-kpis"      onclick="go('emp-kpis')"><i class="fas fa-chart-line"></i> My KPIs</div>
     `;
         }
       }
@@ -1659,7 +1657,6 @@
           employees: "Employees",
           report: "Performance Report",
           "emp-dashboard": `Welcome, ${me.name.split(" ")[0]}`,
-          "emp-kpis": "My KPIs",
         };
         document.getElementById("pageTitle").textContent = titles[v] || "";
         const views = {
@@ -1669,7 +1666,6 @@
           employees,
           report,
           "emp-dashboard": empDashboard,
-          "emp-kpis": empKpis,
         };
         document.getElementById("content").innerHTML = (
           views[v] || (() => "")
@@ -2362,8 +2358,6 @@
           `<button class="type-tab ${t === type ? 'active' : ''}" onclick="setEmpDashType('${t}')">${ptLabelMap[t]}</button>`
         ).join('');
 
-        const gridContent = type === 'all' ? kpiCards(null, null, la) : kpiCards(cur, type);
-
         return `
     <div class="perf-hero">
       <div class="perf-hero-label">Overall Performance Score</div>
@@ -2378,9 +2372,47 @@
 
     <div class="type-tabs">${typeTabs}</div>
     ${sectionContent}
-    <div class="kpi-grid" id="empKpiGrid">${gridContent}</div>
-    ${la.length === 0 ? '<div class="empty"><i class="fas fa-chart-line"></i><h3>No KPIs assigned yet</h3><p>Your manager will assign KPI values to track your performance</p></div>' : ""}
+    <div id="empDashContent">${empDashTable(la, type)}</div>
   `;
+      }
+
+      function empDashTable(la, type) {
+        const d = db();
+        const isAll = type === 'all';
+        if (!la.length)
+          return '<div class="empty"><i class="fas fa-chart-line"></i><h3>No KPIs assigned yet</h3><p>Your manager will assign KPI values to track your performance</p></div>';
+        const sc = avgPercent(la, d.kpis);
+        const rows = la.map((a) => {
+          const kpi = d.kpis.find((k) => k.id === a.kpiId);
+          const pct = kpi ? calcPct(a.value, kpi) : null;
+          const st = pct !== null ? status(pct) : "";
+          return `<tr>
+      <td><strong>${kpi ? kpi.name : "?"}</strong></td>
+      <td><span class="badge neutral">${kpi ? kpi.category || "General" : ""}</span></td>
+      ${isAll ? `<td>${ptBadge(kpi?.periodType)} <span style="font-size:11px;color:var(--muted)">${a.period}</span></td>` : ''}
+      <td>${a.value} / 5</td>
+      <td>5</td>
+      <td>${pct !== null ? `
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:72px;height:5px;background:#edeff1;border-radius:20px;overflow:hidden">
+            <div style="width:${pct}%;height:100%;border-radius:20px;background:${pct >= 90 ? "#10b981" : pct >= 75 ? "#837fd8" : pct >= 60 ? "#f59e0b" : "#ef4444"}"></div>
+          </div>
+          <span class="badge ${st}">${pct}%</span>
+        </div>` : "—"}</td>
+      <td style="font-size:12px;color:var(--muted)">${a.notes || "—"}</td>
+    </tr>`;
+        }).join("");
+        return `
+    <div class="card" style="margin-bottom:20px">
+      <div class="card-head">
+        <h3>${isAll ? 'Overview — All KPIs (Latest)' : 'Performance Summary'}</h3>
+        ${sc !== null ? `<div style="font-size:22px;font-weight:800;color:var(--primary)">${sc}% Overall</div>` : ""}
+      </div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>KPI</th><th>Category</th>${isAll ? '<th>Period</th>' : ''}<th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div>
+    </div>`;
       }
 
       function setEmpDashType(type) {
@@ -2391,7 +2423,10 @@
       function filterEmpDash(period, btn) {
         document.querySelectorAll("#empPills .pp").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
-        document.getElementById("empKpiGrid").innerHTML = kpiCards(period, _empDashType);
+        const d = db();
+        const typeIds = new Set(d.kpis.filter(k => (k.periodType||'month') === _empDashType).map(k => k.id));
+        const la = d.assignments.filter(a => a.employeeId === me.id && a.period === period && typeIds.has(a.kpiId));
+        document.getElementById("empDashContent").innerHTML = empDashTable(la, _empDashType);
       }
 
       function kpiCards(period, type, overrideList) {
@@ -2442,100 +2477,6 @@
       // ──────────────────────────────────────────
       // EMPLOYEE: MY KPIs
       // ──────────────────────────────────────────
-      function empKpis() {
-        const type = _empKpisType;
-        const ptLabelMap = {all:'Overview', year:'Yearly', quarter:'Quarterly', month:'Monthly', week:'Weekly'};
-        const typeTabs = ['all','year','quarter','month','week'].map(t =>
-          `<button class="type-tab ${t === type ? 'active' : ''}" onclick="setEmpKpisType('${t}')">${ptLabelMap[t]}</button>`
-        ).join('');
-        if (type === 'all') {
-          return `
-    <div class="type-tabs">${typeTabs}</div>
-    <div id="myContent">${myKpisContent(null, 'all')}</div>`;
-        }
-        const pp = empPeriodsForType(me.id, type);
-        return `
-    <div class="type-tabs">${typeTabs}</div>
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px">
-      <label style="font-size:13px;font-weight:600">Period:</label>
-      <select id="mySel" onchange="updMyKpis(this.value)"
-        style="padding:8px 14px;border:1px solid var(--border);border-radius:9px;font-family:inherit;font-size:13px;outline:none">
-        ${pp.map((p) => `<option value="${p}">${p}</option>`).join("")}
-      </select>
-    </div>
-    <div id="myContent">${myKpisContent(pp[0] || "", type)}</div>`;
-      }
-
-      function setEmpKpisType(type) {
-        _empKpisType = type;
-        document.getElementById("content").innerHTML = empKpis();
-      }
-
-      function myKpisContent(period, type) {
-        const d = db();
-        const resolvedType = type || _empKpisType || 'month';
-        const isAll = resolvedType === 'all';
-        let la;
-        if (isAll) {
-          la = latestAssignments(me.id);
-        } else {
-          const typeIds = new Set(d.kpis.filter(k => (k.periodType||'month') === resolvedType).map(k => k.id));
-          la = d.assignments.filter(
-            (a) => a.employeeId === me.id && a.period === period && typeIds.has(a.kpiId),
-          );
-        }
-        if (!la.length)
-          return '<div class="empty"><i class="fas fa-chart-line"></i><h3>No KPIs for this period</h3><p>Check with your manager to assign KPI values</p></div>';
-        const sc = avgPercent(la, d.kpis);
-
-        const rows = la
-          .map((a) => {
-            const kpi = d.kpis.find((k) => k.id === a.kpiId);
-            const pct = kpi ? calcPct(a.value, kpi) : null;
-            const st = pct !== null ? status(pct) : "";
-            const valDisp = `${a.value} / 5`;
-            const tgtDisp = "5";
-            return `<tr>
-      <td><strong>${kpi ? kpi.name : "?"}</strong></td>
-      <td><span class="badge neutral">${kpi ? kpi.category || "General" : ""}</span></td>
-      ${isAll ? `<td>${ptBadge(kpi?.periodType)} <span style="font-size:11px;color:var(--muted)">${a.period}</span></td>` : ''}
-      <td>${valDisp}</td>
-      <td>${tgtDisp}</td>
-      <td>${
-        pct !== null
-          ? `
-        <div style="display:flex;align-items:center;gap:8px">
-          <div style="width:72px;height:5px;background:#edeff1;border-radius:20px;overflow:hidden">
-            <div style="width:${pct}%;height:100%;border-radius:20px;background:${pct >= 90 ? "#10b981" : pct >= 75 ? "#837fd8" : pct >= 60 ? "#f59e0b" : "#ef4444"}"></div>
-          </div>
-          <span class="badge ${st}">${pct}%</span>
-        </div>`
-          : "—"
-      }</td>
-      <td style="font-size:12px;color:var(--muted)">${a.notes || "—"}</td>
-    </tr>`;
-          })
-          .join("");
-
-        const headingText = isAll ? 'Overview — All KPIs (Latest)' : `Performance Summary — ${period}`;
-        return `
-    <div class="card" style="margin-bottom:20px">
-      <div class="card-head">
-        <h3>${headingText}</h3>
-        ${sc !== null ? `<div style="font-size:22px;font-weight:800;color:var(--primary)">${sc}% Overall</div>` : ""}
-      </div>
-      <div class="tbl-wrap"><table>
-        <thead><tr><th>KPI</th><th>Category</th>${isAll ? '<th>Period</th>' : ''}<th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table></div>
-    </div>
-    <div class="kpi-grid">${isAll ? kpiCards(null, null, la) : kpiCards(period, resolvedType)}</div>`;
-      }
-
-      function updMyKpis(p) {
-        document.getElementById("myContent").innerHTML = myKpisContent(p, _empKpisType);
-      }
-
       // ──────────────────────────────────────────
       // MODAL / TOAST UTILS
       // ──────────────────────────────────────────
