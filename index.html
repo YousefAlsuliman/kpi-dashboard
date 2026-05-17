@@ -352,6 +352,10 @@
         background: linear-gradient(135deg, #856043, #a07d56);
         color: #fff;
       }
+      .avatar.director {
+        background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+        color: #fff;
+      }
 
       .sb-user-info h4 {
         font-size: 13px;
@@ -379,6 +383,10 @@
       .role-pill.employee {
         background: rgba(133, 96, 67, 0.2);
         color: #c49a78;
+      }
+      .role-pill.director {
+        background: rgba(14, 165, 233, 0.2);
+        color: #38bdf8;
       }
 
       .sb-nav {
@@ -1174,6 +1182,22 @@
           grid-template-columns: 1fr;
         }
       }
+
+      /* ── DIRECTOR EMPLOYEE CARD ────────────── */
+      .dir-emp-card {
+        background: var(--card);
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        padding: 22px;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        user-select: none;
+      }
+      .dir-emp-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border-color: var(--primary);
+      }
     </style>
   </head>
   <body>
@@ -1268,6 +1292,15 @@
                   >mohamed</span
                 >
                 / pass123</span
+              >
+            </div>
+            <div class="demo-row">
+              <span class="role">Director</span>
+              <span class="cred"
+                ><span class="fill" onclick="fc('director', 'dir123')"
+                  >director</span
+                >
+                / dir123</span
               >
             </div>
           </div>
@@ -1379,6 +1412,15 @@
             name: "Mohamed Hamoda",
             email: "mohamed@company.com",
             department: "Operations",
+          },
+          {
+            id: 6,
+            username: "director",
+            password: "dir123",
+            role: "director",
+            name: "Director",
+            email: "director@company.com",
+            department: "IT Products Delivery",
           },
         ],
         kpis: [
@@ -7124,11 +7166,11 @@
       };
 
       function db() {
-        const raw = localStorage.getItem("kpiPortal_v7");
+        const raw = localStorage.getItem("kpiPortal_v8");
         return raw ? JSON.parse(raw) : (save(SEED), SEED);
       }
       function save(d) {
-        localStorage.setItem("kpiPortal_v7", JSON.stringify(d));
+        localStorage.setItem("kpiPortal_v8", JSON.stringify(d));
       }
       function nid(arr) {
         return arr.length ? Math.max(...arr.map((x) => x.id)) + 1 : 1;
@@ -7142,6 +7184,7 @@
       let _reportType = "all";
       let _kpisType = "all";
       let _assignType = "all";
+      let _directorType = "all";
 
       function fc(u, p) {
         document.getElementById("lu").value = u;
@@ -7194,7 +7237,7 @@
             day: "numeric",
           });
         buildNav();
-        go(me.role === "admin" ? "dashboard" : "emp-dashboard");
+        go(me.role === "admin" ? "dashboard" : me.role === "director" ? "director-dashboard" : "emp-dashboard");
       }
 
       function initials(name) {
@@ -7219,6 +7262,11 @@
       <div class="nav-section-label">Reports</div>
       <div class="nav-item" data-v="report"      onclick="go('report')"><i class="fas fa-chart-bar"></i> Performance Report</div>
     `;
+        } else if (me.role === "director") {
+          nav.innerHTML = `
+      <div class="nav-section-label">Overview</div>
+      <div class="nav-item" data-v="director-dashboard" onclick="go('director-dashboard')"><i class="fas fa-chart-line"></i> Department Overview</div>
+    `;
         } else {
           nav.innerHTML = `
       <div class="nav-section-label">My Performance</div>
@@ -7238,6 +7286,7 @@
           employees: "Employees",
           report: "Performance Report",
           "emp-dashboard": `Welcome, ${me.name.split(" ")[0]}`,
+          "director-dashboard": "Department Overview",
         };
         document.getElementById("pageTitle").textContent = titles[v] || "";
         const views = {
@@ -7247,6 +7296,7 @@
           employees,
           report,
           "emp-dashboard": empDashboard,
+          "director-dashboard": directorDashboard,
         };
         document.getElementById("content").innerHTML = (
           views[v] || (() => "")
@@ -8350,8 +8400,174 @@
       }
 
       // ──────────────────────────────────────────
-      // EMPLOYEE: MY KPIs
+      // DIRECTOR: DASHBOARD
       // ──────────────────────────────────────────
+      function directorDashboard() {
+        const d = db();
+        const type = _directorType;
+        const dept = me.department || "IT Products Delivery";
+        const emps = d.users.filter(u => u.role === "employee");
+        const ptLabelMap = { all: "Overview", year: "Yearly", quarter: "Quarterly", month: "Monthly", week: "Weekly" };
+        const years = yearsForType(type === "all" ? null : type, null);
+
+        let getAssignments, periodLabel;
+        if (type === "all") {
+          const initYear = years[0] || "";
+          periodLabel = initYear ? `All KPIs — ${initYear}` : "All KPIs";
+          getAssignments = empId => latestAssignments(empId, initYear);
+        } else if (type === "year") {
+          const initYear = years[0] || "";
+          periodLabel = initYear || "—";
+          const typeIds = new Set(d.kpis.filter(k => (k.periodType || "month") === "year").map(k => k.id));
+          getAssignments = empId => d.assignments.filter(a => a.employeeId === empId && a.period === initYear && typeIds.has(a.kpiId));
+        } else {
+          const initYear = years[0] || "";
+          const defaultSub = initYear ? latestSubForYear(type, initYear, null) : "";
+          const cur = defaultSub && initYear ? `${defaultSub} ${initYear}` : "";
+          periodLabel = cur || "No period";
+          const typeIds = new Set(d.kpis.filter(k => (k.periodType || "month") === type).map(k => k.id));
+          getAssignments = empId => d.assignments.filter(a => a.employeeId === empId && a.period === cur && typeIds.has(a.kpiId));
+        }
+
+        const allScores = emps.map(emp => avgPercent(getAssignments(emp.id), d.kpis)).filter(s => s !== null);
+        const teamAvg = allScores.length ? Math.round(allScores.reduce((a, b) => a + b, 0) / allScores.length) : null;
+        const excellent = allScores.filter(s => s >= 90).length;
+        const needsWork = allScores.filter(s => s < 60).length;
+
+        const typeTabs = ["all", "year", "quarter", "month", "week"]
+          .map(t => `<button class="type-tab ${t === type ? "active" : ""}" onclick="setDirectorType('${t}')">${ptLabelMap[t]}</button>`)
+          .join("");
+
+        const filterHtml = periodFilterHtml(type, years, "dirFYear", "dirFSub", "applyDirectorFilter()", null);
+
+        return `
+          <div style="background:linear-gradient(135deg,#002134,#003557);border-radius:20px;padding:28px;color:#fff;margin-bottom:26px;position:relative;overflow:hidden">
+            <div style="position:absolute;right:-60px;top:-60px;width:240px;height:240px;background:rgba(131,127,216,0.15);border-radius:50%;pointer-events:none"></div>
+            <div style="position:absolute;left:40%;bottom:-80px;width:200px;height:200px;background:rgba(14,165,233,0.08);border-radius:50%;pointer-events:none"></div>
+            <div style="font-size:11px;color:#64748b;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:6px">Department</div>
+            <div style="font-size:26px;font-weight:800;margin-bottom:4px">${dept}</div>
+            <div style="font-size:13px;color:#94a3b8;margin-bottom:22px">${periodLabel}</div>
+            <div style="display:flex;gap:36px;flex-wrap:wrap">
+              <div><div style="font-size:26px;font-weight:800">${teamAvg !== null ? teamAvg + "%" : "—"}</div><div style="font-size:11px;color:#64748b;margin-top:2px">Team Average</div></div>
+              <div><div style="font-size:26px;font-weight:800">${emps.length}</div><div style="font-size:11px;color:#64748b;margin-top:2px">Employees</div></div>
+              <div><div style="font-size:26px;font-weight:800;color:#10b981">${excellent}</div><div style="font-size:11px;color:#64748b;margin-top:2px">Excellent</div></div>
+              <div><div style="font-size:26px;font-weight:800;color:#ef4444">${needsWork}</div><div style="font-size:11px;color:#64748b;margin-top:2px">Needs Work</div></div>
+            </div>
+          </div>
+          <div class="type-tabs">${typeTabs}</div>
+          <div style="margin-bottom:20px">${filterHtml}</div>
+          <div id="dirEmpGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:18px">
+            ${buildDirEmpCards(emps, d, getAssignments)}
+          </div>`;
+      }
+
+      function buildDirEmpCards(emps, d, getAssignments) {
+        if (!emps.length) return '<div class="empty"><i class="fas fa-users"></i><h3>No employees found</h3><p>Add employees to see their performance here</p></div>';
+        return emps.map(emp => {
+          const la = getAssignments(emp.id);
+          const sc = avgPercent(la, d.kpis);
+          const st = sc === null ? "neutral" : status(sc);
+          const sl = sc === null ? "No Data" : statusLabel(sc);
+          const pct = sc !== null ? sc : 0;
+          const scoreColor = pct >= 90 ? "#10b981" : pct >= 75 ? "#837fd8" : pct >= 60 ? "#f59e0b" : "#ef4444";
+          return `
+            <div class="dir-emp-card" onclick="dirEmpDetail(${emp.id})">
+              <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
+                ${empAvatar(emp, 42)}
+                <div style="flex:1;min-width:0">
+                  <div style="font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${emp.name}</div>
+                  <div style="font-size:12px;color:var(--muted)">${emp.department || "—"}</div>
+                </div>
+                <span class="badge ${st}" style="flex-shrink:0">${sl}</span>
+              </div>
+              <div style="display:flex;align-items:baseline;gap:3px;margin-bottom:12px">
+                <span style="font-size:52px;font-weight:800;line-height:1;color:${sc !== null ? scoreColor : "var(--muted)"}">${sc !== null ? sc : "—"}</span>
+                ${sc !== null ? '<span style="font-size:20px;color:var(--muted);font-weight:400">%</span>' : ""}
+              </div>
+              <div class="progress" style="height:8px;margin-bottom:8px">
+                <div class="progress-bar ${st !== "neutral" ? st : ""}" style="width:${pct}%"></div>
+              </div>
+              <div style="font-size:11px;color:var(--muted)">${la.length} KPI${la.length !== 1 ? "s" : ""} tracked</div>
+              <div style="font-size:12px;color:var(--primary);font-weight:600;margin-top:14px;display:flex;align-items:center;gap:5px">
+                View Details <i class="fas fa-chevron-right" style="font-size:10px"></i>
+              </div>
+            </div>`;
+        }).join("");
+      }
+
+      function setDirectorType(type) {
+        _directorType = type;
+        document.getElementById("content").innerHTML = directorDashboard();
+      }
+
+      function applyDirectorFilter() {
+        const d = db();
+        const type = _directorType;
+        const emps = d.users.filter(u => u.role === "employee");
+        let getAssignments;
+        if (type === "all") {
+          const year = v("dirFYear");
+          getAssignments = empId => latestAssignments(empId, year);
+        } else {
+          const period = type === "year" ? v("dirFYear") : readPeriod(type, "dirFYear", "dirFSub");
+          const typeIds = new Set(d.kpis.filter(k => (k.periodType || "month") === type).map(k => k.id));
+          getAssignments = empId => d.assignments.filter(a => a.employeeId === empId && a.period === period && typeIds.has(a.kpiId));
+        }
+        document.getElementById("dirEmpGrid").innerHTML = buildDirEmpCards(emps, d, getAssignments);
+      }
+
+      function dirEmpDetail(empId) {
+        const d = db();
+        const emp = d.users.find(u => u.id === empId);
+        if (!emp) return;
+        const type = _directorType;
+        const isAll = type === "all";
+        let la;
+        if (type === "all") {
+          la = latestAssignments(empId, v("dirFYear"));
+        } else {
+          const period = type === "year" ? v("dirFYear") : readPeriod(type, "dirFYear", "dirFSub");
+          const typeIds = new Set(d.kpis.filter(k => (k.periodType || "month") === type).map(k => k.id));
+          la = d.assignments.filter(a => a.employeeId === empId && a.period === period && typeIds.has(a.kpiId));
+        }
+        const sc = avgPercent(la, d.kpis);
+        const st = sc === null ? "neutral" : status(sc);
+        const scoreColor = sc !== null ? (sc >= 90 ? "#10b981" : sc >= 75 ? "#837fd8" : sc >= 60 ? "#f59e0b" : "#ef4444") : "var(--muted)";
+        const rows = la.map(a => {
+          const kpi = d.kpis.find(k => k.id === a.kpiId);
+          const pct = kpi ? calcPct(a.value, kpi) : null;
+          const pst = pct !== null ? status(pct) : "neutral";
+          return `<tr>
+            <td><strong>${kpi ? kpi.name : "?"}</strong></td>
+            <td><span class="badge neutral" style="font-size:10px">${kpi ? kpi.category || "General" : ""}</span></td>
+            ${isAll ? `<td style="font-size:12px;color:var(--muted)">${a.period}</td>` : ""}
+            <td>${a.value} / 5</td>
+            <td>5</td>
+            <td>${pct !== null ? `<span class="badge ${pst}">${pct}%</span>` : "—"}</td>
+            <td style="font-size:12px;color:var(--muted);max-width:160px">${a.notes || "—"}</td>
+          </tr>`;
+        }).join("");
+        const body = `
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--border)">
+            ${empAvatar(emp, 48)}
+            <div>
+              <div style="font-size:16px;font-weight:700">${emp.name}</div>
+              <div style="font-size:13px;color:var(--muted)">${emp.department || "—"}</div>
+            </div>
+            <div style="margin-left:auto;text-align:right">
+              <div style="font-size:28px;font-weight:800;color:${scoreColor}">${sc !== null ? sc + "%" : "—"}</div>
+              <span class="badge ${st}">${sc !== null ? statusLabel(sc) : "No Data"}</span>
+            </div>
+          </div>
+          ${la.length
+            ? `<div class="tbl-wrap"><table>
+                <thead><tr><th>KPI</th><th>Category</th>${isAll ? "<th>Period</th>" : ""}<th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
+                <tbody>${rows}</tbody>
+              </table></div>`
+            : `<div class="empty" style="padding:24px 0"><i class="fas fa-chart-line"></i><h3>No data for this period</h3><p>No KPIs have been assigned for the selected period</p></div>`}`;
+        modal(`${emp.name} — Performance Detail`, body, `<button class="btn btn-ghost" onclick="closeModal()">Close</button>`);
+      }
+
       // ──────────────────────────────────────────
       // MODAL / TOAST UTILS
       // ──────────────────────────────────────────
