@@ -111,7 +111,7 @@
         padding: 10px 22px;
         display: inline-block;
         margin-bottom: 18px;
-        box-shadow: 0 8px 28px rgba(0,0,0,.15);
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
       }
       .login-logo-wrap img {
         height: 52px;
@@ -1182,7 +1182,7 @@
       <div class="login-wrap">
         <div class="login-brand">
           <div class="login-logo-wrap">
-            <img src="alinma logo.png" alt="Alinma">
+            <img src="alinma logo.png" alt="Alinma" />
           </div>
           <h1>KPI Portal</h1>
           <p>Performance Management System</p>
@@ -1282,7 +1282,7 @@
         <div class="sb-header">
           <div class="sb-logo">
             <div class="sb-logo-img-wrap">
-              <img src="alinma logo.png" alt="Alinma">
+              <img src="alinma logo.png" alt="Alinma" />
             </div>
           </div>
         </div>
@@ -1382,172 +1382,5753 @@
           },
         ],
         kpis: [
-          { id: 1,  name: "Defects Aging XP for 5+ days",                         description: "Number of XP defects open for 5 or more days",                                        target: 5, category: "Quality",      periodType: "month"   },
-          { id: 2,  name: "Defects Aging SME/NCIB/MAR/Other Squads for 10+ days", description: "Number of defects open 10+ days across SME/NCIB/MAR/Other squads",                   target: 5, category: "Quality",      periodType: "month"   },
-          { id: 3,  name: "BRs Exceeded Dev Planned / Re-planned",                description: "Business requirements that exceeded the development planned date",                     target: 5, category: "Delivery",     periodType: "month"   },
-          { id: 4,  name: "ICRs/TRs Exceeded Dev Planned / Re-planned",           description: "ICRs and TRs that exceeded the development planned or re-planned date",               target: 5, category: "Delivery",     periodType: "month"   },
-          { id: 5,  name: "KT Sessions Execution",                                description: "Knowledge transfer sessions executed vs. planned",                                    target: 5, category: "Learning",     periodType: "month"   },
-          { id: 6,  name: "BRs Pushed Back",                                      description: "Business requirements pushed back from the planned release",                          target: 5, category: "Delivery",     periodType: "month"   },
-          { id: 7,  name: "Annual Training Hours",                                description: "Total training hours completed during the year",                                      target: 5, category: "Learning",     periodType: "year"    },
-          { id: 8,  name: "Quarterly Project Delivery Rate",                      description: "Percentage of projects delivered on time this quarter",                               target: 5, category: "Delivery",     periodType: "quarter" },
-          { id: 9,  name: "Weekly Defects Resolved",                              description: "Number of defects resolved and closed per week",                                      target: 5, category: "Quality",      periodType: "week"    },
-          { id: 10, name: "Annual Performance Review Score",                      description: "Overall performance score from the annual review cycle",                              target: 5, category: "Performance",  periodType: "year"    },
-          { id: 11, name: "Quarterly Sprint Velocity",                            description: "Total story points delivered across all sprints in the quarter",                      target: 5, category: "Delivery",     periodType: "quarter" },
-          { id: 12, name: "Weekly PR Merge Rate",                                 description: "Percentage of pull requests reviewed and merged on time each week",                   target: 5, category: "Engineering",  periodType: "week"    },
+          {
+            id: 1,
+            name: "Defects Aging XP for 5+ days",
+            description: "Number of XP defects open for 5 or more days",
+            target: 5,
+            category: "Quality",
+            periodType: "month",
+          },
+          {
+            id: 2,
+            name: "Defects Aging SME/NCIB/MAR/Other Squads for 10+ days",
+            description:
+              "Number of defects open 10+ days across SME/NCIB/MAR/Other squads",
+            target: 5,
+            category: "Quality",
+            periodType: "month",
+          },
+          {
+            id: 3,
+            name: "BRs Exceeded Dev Planned / Re-planned",
+            description:
+              "Business requirements that exceeded the development planned date",
+            target: 5,
+            category: "Delivery",
+            periodType: "month",
+          },
+          {
+            id: 4,
+            name: "ICRs/TRs Exceeded Dev Planned / Re-planned",
+            description:
+              "ICRs and TRs that exceeded the development planned or re-planned date",
+            target: 5,
+            category: "Delivery",
+            periodType: "month",
+          },
+          {
+            id: 5,
+            name: "KT Sessions Execution",
+            description: "Knowledge transfer sessions executed vs. planned",
+            target: 5,
+            category: "Learning",
+            periodType: "month",
+          },
+          {
+            id: 6,
+            name: "BRs Pushed Back",
+            description:
+              "Business requirements pushed back from the planned release",
+            target: 5,
+            category: "Delivery",
+            periodType: "month",
+          },
+          {
+            id: 7,
+            name: "Annual Training Hours",
+            description: "Total training hours completed during the year",
+            target: 5,
+            category: "Learning",
+            periodType: "year",
+          },
+          {
+            id: 8,
+            name: "Quarterly Project Delivery Rate",
+            description:
+              "Percentage of projects delivered on time this quarter",
+            target: 5,
+            category: "Delivery",
+            periodType: "quarter",
+          },
+          {
+            id: 9,
+            name: "Weekly Defects Resolved",
+            description: "Number of defects resolved and closed per week",
+            target: 5,
+            category: "Quality",
+            periodType: "week",
+          },
+          {
+            id: 10,
+            name: "Annual Performance Review Score",
+            description:
+              "Overall performance score from the annual review cycle",
+            target: 5,
+            category: "Performance",
+            periodType: "year",
+          },
+          {
+            id: 11,
+            name: "Quarterly Sprint Velocity",
+            description:
+              "Total story points delivered across all sprints in the quarter",
+            target: 5,
+            category: "Delivery",
+            periodType: "quarter",
+          },
+          {
+            id: 12,
+            name: "Weekly PR Merge Rate",
+            description:
+              "Percentage of pull requests reviewed and merged on time each week",
+            target: 5,
+            category: "Engineering",
+            periodType: "week",
+          },
         ],
         assignments: [
-          // Abdulaziz Alnemer — May 2026
-          { id: 1,   employeeId: 2, kpiId: 1,  value: 4, period: "May 2026",   notes: "Well managed, minimal aging defects" },
-          { id: 2,   employeeId: 2, kpiId: 3,  value: 3, period: "May 2026",   notes: "" },
-          { id: 3,   employeeId: 2, kpiId: 5,  value: 5, period: "May 2026",   notes: "All planned KT sessions delivered" },
-          { id: 4,   employeeId: 2, kpiId: 6,  value: 4, period: "May 2026",   notes: "One BR pushed back due to dependency" },
-          // Fahad Alodan — May 2026
-          { id: 5,   employeeId: 3, kpiId: 1,  value: 2, period: "May 2026",   notes: "Above threshold — needs attention" },
-          { id: 6,   employeeId: 3, kpiId: 2,  value: 4, period: "May 2026",   notes: "" },
-          { id: 7,   employeeId: 3, kpiId: 5,  value: 4, period: "May 2026",   notes: "One session missed" },
-          { id: 8,   employeeId: 3, kpiId: 6,  value: 1, period: "May 2026",   notes: "Over limit — escalate" },
-          // Sultan Aljuaid — May 2026
-          { id: 9,   employeeId: 4, kpiId: 1,  value: 5, period: "May 2026",   notes: "No aging defects this period" },
-          { id: 10,  employeeId: 4, kpiId: 2,  value: 4, period: "May 2026",   notes: "" },
-          { id: 11,  employeeId: 4, kpiId: 4,  value: 4, period: "May 2026",   notes: "Within threshold" },
-          { id: 12,  employeeId: 4, kpiId: 5,  value: 5, period: "May 2026",   notes: "All KT sessions executed on time" },
-          // Mohamed Hamoda — May 2026
-          { id: 13,  employeeId: 5, kpiId: 3,  value: 4, period: "May 2026",   notes: "" },
-          { id: 14,  employeeId: 5, kpiId: 4,  value: 2, period: "May 2026",   notes: "Exceeded threshold — review capacity" },
-          { id: 15,  employeeId: 5, kpiId: 5,  value: 4, period: "May 2026",   notes: "" },
-          { id: 16,  employeeId: 5, kpiId: 6,  value: 5, period: "May 2026",   notes: "No BRs pushed back — excellent" },
-          // April 2026
-          { id: 17,  employeeId: 2, kpiId: 1,  value: 3, period: "April 2026", notes: "" },
-          { id: 18,  employeeId: 2, kpiId: 5,  value: 4, period: "April 2026", notes: "" },
-          { id: 19,  employeeId: 3, kpiId: 1,  value: 1, period: "April 2026", notes: "" },
-          { id: 20,  employeeId: 3, kpiId: 6,  value: 3, period: "April 2026", notes: "" },
-          { id: 21,  employeeId: 4, kpiId: 2,  value: 3, period: "April 2026", notes: "" },
-          { id: 22,  employeeId: 4, kpiId: 5,  value: 5, period: "April 2026", notes: "" },
-          { id: 23,  employeeId: 5, kpiId: 4,  value: 3, period: "April 2026", notes: "" },
-          { id: 24,  employeeId: 5, kpiId: 5,  value: 4, period: "April 2026", notes: "" },
-          // Yearly — 2026
-          { id: 25,  employeeId: 2, kpiId: 7,  value: 4, period: "2026", notes: "Completed most planned training" },
-          { id: 26,  employeeId: 3, kpiId: 7,  value: 5, period: "2026", notes: "Exceeded annual training target" },
-          { id: 27,  employeeId: 4, kpiId: 7,  value: 4, period: "2026", notes: "Behind on training — schedule sessions" },
-          { id: 28,  employeeId: 5, kpiId: 7,  value: 5, period: "2026", notes: "Met annual training target" },
-          // Yearly — 2025
-          { id: 29,  employeeId: 2, kpiId: 7,  value: 5, period: "2025", notes: "" },
-          { id: 30,  employeeId: 4, kpiId: 7,  value: 5, period: "2025", notes: "" },
-          // Quarterly — Q2 2026
-          { id: 31,  employeeId: 2, kpiId: 8,  value: 4, period: "Q2 2026", notes: "1 project delayed" },
-          { id: 32,  employeeId: 3, kpiId: 8,  value: 3, period: "Q2 2026", notes: "2 projects missed deadline" },
-          { id: 33,  employeeId: 4, kpiId: 8,  value: 5, period: "Q2 2026", notes: "All projects on time" },
-          { id: 34,  employeeId: 5, kpiId: 8,  value: 4, period: "Q2 2026", notes: "" },
-          // Quarterly — Q1 2026
-          { id: 35,  employeeId: 2, kpiId: 8,  value: 4, period: "Q1 2026", notes: "" },
-          { id: 36,  employeeId: 3, kpiId: 8,  value: 5, period: "Q1 2026", notes: "" },
-          // Weekly — W19 2026
-          { id: 37,  employeeId: 2, kpiId: 9,  value: 5, period: "W19 2026", notes: "High productivity week" },
-          { id: 38,  employeeId: 3, kpiId: 9,  value: 3, period: "W19 2026", notes: "" },
-          { id: 39,  employeeId: 4, kpiId: 9,  value: 5, period: "W19 2026", notes: "High productivity week" },
-          { id: 40,  employeeId: 5, kpiId: 9,  value: 2, period: "W19 2026", notes: "Capacity was limited" },
-          // Weekly — W18 2026
-          { id: 41,  employeeId: 2, kpiId: 9,  value: 4, period: "W18 2026", notes: "" },
-          { id: 42,  employeeId: 4, kpiId: 9,  value: 5, period: "W18 2026", notes: "" },
-          // Yearly — KPI 10: Annual Performance Review Score — 2026
-          { id: 43,  employeeId: 2, kpiId: 10, value: 5, period: "2026", notes: "Strong results across all review areas" },
-          { id: 44,  employeeId: 3, kpiId: 10, value: 3, period: "2026", notes: "Below target — improvement plan initiated" },
-          { id: 45,  employeeId: 4, kpiId: 10, value: 5, period: "2026", notes: "Exceeded expectations in all categories" },
-          { id: 46,  employeeId: 5, kpiId: 10, value: 5, period: "2026", notes: "Solid performance, close to target" },
-          // 2025
-          { id: 47,  employeeId: 3, kpiId: 7,  value: 5, period: "2025", notes: "" },
-          { id: 48,  employeeId: 5, kpiId: 7,  value: 4, period: "2025", notes: "" },
-          { id: 49,  employeeId: 2, kpiId: 10, value: 5, period: "2025", notes: "" },
-          { id: 50,  employeeId: 3, kpiId: 10, value: 4, period: "2025", notes: "Needs improvement" },
-          { id: 51,  employeeId: 4, kpiId: 10, value: 5, period: "2025", notes: "Consistently high performer" },
-          { id: 52,  employeeId: 5, kpiId: 10, value: 5, period: "2025", notes: "" },
-          // 2024
-          { id: 53,  employeeId: 2, kpiId: 7,  value: 5, period: "2024", notes: "Met target exactly" },
-          { id: 54,  employeeId: 3, kpiId: 7,  value: 4, period: "2024", notes: "" },
-          { id: 55,  employeeId: 4, kpiId: 7,  value: 5, period: "2024", notes: "Completed additional optional courses" },
-          { id: 56,  employeeId: 5, kpiId: 7,  value: 4, period: "2024", notes: "" },
-          { id: 57,  employeeId: 2, kpiId: 10, value: 5, period: "2024", notes: "" },
-          { id: 58,  employeeId: 3, kpiId: 10, value: 4, period: "2024", notes: "" },
-          { id: 59,  employeeId: 4, kpiId: 10, value: 5, period: "2024", notes: "" },
-          { id: 60,  employeeId: 5, kpiId: 10, value: 5, period: "2024", notes: "" },
-          // Quarterly — KPI 11: Sprint Velocity — Q2 2026
-          { id: 61,  employeeId: 2, kpiId: 11, value: 4, period: "Q2 2026", notes: "Slightly under velocity target" },
-          { id: 62,  employeeId: 3, kpiId: 11, value: 5, period: "Q2 2026", notes: "Exceeded target — great sprint planning" },
-          { id: 63,  employeeId: 4, kpiId: 11, value: 5, period: "Q2 2026", notes: "" },
-          { id: 64,  employeeId: 5, kpiId: 11, value: 4, period: "Q2 2026", notes: "Capacity reduced due to on-call rotation" },
-          // Q1 2026
-          { id: 65,  employeeId: 4, kpiId: 8,  value: 4, period: "Q1 2026", notes: "1 project slipped by a week" },
-          { id: 66,  employeeId: 5, kpiId: 8,  value: 5, period: "Q1 2026", notes: "" },
-          { id: 67,  employeeId: 2, kpiId: 11, value: 4, period: "Q1 2026", notes: "" },
-          { id: 68,  employeeId: 3, kpiId: 11, value: 5, period: "Q1 2026", notes: "Best quarter on record" },
-          { id: 69,  employeeId: 4, kpiId: 11, value: 5, period: "Q1 2026", notes: "Hit target precisely" },
-          { id: 70,  employeeId: 5, kpiId: 11, value: 4, period: "Q1 2026", notes: "Team size reduced mid-quarter" },
-          // Q4 2025
-          { id: 71,  employeeId: 2, kpiId: 8,  value: 4, period: "Q4 2025", notes: "" },
-          { id: 72,  employeeId: 3, kpiId: 8,  value: 4, period: "Q4 2025", notes: "End-of-year scope creep" },
-          { id: 73,  employeeId: 4, kpiId: 8,  value: 5, period: "Q4 2025", notes: "" },
-          { id: 74,  employeeId: 5, kpiId: 8,  value: 4, period: "Q4 2025", notes: "" },
-          { id: 75,  employeeId: 2, kpiId: 11, value: 4, period: "Q4 2025", notes: "" },
-          { id: 76,  employeeId: 3, kpiId: 11, value: 5, period: "Q4 2025", notes: "" },
-          { id: 77,  employeeId: 4, kpiId: 11, value: 5, period: "Q4 2025", notes: "" },
-          { id: 78,  employeeId: 5, kpiId: 11, value: 5, period: "Q4 2025", notes: "Strong finish to the year" },
-          // Q3 2025
-          { id: 79,  employeeId: 2, kpiId: 8,  value: 5, period: "Q3 2025", notes: "" },
-          { id: 80,  employeeId: 3, kpiId: 8,  value: 4, period: "Q3 2025", notes: "" },
-          { id: 81,  employeeId: 4, kpiId: 8,  value: 5, period: "Q3 2025", notes: "Perfect delivery quarter" },
-          { id: 82,  employeeId: 5, kpiId: 8,  value: 4, period: "Q3 2025", notes: "" },
-          { id: 83,  employeeId: 2, kpiId: 11, value: 5, period: "Q3 2025", notes: "" },
-          { id: 84,  employeeId: 3, kpiId: 11, value: 5, period: "Q3 2025", notes: "" },
-          { id: 85,  employeeId: 4, kpiId: 11, value: 5, period: "Q3 2025", notes: "" },
-          { id: 86,  employeeId: 5, kpiId: 11, value: 4, period: "Q3 2025", notes: "" },
-          // Weekly — KPI 12: PR Merge Rate — W20 2026
-          { id: 87,  employeeId: 2, kpiId: 9,  value: 5, period: "W20 2026", notes: "High output week" },
-          { id: 88,  employeeId: 3, kpiId: 9,  value: 4, period: "W20 2026", notes: "" },
-          { id: 89,  employeeId: 4, kpiId: 9,  value: 5, period: "W20 2026", notes: "Outstanding week" },
-          { id: 90,  employeeId: 5, kpiId: 9,  value: 3, period: "W20 2026", notes: "" },
-          { id: 91,  employeeId: 2, kpiId: 12, value: 5, period: "W20 2026", notes: "" },
-          { id: 92,  employeeId: 3, kpiId: 12, value: 5, period: "W20 2026", notes: "2 PRs pending review at week end" },
-          { id: 93,  employeeId: 4, kpiId: 12, value: 5, period: "W20 2026", notes: "" },
-          { id: 94,  employeeId: 5, kpiId: 12, value: 4, period: "W20 2026", notes: "Backlog of reviews carried over" },
-          // W19 2026
-          { id: 95,  employeeId: 2, kpiId: 12, value: 5, period: "W19 2026", notes: "" },
-          { id: 96,  employeeId: 3, kpiId: 12, value: 4, period: "W19 2026", notes: "" },
-          { id: 97,  employeeId: 4, kpiId: 12, value: 5, period: "W19 2026", notes: "All PRs merged on time" },
-          { id: 98,  employeeId: 5, kpiId: 12, value: 4, period: "W19 2026", notes: "" },
-          // W18 2026
-          { id: 99,  employeeId: 3, kpiId: 9,  value: 5, period: "W18 2026", notes: "" },
-          { id: 100, employeeId: 5, kpiId: 9,  value: 3, period: "W18 2026", notes: "" },
-          { id: 101, employeeId: 2, kpiId: 12, value: 5, period: "W18 2026", notes: "" },
-          { id: 102, employeeId: 3, kpiId: 12, value: 4, period: "W18 2026", notes: "Several large PRs delayed review" },
-          { id: 103, employeeId: 4, kpiId: 12, value: 5, period: "W18 2026", notes: "" },
-          { id: 104, employeeId: 5, kpiId: 12, value: 5, period: "W18 2026", notes: "" },
-          // W17 2026
-          { id: 105, employeeId: 2, kpiId: 9,  value: 3, period: "W17 2026", notes: "" },
-          { id: 106, employeeId: 3, kpiId: 9,  value: 2, period: "W17 2026", notes: "Low week due to planning overhead" },
-          { id: 107, employeeId: 4, kpiId: 9,  value: 5, period: "W17 2026", notes: "" },
-          { id: 108, employeeId: 5, kpiId: 9,  value: 4, period: "W17 2026", notes: "" },
-          { id: 109, employeeId: 2, kpiId: 12, value: 5, period: "W17 2026", notes: "" },
-          { id: 110, employeeId: 3, kpiId: 12, value: 5, period: "W17 2026", notes: "" },
-          { id: 111, employeeId: 4, kpiId: 12, value: 5, period: "W17 2026", notes: "" },
-          { id: 112, employeeId: 5, kpiId: 12, value: 5, period: "W17 2026", notes: "" },
-          // W16 2026
-          { id: 113, employeeId: 2, kpiId: 9,  value: 5, period: "W16 2026", notes: "" },
-          { id: 114, employeeId: 3, kpiId: 9,  value: 5, period: "W16 2026", notes: "" },
-          { id: 115, employeeId: 4, kpiId: 9,  value: 5, period: "W16 2026", notes: "" },
-          { id: 116, employeeId: 5, kpiId: 9,  value: 4, period: "W16 2026", notes: "" },
-          { id: 117, employeeId: 2, kpiId: 12, value: 5, period: "W16 2026", notes: "" },
-          { id: 118, employeeId: 3, kpiId: 12, value: 4, period: "W16 2026", notes: "" },
-          { id: 119, employeeId: 4, kpiId: 12, value: 5, period: "W16 2026", notes: "Perfect merge week" },
-          { id: 120, employeeId: 5, kpiId: 12, value: 5, period: "W16 2026", notes: "" },
+          {
+            id: 1,
+            employeeId: 2,
+            kpiId: 1,
+            value: 5,
+            period: "January 2025",
+            notes: "Well managed",
+          },
+          {
+            id: 2,
+            employeeId: 2,
+            kpiId: 2,
+            value: 3,
+            period: "January 2025",
+            notes: "Clean period",
+          },
+          {
+            id: 3,
+            employeeId: 2,
+            kpiId: 3,
+            value: 3,
+            period: "January 2025",
+            notes: "1 BR exceeded plan",
+          },
+          {
+            id: 4,
+            employeeId: 2,
+            kpiId: 4,
+            value: 3,
+            period: "January 2025",
+            notes: "Within threshold",
+          },
+          {
+            id: 5,
+            employeeId: 2,
+            kpiId: 5,
+            value: 5,
+            period: "January 2025",
+            notes: "Partial delivery",
+          },
+          {
+            id: 6,
+            employeeId: 2,
+            kpiId: 6,
+            value: 3,
+            period: "January 2025",
+            notes: "",
+          },
+          {
+            id: 7,
+            employeeId: 3,
+            kpiId: 1,
+            value: 5,
+            period: "January 2025",
+            notes: "Well managed",
+          },
+          {
+            id: 8,
+            employeeId: 3,
+            kpiId: 2,
+            value: 3,
+            period: "January 2025",
+            notes: "All within SLA",
+          },
+          {
+            id: 9,
+            employeeId: 3,
+            kpiId: 3,
+            value: 3,
+            period: "January 2025",
+            notes: "1 BR exceeded plan",
+          },
+          {
+            id: 10,
+            employeeId: 3,
+            kpiId: 4,
+            value: 5,
+            period: "January 2025",
+            notes: "",
+          },
+          {
+            id: 11,
+            employeeId: 3,
+            kpiId: 5,
+            value: 3,
+            period: "January 2025",
+            notes: "Partial delivery",
+          },
+          {
+            id: 12,
+            employeeId: 3,
+            kpiId: 6,
+            value: 3,
+            period: "January 2025",
+            notes: "",
+          },
+          {
+            id: 13,
+            employeeId: 4,
+            kpiId: 1,
+            value: 4,
+            period: "January 2025",
+            notes: "Above threshold — needs attention",
+          },
+          {
+            id: 14,
+            employeeId: 4,
+            kpiId: 2,
+            value: 4,
+            period: "January 2025",
+            notes: "",
+          },
+          {
+            id: 15,
+            employeeId: 4,
+            kpiId: 3,
+            value: 4,
+            period: "January 2025",
+            notes: "All BRs on track",
+          },
+          {
+            id: 16,
+            employeeId: 4,
+            kpiId: 4,
+            value: 3,
+            period: "January 2025",
+            notes: "Met target",
+          },
+          {
+            id: 17,
+            employeeId: 4,
+            kpiId: 5,
+            value: 4,
+            period: "January 2025",
+            notes: "Sessions on track",
+          },
+          {
+            id: 18,
+            employeeId: 4,
+            kpiId: 6,
+            value: 3,
+            period: "January 2025",
+            notes: "1 BR pushed back",
+          },
+          {
+            id: 19,
+            employeeId: 5,
+            kpiId: 1,
+            value: 4,
+            period: "January 2025",
+            notes: "Well managed",
+          },
+          {
+            id: 20,
+            employeeId: 5,
+            kpiId: 2,
+            value: 3,
+            period: "January 2025",
+            notes: "Needs monitoring",
+          },
+          {
+            id: 21,
+            employeeId: 5,
+            kpiId: 3,
+            value: 3,
+            period: "January 2025",
+            notes: "2 BRs delayed",
+          },
+          {
+            id: 22,
+            employeeId: 5,
+            kpiId: 4,
+            value: 4,
+            period: "January 2025",
+            notes: "",
+          },
+          {
+            id: 23,
+            employeeId: 5,
+            kpiId: 5,
+            value: 4,
+            period: "January 2025",
+            notes: "All KT sessions delivered",
+          },
+          {
+            id: 24,
+            employeeId: 5,
+            kpiId: 6,
+            value: 5,
+            period: "January 2025",
+            notes: "Minimal pushbacks",
+          },
+          {
+            id: 25,
+            employeeId: 2,
+            kpiId: 1,
+            value: 5,
+            period: "February 2025",
+            notes: "Well managed",
+          },
+          {
+            id: 26,
+            employeeId: 2,
+            kpiId: 2,
+            value: 4,
+            period: "February 2025",
+            notes: "All within SLA",
+          },
+          {
+            id: 27,
+            employeeId: 2,
+            kpiId: 3,
+            value: 5,
+            period: "February 2025",
+            notes: "2 BRs delayed",
+          },
+          {
+            id: 28,
+            employeeId: 2,
+            kpiId: 4,
+            value: 5,
+            period: "February 2025",
+            notes: "",
+          },
+          {
+            id: 29,
+            employeeId: 2,
+            kpiId: 5,
+            value: 4,
+            period: "February 2025",
+            notes: "Partial delivery",
+          },
+          {
+            id: 30,
+            employeeId: 2,
+            kpiId: 6,
+            value: 3,
+            period: "February 2025",
+            notes: "No BRs pushed back",
+          },
+          {
+            id: 31,
+            employeeId: 3,
+            kpiId: 1,
+            value: 2,
+            period: "February 2025",
+            notes: "Above threshold — needs attention",
+          },
+          {
+            id: 32,
+            employeeId: 3,
+            kpiId: 2,
+            value: 4,
+            period: "February 2025",
+            notes: "All within SLA",
+          },
+          {
+            id: 33,
+            employeeId: 3,
+            kpiId: 3,
+            value: 3,
+            period: "February 2025",
+            notes: "All BRs on track",
+          },
+          {
+            id: 34,
+            employeeId: 3,
+            kpiId: 4,
+            value: 4,
+            period: "February 2025",
+            notes: "1 ICR slipped",
+          },
+          {
+            id: 35,
+            employeeId: 3,
+            kpiId: 5,
+            value: 4,
+            period: "February 2025",
+            notes: "Sessions on track",
+          },
+          {
+            id: 36,
+            employeeId: 3,
+            kpiId: 6,
+            value: 3,
+            period: "February 2025",
+            notes: "2 BRs pushed — escalate",
+          },
+          {
+            id: 37,
+            employeeId: 4,
+            kpiId: 1,
+            value: 4,
+            period: "February 2025",
+            notes: "Above threshold — needs attention",
+          },
+          {
+            id: 38,
+            employeeId: 4,
+            kpiId: 2,
+            value: 5,
+            period: "February 2025",
+            notes: "Clean period",
+          },
+          {
+            id: 39,
+            employeeId: 4,
+            kpiId: 3,
+            value: 5,
+            period: "February 2025",
+            notes: "All BRs on track",
+          },
+          {
+            id: 40,
+            employeeId: 4,
+            kpiId: 4,
+            value: 5,
+            period: "February 2025",
+            notes: "Exceeded threshold — review capacity",
+          },
+          {
+            id: 41,
+            employeeId: 4,
+            kpiId: 5,
+            value: 5,
+            period: "February 2025",
+            notes: "One session missed",
+          },
+          {
+            id: 42,
+            employeeId: 4,
+            kpiId: 6,
+            value: 3,
+            period: "February 2025",
+            notes: "Minimal pushbacks",
+          },
+          {
+            id: 43,
+            employeeId: 5,
+            kpiId: 1,
+            value: 4,
+            period: "February 2025",
+            notes: "No aging defects",
+          },
+          {
+            id: 44,
+            employeeId: 5,
+            kpiId: 2,
+            value: 5,
+            period: "February 2025",
+            notes: "",
+          },
+          {
+            id: 45,
+            employeeId: 5,
+            kpiId: 3,
+            value: 3,
+            period: "February 2025",
+            notes: "2 BRs delayed",
+          },
+          {
+            id: 46,
+            employeeId: 5,
+            kpiId: 4,
+            value: 3,
+            period: "February 2025",
+            notes: "Exceeded threshold — review capacity",
+          },
+          {
+            id: 47,
+            employeeId: 5,
+            kpiId: 5,
+            value: 3,
+            period: "February 2025",
+            notes: "Sessions on track",
+          },
+          {
+            id: 48,
+            employeeId: 5,
+            kpiId: 6,
+            value: 4,
+            period: "February 2025",
+            notes: "2 BRs pushed — escalate",
+          },
+          {
+            id: 49,
+            employeeId: 2,
+            kpiId: 1,
+            value: 3,
+            period: "March 2025",
+            notes: "Above threshold — needs attention",
+          },
+          {
+            id: 50,
+            employeeId: 2,
+            kpiId: 2,
+            value: 5,
+            period: "March 2025",
+            notes: "Clean period",
+          },
+          {
+            id: 51,
+            employeeId: 2,
+            kpiId: 3,
+            value: 3,
+            period: "March 2025",
+            notes: "On track",
+          },
+          {
+            id: 52,
+            employeeId: 2,
+            kpiId: 4,
+            value: 4,
+            period: "March 2025",
+            notes: "Met target",
+          },
+          {
+            id: 53,
+            employeeId: 2,
+            kpiId: 5,
+            value: 3,
+            period: "March 2025",
+            notes: "Sessions on track",
+          },
+          {
+            id: 54,
+            employeeId: 2,
+            kpiId: 6,
+            value: 3,
+            period: "March 2025",
+            notes: "1 BR pushed back",
+          },
+          {
+            id: 55,
+            employeeId: 3,
+            kpiId: 1,
+            value: 4,
+            period: "March 2025",
+            notes: "Slightly elevated",
+          },
+          {
+            id: 56,
+            employeeId: 3,
+            kpiId: 2,
+            value: 4,
+            period: "March 2025",
+            notes: "",
+          },
+          {
+            id: 57,
+            employeeId: 3,
+            kpiId: 3,
+            value: 4,
+            period: "March 2025",
+            notes: "2 BRs delayed",
+          },
+          {
+            id: 58,
+            employeeId: 3,
+            kpiId: 4,
+            value: 3,
+            period: "March 2025",
+            notes: "Exceeded threshold — review capacity",
+          },
+          {
+            id: 59,
+            employeeId: 3,
+            kpiId: 5,
+            value: 5,
+            period: "March 2025",
+            notes: "Full execution",
+          },
+          {
+            id: 60,
+            employeeId: 3,
+            kpiId: 6,
+            value: 2,
+            period: "March 2025",
+            notes: "No BRs pushed back",
+          },
+          {
+            id: 61,
+            employeeId: 4,
+            kpiId: 1,
+            value: 3,
+            period: "March 2025",
+            notes: "Above threshold — needs attention",
+          },
+          {
+            id: 62,
+            employeeId: 4,
+            kpiId: 2,
+            value: 5,
+            period: "March 2025",
+            notes: "Few defects carried over",
+          },
+          {
+            id: 63,
+            employeeId: 4,
+            kpiId: 3,
+            value: 5,
+            period: "March 2025",
+            notes: "On track",
+          },
+          {
+            id: 64,
+            employeeId: 4,
+            kpiId: 4,
+            value: 5,
+            period: "March 2025",
+            notes: "Within threshold",
+          },
+          {
+            id: 65,
+            employeeId: 4,
+            kpiId: 5,
+            value: 4,
+            period: "March 2025",
+            notes: "Full execution",
+          },
+          {
+            id: 66,
+            employeeId: 4,
+            kpiId: 6,
+            value: 5,
+            period: "March 2025",
+            notes: "Minimal pushbacks",
+          },
+          {
+            id: 67,
+            employeeId: 5,
+            kpiId: 1,
+            value: 5,
+            period: "March 2025",
+            notes: "No aging defects",
+          },
+          {
+            id: 68,
+            employeeId: 5,
+            kpiId: 2,
+            value: 5,
+            period: "March 2025",
+            notes: "All within SLA",
+          },
+          {
+            id: 69,
+            employeeId: 5,
+            kpiId: 3,
+            value: 5,
+            period: "March 2025",
+            notes: "All BRs on track",
+          },
+          {
+            id: 70,
+            employeeId: 5,
+            kpiId: 4,
+            value: 5,
+            period: "March 2025",
+            notes: "",
+          },
+          {
+            id: 71,
+            employeeId: 5,
+            kpiId: 5,
+            value: 4,
+            period: "March 2025",
+            notes: "Sessions on track",
+          },
+          {
+            id: 72,
+            employeeId: 5,
+            kpiId: 6,
+            value: 3,
+            period: "March 2025",
+            notes: "2 BRs pushed — escalate",
+          },
+          {
+            id: 73,
+            employeeId: 2,
+            kpiId: 1,
+            value: 4,
+            period: "April 2025",
+            notes: "Above threshold — needs attention",
+          },
+          {
+            id: 74,
+            employeeId: 2,
+            kpiId: 2,
+            value: 4,
+            period: "April 2025",
+            notes: "All within SLA",
+          },
+          {
+            id: 75,
+            employeeId: 2,
+            kpiId: 3,
+            value: 5,
+            period: "April 2025",
+            notes: "2 BRs delayed",
+          },
+          {
+            id: 76,
+            employeeId: 2,
+            kpiId: 4,
+            value: 5,
+            period: "April 2025",
+            notes: "Exceeded threshold — review capacity",
+          },
+          {
+            id: 77,
+            employeeId: 2,
+            kpiId: 5,
+            value: 5,
+            period: "April 2025",
+            notes: "All KT sessions delivered",
+          },
+          {
+            id: 78,
+            employeeId: 2,
+            kpiId: 6,
+            value: 5,
+            period: "April 2025",
+            notes: "2 BRs pushed — escalate",
+          },
+          {
+            id: 79,
+            employeeId: 3,
+            kpiId: 1,
+            value: 3,
+            period: "April 2025",
+            notes: "Above threshold — needs attention",
+          },
+          {
+            id: 80,
+            employeeId: 3,
+            kpiId: 2,
+            value: 4,
+            period: "April 2025",
+            notes: "Few defects carried over",
+          },
+          {
+            id: 81,
+            employeeId: 3,
+            kpiId: 3,
+            value: 5,
+            period: "April 2025",
+            notes: "Minor slippage",
+          },
+          {
+            id: 82,
+            employeeId: 3,
+            kpiId: 4,
+            value: 3,
+            period: "April 2025",
+            notes: "",
+          },
+          {
+            id: 83,
+            employeeId: 3,
+            kpiId: 5,
+            value: 4,
+            period: "April 2025",
+            notes: "Full execution",
+          },
+          {
+            id: 84,
+            employeeId: 3,
+            kpiId: 6,
+            value: 2,
+            period: "April 2025",
+            notes: "No BRs pushed back",
+          },
+          {
+            id: 85,
+            employeeId: 4,
+            kpiId: 1,
+            value: 4,
+            period: "April 2025",
+            notes: "No aging defects",
+          },
+          {
+            id: 86,
+            employeeId: 4,
+            kpiId: 2,
+            value: 3,
+            period: "April 2025",
+            notes: "All within SLA",
+          },
+          {
+            id: 87,
+            employeeId: 4,
+            kpiId: 3,
+            value: 3,
+            period: "April 2025",
+            notes: "Minor slippage",
+          },
+          {
+            id: 88,
+            employeeId: 4,
+            kpiId: 4,
+            value: 3,
+            period: "April 2025",
+            notes: "Within threshold",
+          },
+          {
+            id: 89,
+            employeeId: 4,
+            kpiId: 5,
+            value: 5,
+            period: "April 2025",
+            notes: "Full execution",
+          },
+          {
+            id: 90,
+            employeeId: 4,
+            kpiId: 6,
+            value: 3,
+            period: "April 2025",
+            notes: "",
+          },
+          {
+            id: 91,
+            employeeId: 5,
+            kpiId: 1,
+            value: 3,
+            period: "April 2025",
+            notes: "Above threshold — needs attention",
+          },
+          {
+            id: 92,
+            employeeId: 5,
+            kpiId: 2,
+            value: 5,
+            period: "April 2025",
+            notes: "Needs monitoring",
+          },
+          {
+            id: 93,
+            employeeId: 5,
+            kpiId: 3,
+            value: 5,
+            period: "April 2025",
+            notes: "1 BR exceeded plan",
+          },
+          {
+            id: 94,
+            employeeId: 5,
+            kpiId: 4,
+            value: 4,
+            period: "April 2025",
+            notes: "",
+          },
+          {
+            id: 95,
+            employeeId: 5,
+            kpiId: 5,
+            value: 5,
+            period: "April 2025",
+            notes: "Full execution",
+          },
+          {
+            id: 96,
+            employeeId: 5,
+            kpiId: 6,
+            value: 3,
+            period: "April 2025",
+            notes: "",
+          },
+          {
+            id: 97,
+            employeeId: 2,
+            kpiId: 1,
+            value: 5,
+            period: "May 2025",
+            notes: "Above threshold — needs attention",
+          },
+          {
+            id: 98,
+            employeeId: 2,
+            kpiId: 2,
+            value: 5,
+            period: "May 2025",
+            notes: "Clean period",
+          },
+          {
+            id: 99,
+            employeeId: 2,
+            kpiId: 3,
+            value: 4,
+            period: "May 2025",
+            notes: "2 BRs delayed",
+          },
+          {
+            id: 100,
+            employeeId: 2,
+            kpiId: 4,
+            value: 4,
+            period: "May 2025",
+            notes: "",
+          },
+          {
+            id: 101,
+            employeeId: 2,
+            kpiId: 5,
+            value: 4,
+            period: "May 2025",
+            notes: "All KT sessions delivered",
+          },
+          {
+            id: 102,
+            employeeId: 2,
+            kpiId: 6,
+            value: 3,
+            period: "May 2025",
+            notes: "1 BR pushed back",
+          },
+          {
+            id: 103,
+            employeeId: 3,
+            kpiId: 1,
+            value: 2,
+            period: "May 2025",
+            notes: "No aging defects",
+          },
+          {
+            id: 104,
+            employeeId: 3,
+            kpiId: 2,
+            value: 3,
+            period: "May 2025",
+            notes: "",
+          },
+          {
+            id: 105,
+            employeeId: 3,
+            kpiId: 3,
+            value: 5,
+            period: "May 2025",
+            notes: "1 BR exceeded plan",
+          },
+          {
+            id: 106,
+            employeeId: 3,
+            kpiId: 4,
+            value: 5,
+            period: "May 2025",
+            notes: "Exceeded threshold — review capacity",
+          },
+          {
+            id: 107,
+            employeeId: 3,
+            kpiId: 5,
+            value: 3,
+            period: "May 2025",
+            notes: "All KT sessions delivered",
+          },
+          {
+            id: 108,
+            employeeId: 3,
+            kpiId: 6,
+            value: 2,
+            period: "May 2025",
+            notes: "1 BR pushed back",
+          },
+          {
+            id: 109,
+            employeeId: 4,
+            kpiId: 1,
+            value: 3,
+            period: "May 2025",
+            notes: "Well managed",
+          },
+          {
+            id: 110,
+            employeeId: 4,
+            kpiId: 2,
+            value: 4,
+            period: "May 2025",
+            notes: "All within SLA",
+          },
+          {
+            id: 111,
+            employeeId: 4,
+            kpiId: 3,
+            value: 5,
+            period: "May 2025",
+            notes: "1 BR exceeded plan",
+          },
+          {
+            id: 112,
+            employeeId: 4,
+            kpiId: 4,
+            value: 4,
+            period: "May 2025",
+            notes: "Met target",
+          },
+          {
+            id: 113,
+            employeeId: 4,
+            kpiId: 5,
+            value: 3,
+            period: "May 2025",
+            notes: "Partial delivery",
+          },
+          {
+            id: 114,
+            employeeId: 4,
+            kpiId: 6,
+            value: 3,
+            period: "May 2025",
+            notes: "",
+          },
+          {
+            id: 115,
+            employeeId: 5,
+            kpiId: 1,
+            value: 5,
+            period: "May 2025",
+            notes: "Within limits",
+          },
+          {
+            id: 116,
+            employeeId: 5,
+            kpiId: 2,
+            value: 3,
+            period: "May 2025",
+            notes: "Needs monitoring",
+          },
+          {
+            id: 117,
+            employeeId: 5,
+            kpiId: 3,
+            value: 4,
+            period: "May 2025",
+            notes: "1 BR exceeded plan",
+          },
+          {
+            id: 118,
+            employeeId: 5,
+            kpiId: 4,
+            value: 3,
+            period: "May 2025",
+            notes: "Within threshold",
+          },
+          {
+            id: 119,
+            employeeId: 5,
+            kpiId: 5,
+            value: 5,
+            period: "May 2025",
+            notes: "Full execution",
+          },
+          {
+            id: 120,
+            employeeId: 5,
+            kpiId: 6,
+            value: 4,
+            period: "May 2025",
+            notes: "Minimal pushbacks",
+          },
+          {
+            id: 121,
+            employeeId: 2,
+            kpiId: 1,
+            value: 4,
+            period: "June 2025",
+            notes: "Within limits",
+          },
+          {
+            id: 122,
+            employeeId: 2,
+            kpiId: 2,
+            value: 5,
+            period: "June 2025",
+            notes: "All within SLA",
+          },
+          {
+            id: 123,
+            employeeId: 2,
+            kpiId: 3,
+            value: 5,
+            period: "June 2025",
+            notes: "All BRs on track",
+          },
+          {
+            id: 124,
+            employeeId: 2,
+            kpiId: 4,
+            value: 3,
+            period: "June 2025",
+            notes: "Met target",
+          },
+          {
+            id: 125,
+            employeeId: 2,
+            kpiId: 5,
+            value: 5,
+            period: "June 2025",
+            notes: "Sessions on track",
+          },
+          {
+            id: 126,
+            employeeId: 2,
+            kpiId: 6,
+            value: 3,
+            period: "June 2025",
+            notes: "1 BR pushed back",
+          },
+          {
+            id: 127,
+            employeeId: 3,
+            kpiId: 1,
+            value: 3,
+            period: "June 2025",
+            notes: "Above threshold — needs attention",
+          },
+          {
+            id: 128,
+            employeeId: 3,
+            kpiId: 2,
+            value: 5,
+            period: "June 2025",
+            notes: "Needs monitoring",
+          },
+          {
+            id: 129,
+            employeeId: 3,
+            kpiId: 3,
+            value: 3,
+            period: "June 2025",
+            notes: "On track",
+          },
+          {
+            id: 130,
+            employeeId: 3,
+            kpiId: 4,
+            value: 3,
+            period: "June 2025",
+            notes: "1 ICR slipped",
+          },
+          {
+            id: 131,
+            employeeId: 3,
+            kpiId: 5,
+            value: 4,
+            period: "June 2025",
+            notes: "One session missed",
+          },
+          {
+            id: 132,
+            employeeId: 3,
+            kpiId: 6,
+            value: 2,
+            period: "June 2025",
+            notes: "Minimal pushbacks",
+          },
+          {
+            id: 133,
+            employeeId: 4,
+            kpiId: 1,
+            value: 5,
+            period: "June 2025",
+            notes: "Well managed",
+          },
+          {
+            id: 134,
+            employeeId: 4,
+            kpiId: 2,
+            value: 3,
+            period: "June 2025",
+            notes: "",
+          },
+          {
+            id: 135,
+            employeeId: 4,
+            kpiId: 3,
+            value: 3,
+            period: "June 2025",
+            notes: "All BRs on track",
+          },
+          {
+            id: 136,
+            employeeId: 4,
+            kpiId: 4,
+            value: 3,
+            period: "June 2025",
+            notes: "Exceeded threshold — review capacity",
+          },
+          {
+            id: 137,
+            employeeId: 4,
+            kpiId: 5,
+            value: 4,
+            period: "June 2025",
+            notes: "Full execution",
+          },
+          {
+            id: 138,
+            employeeId: 4,
+            kpiId: 6,
+            value: 4,
+            period: "June 2025",
+            notes: "1 BR pushed back",
+          },
+          {
+            id: 139,
+            employeeId: 5,
+            kpiId: 1,
+            value: 4,
+            period: "June 2025",
+            notes: "Well managed",
+          },
+          {
+            id: 140,
+            employeeId: 5,
+            kpiId: 2,
+            value: 3,
+            period: "June 2025",
+            notes: "Needs monitoring",
+          },
+          {
+            id: 141,
+            employeeId: 5,
+            kpiId: 3,
+            value: 3,
+            period: "June 2025",
+            notes: "On track",
+          },
+          {
+            id: 142,
+            employeeId: 5,
+            kpiId: 4,
+            value: 4,
+            period: "June 2025",
+            notes: "Met target",
+          },
+          {
+            id: 143,
+            employeeId: 5,
+            kpiId: 5,
+            value: 4,
+            period: "June 2025",
+            notes: "Full execution",
+          },
+          {
+            id: 144,
+            employeeId: 5,
+            kpiId: 6,
+            value: 5,
+            period: "June 2025",
+            notes: "",
+          },
+          {
+            id: 145,
+            employeeId: 2,
+            kpiId: 1,
+            value: 5,
+            period: "July 2025",
+            notes: "Within limits",
+          },
+          {
+            id: 146,
+            employeeId: 2,
+            kpiId: 2,
+            value: 3,
+            period: "July 2025",
+            notes: "Few defects carried over",
+          },
+          {
+            id: 147,
+            employeeId: 2,
+            kpiId: 3,
+            value: 4,
+            period: "July 2025",
+            notes: "1 BR exceeded plan",
+          },
+          {
+            id: 148,
+            employeeId: 2,
+            kpiId: 4,
+            value: 3,
+            period: "July 2025",
+            notes: "",
+          },
+          {
+            id: 149,
+            employeeId: 2,
+            kpiId: 5,
+            value: 5,
+            period: "July 2025",
+            notes: "Partial delivery",
+          },
+          {
+            id: 150,
+            employeeId: 2,
+            kpiId: 6,
+            value: 3,
+            period: "July 2025",
+            notes: "2 BRs pushed — escalate",
+          },
+          {
+            id: 151,
+            employeeId: 3,
+            kpiId: 1,
+            value: 2,
+            period: "July 2025",
+            notes: "Well managed",
+          },
+          {
+            id: 152,
+            employeeId: 3,
+            kpiId: 2,
+            value: 5,
+            period: "July 2025",
+            notes: "Needs monitoring",
+          },
+          {
+            id: 153,
+            employeeId: 3,
+            kpiId: 3,
+            value: 5,
+            period: "July 2025",
+            notes: "Minor slippage",
+          },
+          {
+            id: 154,
+            employeeId: 3,
+            kpiId: 4,
+            value: 3,
+            period: "July 2025",
+            notes: "Within threshold",
+          },
+          {
+            id: 155,
+            employeeId: 3,
+            kpiId: 5,
+            value: 5,
+            period: "July 2025",
+            notes: "All KT sessions delivered",
+          },
+          {
+            id: 156,
+            employeeId: 3,
+            kpiId: 6,
+            value: 3,
+            period: "July 2025",
+            notes: "No BRs pushed back",
+          },
+          {
+            id: 157,
+            employeeId: 4,
+            kpiId: 1,
+            value: 5,
+            period: "July 2025",
+            notes: "Well managed",
+          },
+          {
+            id: 158,
+            employeeId: 4,
+            kpiId: 2,
+            value: 5,
+            period: "July 2025",
+            notes: "Few defects carried over",
+          },
+          {
+            id: 159,
+            employeeId: 4,
+            kpiId: 3,
+            value: 4,
+            period: "July 2025",
+            notes: "All BRs on track",
+          },
+          {
+            id: 160,
+            employeeId: 4,
+            kpiId: 4,
+            value: 5,
+            period: "July 2025",
+            notes: "Exceeded threshold — review capacity",
+          },
+          {
+            id: 161,
+            employeeId: 4,
+            kpiId: 5,
+            value: 5,
+            period: "July 2025",
+            notes: "Partial delivery",
+          },
+          {
+            id: 162,
+            employeeId: 4,
+            kpiId: 6,
+            value: 3,
+            period: "July 2025",
+            notes: "",
+          },
+          {
+            id: 163,
+            employeeId: 5,
+            kpiId: 1,
+            value: 3,
+            period: "July 2025",
+            notes: "Within limits",
+          },
+          {
+            id: 164,
+            employeeId: 5,
+            kpiId: 2,
+            value: 5,
+            period: "July 2025",
+            notes: "",
+          },
+          {
+            id: 165,
+            employeeId: 5,
+            kpiId: 3,
+            value: 5,
+            period: "July 2025",
+            notes: "Minor slippage",
+          },
+          {
+            id: 166,
+            employeeId: 5,
+            kpiId: 4,
+            value: 4,
+            period: "July 2025",
+            notes: "1 ICR slipped",
+          },
+          {
+            id: 167,
+            employeeId: 5,
+            kpiId: 5,
+            value: 3,
+            period: "July 2025",
+            notes: "Sessions on track",
+          },
+          {
+            id: 168,
+            employeeId: 5,
+            kpiId: 6,
+            value: 3,
+            period: "July 2025",
+            notes: "2 BRs pushed — escalate",
+          },
+          {
+            id: 169,
+            employeeId: 2,
+            kpiId: 1,
+            value: 4,
+            period: "August 2025",
+            notes: "Above threshold — needs attention",
+          },
+          {
+            id: 170,
+            employeeId: 2,
+            kpiId: 2,
+            value: 5,
+            period: "August 2025",
+            notes: "Clean period",
+          },
+          {
+            id: 171,
+            employeeId: 2,
+            kpiId: 3,
+            value: 4,
+            period: "August 2025",
+            notes: "2 BRs delayed",
+          },
+          {
+            id: 172,
+            employeeId: 2,
+            kpiId: 4,
+            value: 3,
+            period: "August 2025",
+            notes: "Within threshold",
+          },
+          {
+            id: 173,
+            employeeId: 2,
+            kpiId: 5,
+            value: 4,
+            period: "August 2025",
+            notes: "Partial delivery",
+          },
+          {
+            id: 174,
+            employeeId: 2,
+            kpiId: 6,
+            value: 5,
+            period: "August 2025",
+            notes: "No BRs pushed back",
+          },
+          {
+            id: 175,
+            employeeId: 3,
+            kpiId: 1,
+            value: 2,
+            period: "August 2025",
+            notes: "Slightly elevated",
+          },
+          {
+            id: 176,
+            employeeId: 3,
+            kpiId: 2,
+            value: 3,
+            period: "August 2025",
+            notes: "",
+          },
+          {
+            id: 177,
+            employeeId: 3,
+            kpiId: 3,
+            value: 4,
+            period: "August 2025",
+            notes: "1 BR exceeded plan",
+          },
+          {
+            id: 178,
+            employeeId: 3,
+            kpiId: 4,
+            value: 4,
+            period: "August 2025",
+            notes: "Within threshold",
+          },
+          {
+            id: 179,
+            employeeId: 3,
+            kpiId: 5,
+            value: 3,
+            period: "August 2025",
+            notes: "Sessions on track",
+          },
+          {
+            id: 180,
+            employeeId: 3,
+            kpiId: 6,
+            value: 4,
+            period: "August 2025",
+            notes: "1 BR pushed back",
+          },
+          {
+            id: 181,
+            employeeId: 4,
+            kpiId: 1,
+            value: 4,
+            period: "August 2025",
+            notes: "Slightly elevated",
+          },
+          {
+            id: 182,
+            employeeId: 4,
+            kpiId: 2,
+            value: 5,
+            period: "August 2025",
+            notes: "Clean period",
+          },
+          {
+            id: 183,
+            employeeId: 4,
+            kpiId: 3,
+            value: 5,
+            period: "August 2025",
+            notes: "Minor slippage",
+          },
+          {
+            id: 184,
+            employeeId: 4,
+            kpiId: 4,
+            value: 3,
+            period: "August 2025",
+            notes: "",
+          },
+          {
+            id: 185,
+            employeeId: 4,
+            kpiId: 5,
+            value: 4,
+            period: "August 2025",
+            notes: "All KT sessions delivered",
+          },
+          {
+            id: 186,
+            employeeId: 4,
+            kpiId: 6,
+            value: 3,
+            period: "August 2025",
+            notes: "2 BRs pushed — escalate",
+          },
+          {
+            id: 187,
+            employeeId: 5,
+            kpiId: 1,
+            value: 3,
+            period: "August 2025",
+            notes: "Well managed",
+          },
+          {
+            id: 188,
+            employeeId: 5,
+            kpiId: 2,
+            value: 5,
+            period: "August 2025",
+            notes: "",
+          },
+          {
+            id: 189,
+            employeeId: 5,
+            kpiId: 3,
+            value: 3,
+            period: "August 2025",
+            notes: "2 BRs delayed",
+          },
+          {
+            id: 190,
+            employeeId: 5,
+            kpiId: 4,
+            value: 4,
+            period: "August 2025",
+            notes: "",
+          },
+          {
+            id: 191,
+            employeeId: 5,
+            kpiId: 5,
+            value: 3,
+            period: "August 2025",
+            notes: "Sessions on track",
+          },
+          {
+            id: 192,
+            employeeId: 5,
+            kpiId: 6,
+            value: 3,
+            period: "August 2025",
+            notes: "2 BRs pushed — escalate",
+          },
+          {
+            id: 193,
+            employeeId: 2,
+            kpiId: 1,
+            value: 5,
+            period: "September 2025",
+            notes: "Within limits",
+          },
+          {
+            id: 194,
+            employeeId: 2,
+            kpiId: 2,
+            value: 4,
+            period: "September 2025",
+            notes: "All within SLA",
+          },
+          {
+            id: 195,
+            employeeId: 2,
+            kpiId: 3,
+            value: 3,
+            period: "September 2025",
+            notes: "On track",
+          },
+          {
+            id: 196,
+            employeeId: 2,
+            kpiId: 4,
+            value: 4,
+            period: "September 2025",
+            notes: "Within threshold",
+          },
+          {
+            id: 197,
+            employeeId: 2,
+            kpiId: 5,
+            value: 3,
+            period: "September 2025",
+            notes: "Sessions on track",
+          },
+          {
+            id: 198,
+            employeeId: 2,
+            kpiId: 6,
+            value: 3,
+            period: "September 2025",
+            notes: "2 BRs pushed — escalate",
+          },
+          {
+            id: 199,
+            employeeId: 3,
+            kpiId: 1,
+            value: 3,
+            period: "September 2025",
+            notes: "Within limits",
+          },
+          {
+            id: 200,
+            employeeId: 3,
+            kpiId: 2,
+            value: 5,
+            period: "September 2025",
+            notes: "Needs monitoring",
+          },
+          {
+            id: 201,
+            employeeId: 3,
+            kpiId: 3,
+            value: 5,
+            period: "September 2025",
+            notes: "All BRs on track",
+          },
+          {
+            id: 202,
+            employeeId: 3,
+            kpiId: 4,
+            value: 3,
+            period: "September 2025",
+            notes: "Within threshold",
+          },
+          {
+            id: 203,
+            employeeId: 3,
+            kpiId: 5,
+            value: 5,
+            period: "September 2025",
+            notes: "One session missed",
+          },
+          {
+            id: 204,
+            employeeId: 3,
+            kpiId: 6,
+            value: 2,
+            period: "September 2025",
+            notes: "2 BRs pushed — escalate",
+          },
+          {
+            id: 205,
+            employeeId: 4,
+            kpiId: 1,
+            value: 5,
+            period: "September 2025",
+            notes: "Slightly elevated",
+          },
+          {
+            id: 206,
+            employeeId: 4,
+            kpiId: 2,
+            value: 3,
+            period: "September 2025",
+            notes: "Needs monitoring",
+          },
+          {
+            id: 207,
+            employeeId: 4,
+            kpiId: 3,
+            value: 3,
+            period: "September 2025",
+            notes: "All BRs on track",
+          },
+          {
+            id: 208,
+            employeeId: 4,
+            kpiId: 4,
+            value: 4,
+            period: "September 2025",
+            notes: "1 ICR slipped",
+          },
+          {
+            id: 209,
+            employeeId: 4,
+            kpiId: 5,
+            value: 3,
+            period: "September 2025",
+            notes: "Sessions on track",
+          },
+          {
+            id: 210,
+            employeeId: 4,
+            kpiId: 6,
+            value: 3,
+            period: "September 2025",
+            notes: "1 BR pushed back",
+          },
+          {
+            id: 211,
+            employeeId: 5,
+            kpiId: 1,
+            value: 5,
+            period: "September 2025",
+            notes: "Well managed",
+          },
+          {
+            id: 212,
+            employeeId: 5,
+            kpiId: 2,
+            value: 4,
+            period: "September 2025",
+            notes: "",
+          },
+          {
+            id: 213,
+            employeeId: 5,
+            kpiId: 3,
+            value: 4,
+            period: "September 2025",
+            notes: "Minor slippage",
+          },
+          {
+            id: 214,
+            employeeId: 5,
+            kpiId: 4,
+            value: 5,
+            period: "September 2025",
+            notes: "Exceeded threshold — review capacity",
+          },
+          {
+            id: 215,
+            employeeId: 5,
+            kpiId: 5,
+            value: 3,
+            period: "September 2025",
+            notes: "One session missed",
+          },
+          {
+            id: 216,
+            employeeId: 5,
+            kpiId: 6,
+            value: 3,
+            period: "September 2025",
+            notes: "Minimal pushbacks",
+          },
+          {
+            id: 217,
+            employeeId: 2,
+            kpiId: 1,
+            value: 3,
+            period: "October 2025",
+            notes: "Above threshold — needs attention",
+          },
+          {
+            id: 218,
+            employeeId: 2,
+            kpiId: 2,
+            value: 5,
+            period: "October 2025",
+            notes: "Clean period",
+          },
+          {
+            id: 219,
+            employeeId: 2,
+            kpiId: 3,
+            value: 4,
+            period: "October 2025",
+            notes: "1 BR exceeded plan",
+          },
+          {
+            id: 220,
+            employeeId: 2,
+            kpiId: 4,
+            value: 4,
+            period: "October 2025",
+            notes: "Exceeded threshold — review capacity",
+          },
+          {
+            id: 221,
+            employeeId: 2,
+            kpiId: 5,
+            value: 5,
+            period: "October 2025",
+            notes: "All KT sessions delivered",
+          },
+          {
+            id: 222,
+            employeeId: 2,
+            kpiId: 6,
+            value: 4,
+            period: "October 2025",
+            notes: "No BRs pushed back",
+          },
+          {
+            id: 223,
+            employeeId: 3,
+            kpiId: 1,
+            value: 5,
+            period: "October 2025",
+            notes: "Above threshold — needs attention",
+          },
+          {
+            id: 224,
+            employeeId: 3,
+            kpiId: 2,
+            value: 3,
+            period: "October 2025",
+            notes: "Needs monitoring",
+          },
+          {
+            id: 225,
+            employeeId: 3,
+            kpiId: 3,
+            value: 4,
+            period: "October 2025",
+            notes: "2 BRs delayed",
+          },
+          {
+            id: 226,
+            employeeId: 3,
+            kpiId: 4,
+            value: 3,
+            period: "October 2025",
+            notes: "Exceeded threshold — review capacity",
+          },
+          {
+            id: 227,
+            employeeId: 3,
+            kpiId: 5,
+            value: 3,
+            period: "October 2025",
+            notes: "One session missed",
+          },
+          {
+            id: 228,
+            employeeId: 3,
+            kpiId: 6,
+            value: 5,
+            period: "October 2025",
+            notes: "2 BRs pushed — escalate",
+          },
+          {
+            id: 229,
+            employeeId: 4,
+            kpiId: 1,
+            value: 4,
+            period: "October 2025",
+            notes: "Well managed",
+          },
+          {
+            id: 230,
+            employeeId: 4,
+            kpiId: 2,
+            value: 4,
+            period: "October 2025",
+            notes: "Clean period",
+          },
+          {
+            id: 231,
+            employeeId: 4,
+            kpiId: 3,
+            value: 5,
+            period: "October 2025",
+            notes: "Minor slippage",
+          },
+          {
+            id: 232,
+            employeeId: 4,
+            kpiId: 4,
+            value: 4,
+            period: "October 2025",
+            notes: "",
+          },
+          {
+            id: 233,
+            employeeId: 4,
+            kpiId: 5,
+            value: 4,
+            period: "October 2025",
+            notes: "All KT sessions delivered",
+          },
+          {
+            id: 234,
+            employeeId: 4,
+            kpiId: 6,
+            value: 3,
+            period: "October 2025",
+            notes: "2 BRs pushed — escalate",
+          },
+          {
+            id: 235,
+            employeeId: 5,
+            kpiId: 1,
+            value: 3,
+            period: "October 2025",
+            notes: "Slightly elevated",
+          },
+          {
+            id: 236,
+            employeeId: 5,
+            kpiId: 2,
+            value: 4,
+            period: "October 2025",
+            notes: "All within SLA",
+          },
+          {
+            id: 237,
+            employeeId: 5,
+            kpiId: 3,
+            value: 3,
+            period: "October 2025",
+            notes: "Minor slippage",
+          },
+          {
+            id: 238,
+            employeeId: 5,
+            kpiId: 4,
+            value: 4,
+            period: "October 2025",
+            notes: "1 ICR slipped",
+          },
+          {
+            id: 239,
+            employeeId: 5,
+            kpiId: 5,
+            value: 5,
+            period: "October 2025",
+            notes: "Sessions on track",
+          },
+          {
+            id: 240,
+            employeeId: 5,
+            kpiId: 6,
+            value: 4,
+            period: "October 2025",
+            notes: "",
+          },
+          {
+            id: 241,
+            employeeId: 2,
+            kpiId: 1,
+            value: 5,
+            period: "November 2025",
+            notes: "Well managed",
+          },
+          {
+            id: 242,
+            employeeId: 2,
+            kpiId: 2,
+            value: 4,
+            period: "November 2025",
+            notes: "",
+          },
+          {
+            id: 243,
+            employeeId: 2,
+            kpiId: 3,
+            value: 3,
+            period: "November 2025",
+            notes: "2 BRs delayed",
+          },
+          {
+            id: 244,
+            employeeId: 2,
+            kpiId: 4,
+            value: 3,
+            period: "November 2025",
+            notes: "Met target",
+          },
+          {
+            id: 245,
+            employeeId: 2,
+            kpiId: 5,
+            value: 3,
+            period: "November 2025",
+            notes: "Partial delivery",
+          },
+          {
+            id: 246,
+            employeeId: 2,
+            kpiId: 6,
+            value: 5,
+            period: "November 2025",
+            notes: "1 BR pushed back",
+          },
+          {
+            id: 247,
+            employeeId: 3,
+            kpiId: 1,
+            value: 4,
+            period: "November 2025",
+            notes: "Within limits",
+          },
+          {
+            id: 248,
+            employeeId: 3,
+            kpiId: 2,
+            value: 3,
+            period: "November 2025",
+            notes: "Clean period",
+          },
+          {
+            id: 249,
+            employeeId: 3,
+            kpiId: 3,
+            value: 5,
+            period: "November 2025",
+            notes: "2 BRs delayed",
+          },
+          {
+            id: 250,
+            employeeId: 3,
+            kpiId: 4,
+            value: 5,
+            period: "November 2025",
+            notes: "Within threshold",
+          },
+          {
+            id: 251,
+            employeeId: 3,
+            kpiId: 5,
+            value: 5,
+            period: "November 2025",
+            notes: "Sessions on track",
+          },
+          {
+            id: 252,
+            employeeId: 3,
+            kpiId: 6,
+            value: 4,
+            period: "November 2025",
+            notes: "Minimal pushbacks",
+          },
+          {
+            id: 253,
+            employeeId: 4,
+            kpiId: 1,
+            value: 4,
+            period: "November 2025",
+            notes: "Within limits",
+          },
+          {
+            id: 254,
+            employeeId: 4,
+            kpiId: 2,
+            value: 5,
+            period: "November 2025",
+            notes: "Clean period",
+          },
+          {
+            id: 255,
+            employeeId: 4,
+            kpiId: 3,
+            value: 5,
+            period: "November 2025",
+            notes: "1 BR exceeded plan",
+          },
+          {
+            id: 256,
+            employeeId: 4,
+            kpiId: 4,
+            value: 3,
+            period: "November 2025",
+            notes: "Met target",
+          },
+          {
+            id: 257,
+            employeeId: 4,
+            kpiId: 5,
+            value: 5,
+            period: "November 2025",
+            notes: "Full execution",
+          },
+          {
+            id: 258,
+            employeeId: 4,
+            kpiId: 6,
+            value: 5,
+            period: "November 2025",
+            notes: "1 BR pushed back",
+          },
+          {
+            id: 259,
+            employeeId: 5,
+            kpiId: 1,
+            value: 5,
+            period: "November 2025",
+            notes: "Slightly elevated",
+          },
+          {
+            id: 260,
+            employeeId: 5,
+            kpiId: 2,
+            value: 4,
+            period: "November 2025",
+            notes: "Needs monitoring",
+          },
+          {
+            id: 261,
+            employeeId: 5,
+            kpiId: 3,
+            value: 5,
+            period: "November 2025",
+            notes: "All BRs on track",
+          },
+          {
+            id: 262,
+            employeeId: 5,
+            kpiId: 4,
+            value: 4,
+            period: "November 2025",
+            notes: "1 ICR slipped",
+          },
+          {
+            id: 263,
+            employeeId: 5,
+            kpiId: 5,
+            value: 3,
+            period: "November 2025",
+            notes: "Full execution",
+          },
+          {
+            id: 264,
+            employeeId: 5,
+            kpiId: 6,
+            value: 5,
+            period: "November 2025",
+            notes: "",
+          },
+          {
+            id: 265,
+            employeeId: 2,
+            kpiId: 1,
+            value: 5,
+            period: "December 2025",
+            notes: "No aging defects",
+          },
+          {
+            id: 266,
+            employeeId: 2,
+            kpiId: 2,
+            value: 4,
+            period: "December 2025",
+            notes: "Needs monitoring",
+          },
+          {
+            id: 267,
+            employeeId: 2,
+            kpiId: 3,
+            value: 4,
+            period: "December 2025",
+            notes: "1 BR exceeded plan",
+          },
+          {
+            id: 268,
+            employeeId: 2,
+            kpiId: 4,
+            value: 5,
+            period: "December 2025",
+            notes: "Met target",
+          },
+          {
+            id: 269,
+            employeeId: 2,
+            kpiId: 5,
+            value: 5,
+            period: "December 2025",
+            notes: "One session missed",
+          },
+          {
+            id: 270,
+            employeeId: 2,
+            kpiId: 6,
+            value: 5,
+            period: "December 2025",
+            notes: "No BRs pushed back",
+          },
+          {
+            id: 271,
+            employeeId: 3,
+            kpiId: 1,
+            value: 4,
+            period: "December 2025",
+            notes: "Slightly elevated",
+          },
+          {
+            id: 272,
+            employeeId: 3,
+            kpiId: 2,
+            value: 5,
+            period: "December 2025",
+            notes: "",
+          },
+          {
+            id: 273,
+            employeeId: 3,
+            kpiId: 3,
+            value: 4,
+            period: "December 2025",
+            notes: "All BRs on track",
+          },
+          {
+            id: 274,
+            employeeId: 3,
+            kpiId: 4,
+            value: 3,
+            period: "December 2025",
+            notes: "1 ICR slipped",
+          },
+          {
+            id: 275,
+            employeeId: 3,
+            kpiId: 5,
+            value: 3,
+            period: "December 2025",
+            notes: "One session missed",
+          },
+          {
+            id: 276,
+            employeeId: 3,
+            kpiId: 6,
+            value: 3,
+            period: "December 2025",
+            notes: "No BRs pushed back",
+          },
+          {
+            id: 277,
+            employeeId: 4,
+            kpiId: 1,
+            value: 3,
+            period: "December 2025",
+            notes: "Above threshold — needs attention",
+          },
+          {
+            id: 278,
+            employeeId: 4,
+            kpiId: 2,
+            value: 4,
+            period: "December 2025",
+            notes: "",
+          },
+          {
+            id: 279,
+            employeeId: 4,
+            kpiId: 3,
+            value: 3,
+            period: "December 2025",
+            notes: "On track",
+          },
+          {
+            id: 280,
+            employeeId: 4,
+            kpiId: 4,
+            value: 4,
+            period: "December 2025",
+            notes: "",
+          },
+          {
+            id: 281,
+            employeeId: 4,
+            kpiId: 5,
+            value: 3,
+            period: "December 2025",
+            notes: "Full execution",
+          },
+          {
+            id: 282,
+            employeeId: 4,
+            kpiId: 6,
+            value: 4,
+            period: "December 2025",
+            notes: "Minimal pushbacks",
+          },
+          {
+            id: 283,
+            employeeId: 5,
+            kpiId: 1,
+            value: 3,
+            period: "December 2025",
+            notes: "Above threshold — needs attention",
+          },
+          {
+            id: 284,
+            employeeId: 5,
+            kpiId: 2,
+            value: 5,
+            period: "December 2025",
+            notes: "All within SLA",
+          },
+          {
+            id: 285,
+            employeeId: 5,
+            kpiId: 3,
+            value: 3,
+            period: "December 2025",
+            notes: "On track",
+          },
+          {
+            id: 286,
+            employeeId: 5,
+            kpiId: 4,
+            value: 3,
+            period: "December 2025",
+            notes: "Exceeded threshold — review capacity",
+          },
+          {
+            id: 287,
+            employeeId: 5,
+            kpiId: 5,
+            value: 5,
+            period: "December 2025",
+            notes: "Partial delivery",
+          },
+          {
+            id: 288,
+            employeeId: 5,
+            kpiId: 6,
+            value: 4,
+            period: "December 2025",
+            notes: "No BRs pushed back",
+          },
+          {
+            id: 289,
+            employeeId: 2,
+            kpiId: 1,
+            value: 5,
+            period: "January 2026",
+            notes: "Above threshold — needs attention",
+          },
+          {
+            id: 290,
+            employeeId: 2,
+            kpiId: 2,
+            value: 3,
+            period: "January 2026",
+            notes: "Needs monitoring",
+          },
+          {
+            id: 291,
+            employeeId: 2,
+            kpiId: 3,
+            value: 3,
+            period: "January 2026",
+            notes: "On track",
+          },
+          {
+            id: 292,
+            employeeId: 2,
+            kpiId: 4,
+            value: 5,
+            period: "January 2026",
+            notes: "",
+          },
+          {
+            id: 293,
+            employeeId: 2,
+            kpiId: 5,
+            value: 5,
+            period: "January 2026",
+            notes: "Partial delivery",
+          },
+          {
+            id: 294,
+            employeeId: 2,
+            kpiId: 6,
+            value: 4,
+            period: "January 2026",
+            notes: "Minimal pushbacks",
+          },
+          {
+            id: 295,
+            employeeId: 3,
+            kpiId: 1,
+            value: 5,
+            period: "January 2026",
+            notes: "Slightly elevated",
+          },
+          {
+            id: 296,
+            employeeId: 3,
+            kpiId: 2,
+            value: 4,
+            period: "January 2026",
+            notes: "Few defects carried over",
+          },
+          {
+            id: 297,
+            employeeId: 3,
+            kpiId: 3,
+            value: 5,
+            period: "January 2026",
+            notes: "On track",
+          },
+          {
+            id: 298,
+            employeeId: 3,
+            kpiId: 4,
+            value: 4,
+            period: "January 2026",
+            notes: "1 ICR slipped",
+          },
+          {
+            id: 299,
+            employeeId: 3,
+            kpiId: 5,
+            value: 3,
+            period: "January 2026",
+            notes: "Sessions on track",
+          },
+          {
+            id: 300,
+            employeeId: 3,
+            kpiId: 6,
+            value: 5,
+            period: "January 2026",
+            notes: "1 BR pushed back",
+          },
+          {
+            id: 301,
+            employeeId: 4,
+            kpiId: 1,
+            value: 4,
+            period: "January 2026",
+            notes: "Within limits",
+          },
+          {
+            id: 302,
+            employeeId: 4,
+            kpiId: 2,
+            value: 3,
+            period: "January 2026",
+            notes: "Clean period",
+          },
+          {
+            id: 303,
+            employeeId: 4,
+            kpiId: 3,
+            value: 3,
+            period: "January 2026",
+            notes: "2 BRs delayed",
+          },
+          {
+            id: 304,
+            employeeId: 4,
+            kpiId: 4,
+            value: 4,
+            period: "January 2026",
+            notes: "1 ICR slipped",
+          },
+          {
+            id: 305,
+            employeeId: 4,
+            kpiId: 5,
+            value: 5,
+            period: "January 2026",
+            notes: "All KT sessions delivered",
+          },
+          {
+            id: 306,
+            employeeId: 4,
+            kpiId: 6,
+            value: 3,
+            period: "January 2026",
+            notes: "1 BR pushed back",
+          },
+          {
+            id: 307,
+            employeeId: 5,
+            kpiId: 1,
+            value: 3,
+            period: "January 2026",
+            notes: "Within limits",
+          },
+          {
+            id: 308,
+            employeeId: 5,
+            kpiId: 2,
+            value: 5,
+            period: "January 2026",
+            notes: "Few defects carried over",
+          },
+          {
+            id: 309,
+            employeeId: 5,
+            kpiId: 3,
+            value: 5,
+            period: "January 2026",
+            notes: "1 BR exceeded plan",
+          },
+          {
+            id: 310,
+            employeeId: 5,
+            kpiId: 4,
+            value: 3,
+            period: "January 2026",
+            notes: "Met target",
+          },
+          {
+            id: 311,
+            employeeId: 5,
+            kpiId: 5,
+            value: 4,
+            period: "January 2026",
+            notes: "Sessions on track",
+          },
+          {
+            id: 312,
+            employeeId: 5,
+            kpiId: 6,
+            value: 5,
+            period: "January 2026",
+            notes: "Minimal pushbacks",
+          },
+          {
+            id: 313,
+            employeeId: 2,
+            kpiId: 1,
+            value: 4,
+            period: "February 2026",
+            notes: "Well managed",
+          },
+          {
+            id: 314,
+            employeeId: 2,
+            kpiId: 2,
+            value: 3,
+            period: "February 2026",
+            notes: "Needs monitoring",
+          },
+          {
+            id: 315,
+            employeeId: 2,
+            kpiId: 3,
+            value: 4,
+            period: "February 2026",
+            notes: "Minor slippage",
+          },
+          {
+            id: 316,
+            employeeId: 2,
+            kpiId: 4,
+            value: 5,
+            period: "February 2026",
+            notes: "Within threshold",
+          },
+          {
+            id: 317,
+            employeeId: 2,
+            kpiId: 5,
+            value: 5,
+            period: "February 2026",
+            notes: "Full execution",
+          },
+          {
+            id: 318,
+            employeeId: 2,
+            kpiId: 6,
+            value: 4,
+            period: "February 2026",
+            notes: "No BRs pushed back",
+          },
+          {
+            id: 319,
+            employeeId: 3,
+            kpiId: 1,
+            value: 4,
+            period: "February 2026",
+            notes: "No aging defects",
+          },
+          {
+            id: 320,
+            employeeId: 3,
+            kpiId: 2,
+            value: 4,
+            period: "February 2026",
+            notes: "Needs monitoring",
+          },
+          {
+            id: 321,
+            employeeId: 3,
+            kpiId: 3,
+            value: 5,
+            period: "February 2026",
+            notes: "Minor slippage",
+          },
+          {
+            id: 322,
+            employeeId: 3,
+            kpiId: 4,
+            value: 5,
+            period: "February 2026",
+            notes: "Exceeded threshold — review capacity",
+          },
+          {
+            id: 323,
+            employeeId: 3,
+            kpiId: 5,
+            value: 4,
+            period: "February 2026",
+            notes: "One session missed",
+          },
+          {
+            id: 324,
+            employeeId: 3,
+            kpiId: 6,
+            value: 4,
+            period: "February 2026",
+            notes: "Minimal pushbacks",
+          },
+          {
+            id: 325,
+            employeeId: 4,
+            kpiId: 1,
+            value: 4,
+            period: "February 2026",
+            notes: "Well managed",
+          },
+          {
+            id: 326,
+            employeeId: 4,
+            kpiId: 2,
+            value: 4,
+            period: "February 2026",
+            notes: "Clean period",
+          },
+          {
+            id: 327,
+            employeeId: 4,
+            kpiId: 3,
+            value: 5,
+            period: "February 2026",
+            notes: "On track",
+          },
+          {
+            id: 328,
+            employeeId: 4,
+            kpiId: 4,
+            value: 5,
+            period: "February 2026",
+            notes: "Exceeded threshold — review capacity",
+          },
+          {
+            id: 329,
+            employeeId: 4,
+            kpiId: 5,
+            value: 4,
+            period: "February 2026",
+            notes: "One session missed",
+          },
+          {
+            id: 330,
+            employeeId: 4,
+            kpiId: 6,
+            value: 5,
+            period: "February 2026",
+            notes: "",
+          },
+          {
+            id: 331,
+            employeeId: 5,
+            kpiId: 1,
+            value: 3,
+            period: "February 2026",
+            notes: "Within limits",
+          },
+          {
+            id: 332,
+            employeeId: 5,
+            kpiId: 2,
+            value: 5,
+            period: "February 2026",
+            notes: "",
+          },
+          {
+            id: 333,
+            employeeId: 5,
+            kpiId: 3,
+            value: 5,
+            period: "February 2026",
+            notes: "All BRs on track",
+          },
+          {
+            id: 334,
+            employeeId: 5,
+            kpiId: 4,
+            value: 3,
+            period: "February 2026",
+            notes: "Met target",
+          },
+          {
+            id: 335,
+            employeeId: 5,
+            kpiId: 5,
+            value: 3,
+            period: "February 2026",
+            notes: "Full execution",
+          },
+          {
+            id: 336,
+            employeeId: 5,
+            kpiId: 6,
+            value: 3,
+            period: "February 2026",
+            notes: "No BRs pushed back",
+          },
+          {
+            id: 337,
+            employeeId: 2,
+            kpiId: 1,
+            value: 4,
+            period: "March 2026",
+            notes: "Within limits",
+          },
+          {
+            id: 338,
+            employeeId: 2,
+            kpiId: 2,
+            value: 4,
+            period: "March 2026",
+            notes: "Few defects carried over",
+          },
+          {
+            id: 339,
+            employeeId: 2,
+            kpiId: 3,
+            value: 4,
+            period: "March 2026",
+            notes: "2 BRs delayed",
+          },
+          {
+            id: 340,
+            employeeId: 2,
+            kpiId: 4,
+            value: 4,
+            period: "March 2026",
+            notes: "Met target",
+          },
+          {
+            id: 341,
+            employeeId: 2,
+            kpiId: 5,
+            value: 4,
+            period: "March 2026",
+            notes: "Full execution",
+          },
+          {
+            id: 342,
+            employeeId: 2,
+            kpiId: 6,
+            value: 4,
+            period: "March 2026",
+            notes: "No BRs pushed back",
+          },
+          {
+            id: 343,
+            employeeId: 3,
+            kpiId: 1,
+            value: 5,
+            period: "March 2026",
+            notes: "Well managed",
+          },
+          {
+            id: 344,
+            employeeId: 3,
+            kpiId: 2,
+            value: 5,
+            period: "March 2026",
+            notes: "",
+          },
+          {
+            id: 345,
+            employeeId: 3,
+            kpiId: 3,
+            value: 3,
+            period: "March 2026",
+            notes: "2 BRs delayed",
+          },
+          {
+            id: 346,
+            employeeId: 3,
+            kpiId: 4,
+            value: 3,
+            period: "March 2026",
+            notes: "Within threshold",
+          },
+          {
+            id: 347,
+            employeeId: 3,
+            kpiId: 5,
+            value: 5,
+            period: "March 2026",
+            notes: "All KT sessions delivered",
+          },
+          {
+            id: 348,
+            employeeId: 3,
+            kpiId: 6,
+            value: 2,
+            period: "March 2026",
+            notes: "1 BR pushed back",
+          },
+          {
+            id: 349,
+            employeeId: 4,
+            kpiId: 1,
+            value: 3,
+            period: "March 2026",
+            notes: "Well managed",
+          },
+          {
+            id: 350,
+            employeeId: 4,
+            kpiId: 2,
+            value: 5,
+            period: "March 2026",
+            notes: "Few defects carried over",
+          },
+          {
+            id: 351,
+            employeeId: 4,
+            kpiId: 3,
+            value: 3,
+            period: "March 2026",
+            notes: "1 BR exceeded plan",
+          },
+          {
+            id: 352,
+            employeeId: 4,
+            kpiId: 4,
+            value: 4,
+            period: "March 2026",
+            notes: "Within threshold",
+          },
+          {
+            id: 353,
+            employeeId: 4,
+            kpiId: 5,
+            value: 5,
+            period: "March 2026",
+            notes: "One session missed",
+          },
+          {
+            id: 354,
+            employeeId: 4,
+            kpiId: 6,
+            value: 4,
+            period: "March 2026",
+            notes: "2 BRs pushed — escalate",
+          },
+          {
+            id: 355,
+            employeeId: 5,
+            kpiId: 1,
+            value: 4,
+            period: "March 2026",
+            notes: "Above threshold — needs attention",
+          },
+          {
+            id: 356,
+            employeeId: 5,
+            kpiId: 2,
+            value: 5,
+            period: "March 2026",
+            notes: "",
+          },
+          {
+            id: 357,
+            employeeId: 5,
+            kpiId: 3,
+            value: 5,
+            period: "March 2026",
+            notes: "All BRs on track",
+          },
+          {
+            id: 358,
+            employeeId: 5,
+            kpiId: 4,
+            value: 3,
+            period: "March 2026",
+            notes: "1 ICR slipped",
+          },
+          {
+            id: 359,
+            employeeId: 5,
+            kpiId: 5,
+            value: 3,
+            period: "March 2026",
+            notes: "Partial delivery",
+          },
+          {
+            id: 360,
+            employeeId: 5,
+            kpiId: 6,
+            value: 3,
+            period: "March 2026",
+            notes: "2 BRs pushed — escalate",
+          },
+          {
+            id: 361,
+            employeeId: 2,
+            kpiId: 1,
+            value: 5,
+            period: "April 2026",
+            notes: "Within limits",
+          },
+          {
+            id: 362,
+            employeeId: 2,
+            kpiId: 2,
+            value: 4,
+            period: "April 2026",
+            notes: "Few defects carried over",
+          },
+          {
+            id: 363,
+            employeeId: 2,
+            kpiId: 3,
+            value: 3,
+            period: "April 2026",
+            notes: "Minor slippage",
+          },
+          {
+            id: 364,
+            employeeId: 2,
+            kpiId: 4,
+            value: 5,
+            period: "April 2026",
+            notes: "Exceeded threshold — review capacity",
+          },
+          {
+            id: 365,
+            employeeId: 2,
+            kpiId: 5,
+            value: 3,
+            period: "April 2026",
+            notes: "Sessions on track",
+          },
+          {
+            id: 366,
+            employeeId: 2,
+            kpiId: 6,
+            value: 5,
+            period: "April 2026",
+            notes: "",
+          },
+          {
+            id: 367,
+            employeeId: 3,
+            kpiId: 1,
+            value: 2,
+            period: "April 2026",
+            notes: "Slightly elevated",
+          },
+          {
+            id: 368,
+            employeeId: 3,
+            kpiId: 2,
+            value: 3,
+            period: "April 2026",
+            notes: "Clean period",
+          },
+          {
+            id: 369,
+            employeeId: 3,
+            kpiId: 3,
+            value: 5,
+            period: "April 2026",
+            notes: "On track",
+          },
+          {
+            id: 370,
+            employeeId: 3,
+            kpiId: 4,
+            value: 5,
+            period: "April 2026",
+            notes: "1 ICR slipped",
+          },
+          {
+            id: 371,
+            employeeId: 3,
+            kpiId: 5,
+            value: 3,
+            period: "April 2026",
+            notes: "Partial delivery",
+          },
+          {
+            id: 372,
+            employeeId: 3,
+            kpiId: 6,
+            value: 4,
+            period: "April 2026",
+            notes: "No BRs pushed back",
+          },
+          {
+            id: 373,
+            employeeId: 4,
+            kpiId: 1,
+            value: 4,
+            period: "April 2026",
+            notes: "Within limits",
+          },
+          {
+            id: 374,
+            employeeId: 4,
+            kpiId: 2,
+            value: 3,
+            period: "April 2026",
+            notes: "Needs monitoring",
+          },
+          {
+            id: 375,
+            employeeId: 4,
+            kpiId: 3,
+            value: 4,
+            period: "April 2026",
+            notes: "On track",
+          },
+          {
+            id: 376,
+            employeeId: 4,
+            kpiId: 4,
+            value: 5,
+            period: "April 2026",
+            notes: "Exceeded threshold — review capacity",
+          },
+          {
+            id: 377,
+            employeeId: 4,
+            kpiId: 5,
+            value: 4,
+            period: "April 2026",
+            notes: "One session missed",
+          },
+          {
+            id: 378,
+            employeeId: 4,
+            kpiId: 6,
+            value: 5,
+            period: "April 2026",
+            notes: "",
+          },
+          {
+            id: 379,
+            employeeId: 5,
+            kpiId: 1,
+            value: 5,
+            period: "April 2026",
+            notes: "No aging defects",
+          },
+          {
+            id: 380,
+            employeeId: 5,
+            kpiId: 2,
+            value: 5,
+            period: "April 2026",
+            notes: "",
+          },
+          {
+            id: 381,
+            employeeId: 5,
+            kpiId: 3,
+            value: 4,
+            period: "April 2026",
+            notes: "On track",
+          },
+          {
+            id: 382,
+            employeeId: 5,
+            kpiId: 4,
+            value: 4,
+            period: "April 2026",
+            notes: "",
+          },
+          {
+            id: 383,
+            employeeId: 5,
+            kpiId: 5,
+            value: 4,
+            period: "April 2026",
+            notes: "Sessions on track",
+          },
+          {
+            id: 384,
+            employeeId: 5,
+            kpiId: 6,
+            value: 3,
+            period: "April 2026",
+            notes: "No BRs pushed back",
+          },
+          {
+            id: 385,
+            employeeId: 2,
+            kpiId: 1,
+            value: 4,
+            period: "May 2026",
+            notes: "Within limits",
+          },
+          {
+            id: 386,
+            employeeId: 2,
+            kpiId: 2,
+            value: 3,
+            period: "May 2026",
+            notes: "Needs monitoring",
+          },
+          {
+            id: 387,
+            employeeId: 2,
+            kpiId: 3,
+            value: 5,
+            period: "May 2026",
+            notes: "Minor slippage",
+          },
+          {
+            id: 388,
+            employeeId: 2,
+            kpiId: 4,
+            value: 5,
+            period: "May 2026",
+            notes: "Met target",
+          },
+          {
+            id: 389,
+            employeeId: 2,
+            kpiId: 5,
+            value: 4,
+            period: "May 2026",
+            notes: "All KT sessions delivered",
+          },
+          {
+            id: 390,
+            employeeId: 2,
+            kpiId: 6,
+            value: 4,
+            period: "May 2026",
+            notes: "2 BRs pushed — escalate",
+          },
+          {
+            id: 391,
+            employeeId: 3,
+            kpiId: 1,
+            value: 3,
+            period: "May 2026",
+            notes: "Within limits",
+          },
+          {
+            id: 392,
+            employeeId: 3,
+            kpiId: 2,
+            value: 3,
+            period: "May 2026",
+            notes: "Clean period",
+          },
+          {
+            id: 393,
+            employeeId: 3,
+            kpiId: 3,
+            value: 4,
+            period: "May 2026",
+            notes: "2 BRs delayed",
+          },
+          {
+            id: 394,
+            employeeId: 3,
+            kpiId: 4,
+            value: 4,
+            period: "May 2026",
+            notes: "",
+          },
+          {
+            id: 395,
+            employeeId: 3,
+            kpiId: 5,
+            value: 5,
+            period: "May 2026",
+            notes: "Sessions on track",
+          },
+          {
+            id: 396,
+            employeeId: 3,
+            kpiId: 6,
+            value: 2,
+            period: "May 2026",
+            notes: "",
+          },
+          {
+            id: 397,
+            employeeId: 4,
+            kpiId: 1,
+            value: 3,
+            period: "May 2026",
+            notes: "Well managed",
+          },
+          {
+            id: 398,
+            employeeId: 4,
+            kpiId: 2,
+            value: 3,
+            period: "May 2026",
+            notes: "Needs monitoring",
+          },
+          {
+            id: 399,
+            employeeId: 4,
+            kpiId: 3,
+            value: 4,
+            period: "May 2026",
+            notes: "Minor slippage",
+          },
+          {
+            id: 400,
+            employeeId: 4,
+            kpiId: 4,
+            value: 3,
+            period: "May 2026",
+            notes: "Met target",
+          },
+          {
+            id: 401,
+            employeeId: 4,
+            kpiId: 5,
+            value: 5,
+            period: "May 2026",
+            notes: "Full execution",
+          },
+          {
+            id: 402,
+            employeeId: 4,
+            kpiId: 6,
+            value: 4,
+            period: "May 2026",
+            notes: "No BRs pushed back",
+          },
+          {
+            id: 403,
+            employeeId: 5,
+            kpiId: 1,
+            value: 3,
+            period: "May 2026",
+            notes: "No aging defects",
+          },
+          {
+            id: 404,
+            employeeId: 5,
+            kpiId: 2,
+            value: 3,
+            period: "May 2026",
+            notes: "Needs monitoring",
+          },
+          {
+            id: 405,
+            employeeId: 5,
+            kpiId: 3,
+            value: 5,
+            period: "May 2026",
+            notes: "1 BR exceeded plan",
+          },
+          {
+            id: 406,
+            employeeId: 5,
+            kpiId: 4,
+            value: 4,
+            period: "May 2026",
+            notes: "",
+          },
+          {
+            id: 407,
+            employeeId: 5,
+            kpiId: 5,
+            value: 4,
+            period: "May 2026",
+            notes: "Full execution",
+          },
+          {
+            id: 408,
+            employeeId: 5,
+            kpiId: 6,
+            value: 5,
+            period: "May 2026",
+            notes: "",
+          },
+          {
+            id: 409,
+            employeeId: 2,
+            kpiId: 7,
+            value: 4,
+            period: "2024",
+            notes: "Completed additional courses",
+          },
+          {
+            id: 410,
+            employeeId: 2,
+            kpiId: 10,
+            value: 5,
+            period: "2024",
+            notes: "Consistent performer",
+          },
+          {
+            id: 411,
+            employeeId: 3,
+            kpiId: 7,
+            value: 4,
+            period: "2024",
+            notes: "Behind — schedule sessions",
+          },
+          {
+            id: 412,
+            employeeId: 3,
+            kpiId: 10,
+            value: 5,
+            period: "2024",
+            notes: "Solid performance",
+          },
+          {
+            id: 413,
+            employeeId: 4,
+            kpiId: 7,
+            value: 4,
+            period: "2024",
+            notes: "Behind — schedule sessions",
+          },
+          {
+            id: 414,
+            employeeId: 4,
+            kpiId: 10,
+            value: 4,
+            period: "2024",
+            notes: "Below target — improvement plan",
+          },
+          {
+            id: 415,
+            employeeId: 5,
+            kpiId: 7,
+            value: 3,
+            period: "2024",
+            notes: "Exceeded training target",
+          },
+          {
+            id: 416,
+            employeeId: 5,
+            kpiId: 10,
+            value: 4,
+            period: "2024",
+            notes: "Strong results",
+          },
+          {
+            id: 417,
+            employeeId: 2,
+            kpiId: 7,
+            value: 5,
+            period: "2025",
+            notes: "On track",
+          },
+          {
+            id: 418,
+            employeeId: 2,
+            kpiId: 10,
+            value: 5,
+            period: "2025",
+            notes: "Below target — improvement plan",
+          },
+          {
+            id: 419,
+            employeeId: 3,
+            kpiId: 7,
+            value: 3,
+            period: "2025",
+            notes: "Exceeded training target",
+          },
+          {
+            id: 420,
+            employeeId: 3,
+            kpiId: 10,
+            value: 5,
+            period: "2025",
+            notes: "Solid performance",
+          },
+          {
+            id: 421,
+            employeeId: 4,
+            kpiId: 7,
+            value: 4,
+            period: "2025",
+            notes: "On track",
+          },
+          {
+            id: 422,
+            employeeId: 4,
+            kpiId: 10,
+            value: 5,
+            period: "2025",
+            notes: "Consistent performer",
+          },
+          {
+            id: 423,
+            employeeId: 5,
+            kpiId: 7,
+            value: 4,
+            period: "2025",
+            notes: "Met annual training target",
+          },
+          {
+            id: 424,
+            employeeId: 5,
+            kpiId: 10,
+            value: 3,
+            period: "2025",
+            notes: "Exceeded expectations",
+          },
+          {
+            id: 425,
+            employeeId: 2,
+            kpiId: 7,
+            value: 3,
+            period: "2026",
+            notes: "Behind — schedule sessions",
+          },
+          {
+            id: 426,
+            employeeId: 2,
+            kpiId: 10,
+            value: 3,
+            period: "2026",
+            notes: "Exceeded expectations",
+          },
+          {
+            id: 427,
+            employeeId: 3,
+            kpiId: 7,
+            value: 3,
+            period: "2026",
+            notes: "On track",
+          },
+          {
+            id: 428,
+            employeeId: 3,
+            kpiId: 10,
+            value: 3,
+            period: "2026",
+            notes: "Exceeded expectations",
+          },
+          {
+            id: 429,
+            employeeId: 4,
+            kpiId: 7,
+            value: 3,
+            period: "2026",
+            notes: "Met annual training target",
+          },
+          {
+            id: 430,
+            employeeId: 4,
+            kpiId: 10,
+            value: 5,
+            period: "2026",
+            notes: "Exceeded expectations",
+          },
+          {
+            id: 431,
+            employeeId: 5,
+            kpiId: 7,
+            value: 5,
+            period: "2026",
+            notes: "Exceeded training target",
+          },
+          {
+            id: 432,
+            employeeId: 5,
+            kpiId: 10,
+            value: 5,
+            period: "2026",
+            notes: "Solid performance",
+          },
+          {
+            id: 433,
+            employeeId: 2,
+            kpiId: 8,
+            value: 3,
+            period: "Q1 2025",
+            notes: "All projects on time",
+          },
+          {
+            id: 434,
+            employeeId: 2,
+            kpiId: 11,
+            value: 5,
+            period: "Q1 2025",
+            notes: "Exceeded target",
+          },
+          {
+            id: 435,
+            employeeId: 3,
+            kpiId: 8,
+            value: 4,
+            period: "Q1 2025",
+            notes: "Strong delivery quarter",
+          },
+          {
+            id: 436,
+            employeeId: 3,
+            kpiId: 11,
+            value: 4,
+            period: "Q1 2025",
+            notes: "Exceeded target",
+          },
+          {
+            id: 437,
+            employeeId: 4,
+            kpiId: 8,
+            value: 3,
+            period: "Q1 2025",
+            notes: "All projects on time",
+          },
+          {
+            id: 438,
+            employeeId: 4,
+            kpiId: 11,
+            value: 4,
+            period: "Q1 2025",
+            notes: "Best quarter on record",
+          },
+          {
+            id: 439,
+            employeeId: 5,
+            kpiId: 8,
+            value: 3,
+            period: "Q1 2025",
+            notes: "All projects on time",
+          },
+          {
+            id: 440,
+            employeeId: 5,
+            kpiId: 11,
+            value: 4,
+            period: "Q1 2025",
+            notes: "Best quarter on record",
+          },
+          {
+            id: 441,
+            employeeId: 2,
+            kpiId: 8,
+            value: 3,
+            period: "Q2 2025",
+            notes: "End-of-year scope creep",
+          },
+          {
+            id: 442,
+            employeeId: 2,
+            kpiId: 11,
+            value: 5,
+            period: "Q2 2025",
+            notes: "Strong sprint performance",
+          },
+          {
+            id: 443,
+            employeeId: 3,
+            kpiId: 8,
+            value: 3,
+            period: "Q2 2025",
+            notes: "1 project delayed",
+          },
+          {
+            id: 444,
+            employeeId: 3,
+            kpiId: 11,
+            value: 3,
+            period: "Q2 2025",
+            notes: "Capacity reduced mid-quarter",
+          },
+          {
+            id: 445,
+            employeeId: 4,
+            kpiId: 8,
+            value: 4,
+            period: "Q2 2025",
+            notes: "All projects on time",
+          },
+          {
+            id: 446,
+            employeeId: 4,
+            kpiId: 11,
+            value: 3,
+            period: "Q2 2025",
+            notes: "Hit target precisely",
+          },
+          {
+            id: 447,
+            employeeId: 5,
+            kpiId: 8,
+            value: 5,
+            period: "Q2 2025",
+            notes: "Strong delivery quarter",
+          },
+          {
+            id: 448,
+            employeeId: 5,
+            kpiId: 11,
+            value: 5,
+            period: "Q2 2025",
+            notes: "Capacity reduced mid-quarter",
+          },
+          {
+            id: 449,
+            employeeId: 2,
+            kpiId: 8,
+            value: 5,
+            period: "Q3 2025",
+            notes: "1 project delayed",
+          },
+          {
+            id: 450,
+            employeeId: 2,
+            kpiId: 11,
+            value: 5,
+            period: "Q3 2025",
+            notes: "Best quarter on record",
+          },
+          {
+            id: 451,
+            employeeId: 3,
+            kpiId: 8,
+            value: 4,
+            period: "Q3 2025",
+            notes: "Strong delivery quarter",
+          },
+          {
+            id: 452,
+            employeeId: 3,
+            kpiId: 11,
+            value: 4,
+            period: "Q3 2025",
+            notes: "Capacity reduced mid-quarter",
+          },
+          {
+            id: 453,
+            employeeId: 4,
+            kpiId: 8,
+            value: 4,
+            period: "Q3 2025",
+            notes: "2 projects missed deadline",
+          },
+          {
+            id: 454,
+            employeeId: 4,
+            kpiId: 11,
+            value: 5,
+            period: "Q3 2025",
+            notes: "Capacity reduced mid-quarter",
+          },
+          {
+            id: 455,
+            employeeId: 5,
+            kpiId: 8,
+            value: 3,
+            period: "Q3 2025",
+            notes: "End-of-year scope creep",
+          },
+          {
+            id: 456,
+            employeeId: 5,
+            kpiId: 11,
+            value: 5,
+            period: "Q3 2025",
+            notes: "Hit target precisely",
+          },
+          {
+            id: 457,
+            employeeId: 2,
+            kpiId: 8,
+            value: 3,
+            period: "Q4 2025",
+            notes: "Perfect delivery",
+          },
+          {
+            id: 458,
+            employeeId: 2,
+            kpiId: 11,
+            value: 3,
+            period: "Q4 2025",
+            notes: "Exceeded target",
+          },
+          {
+            id: 459,
+            employeeId: 3,
+            kpiId: 8,
+            value: 5,
+            period: "Q4 2025",
+            notes: "All projects on time",
+          },
+          {
+            id: 460,
+            employeeId: 3,
+            kpiId: 11,
+            value: 3,
+            period: "Q4 2025",
+            notes: "Slightly under velocity",
+          },
+          {
+            id: 461,
+            employeeId: 4,
+            kpiId: 8,
+            value: 3,
+            period: "Q4 2025",
+            notes: "End-of-year scope creep",
+          },
+          {
+            id: 462,
+            employeeId: 4,
+            kpiId: 11,
+            value: 3,
+            period: "Q4 2025",
+            notes: "Slightly under velocity",
+          },
+          {
+            id: 463,
+            employeeId: 5,
+            kpiId: 8,
+            value: 3,
+            period: "Q4 2025",
+            notes: "Strong delivery quarter",
+          },
+          {
+            id: 464,
+            employeeId: 5,
+            kpiId: 11,
+            value: 4,
+            period: "Q4 2025",
+            notes: "Strong sprint performance",
+          },
+          {
+            id: 465,
+            employeeId: 2,
+            kpiId: 8,
+            value: 5,
+            period: "Q1 2026",
+            notes: "Strong delivery quarter",
+          },
+          {
+            id: 466,
+            employeeId: 2,
+            kpiId: 11,
+            value: 4,
+            period: "Q1 2026",
+            notes: "Hit target precisely",
+          },
+          {
+            id: 467,
+            employeeId: 3,
+            kpiId: 8,
+            value: 3,
+            period: "Q1 2026",
+            notes: "2 projects missed deadline",
+          },
+          {
+            id: 468,
+            employeeId: 3,
+            kpiId: 11,
+            value: 5,
+            period: "Q1 2026",
+            notes: "Exceeded target",
+          },
+          {
+            id: 469,
+            employeeId: 4,
+            kpiId: 8,
+            value: 5,
+            period: "Q1 2026",
+            notes: "Strong delivery quarter",
+          },
+          {
+            id: 470,
+            employeeId: 4,
+            kpiId: 11,
+            value: 3,
+            period: "Q1 2026",
+            notes: "Strong sprint performance",
+          },
+          {
+            id: 471,
+            employeeId: 5,
+            kpiId: 8,
+            value: 3,
+            period: "Q1 2026",
+            notes: "2 projects missed deadline",
+          },
+          {
+            id: 472,
+            employeeId: 5,
+            kpiId: 11,
+            value: 5,
+            period: "Q1 2026",
+            notes: "Capacity reduced mid-quarter",
+          },
+          {
+            id: 473,
+            employeeId: 2,
+            kpiId: 8,
+            value: 5,
+            period: "Q2 2026",
+            notes: "1 project delayed",
+          },
+          {
+            id: 474,
+            employeeId: 2,
+            kpiId: 11,
+            value: 4,
+            period: "Q2 2026",
+            notes: "Hit target precisely",
+          },
+          {
+            id: 475,
+            employeeId: 3,
+            kpiId: 8,
+            value: 5,
+            period: "Q2 2026",
+            notes: "1 project delayed",
+          },
+          {
+            id: 476,
+            employeeId: 3,
+            kpiId: 11,
+            value: 5,
+            period: "Q2 2026",
+            notes: "Slightly under velocity",
+          },
+          {
+            id: 477,
+            employeeId: 4,
+            kpiId: 8,
+            value: 4,
+            period: "Q2 2026",
+            notes: "1 project delayed",
+          },
+          {
+            id: 478,
+            employeeId: 4,
+            kpiId: 11,
+            value: 3,
+            period: "Q2 2026",
+            notes: "Hit target precisely",
+          },
+          {
+            id: 479,
+            employeeId: 5,
+            kpiId: 8,
+            value: 3,
+            period: "Q2 2026",
+            notes: "2 projects missed deadline",
+          },
+          {
+            id: 480,
+            employeeId: 5,
+            kpiId: 11,
+            value: 5,
+            period: "Q2 2026",
+            notes: "Strong sprint performance",
+          },
+          {
+            id: 481,
+            employeeId: 2,
+            kpiId: 9,
+            value: 5,
+            period: "W45 2025",
+            notes: "Strong defect resolution",
+          },
+          {
+            id: 482,
+            employeeId: 2,
+            kpiId: 12,
+            value: 4,
+            period: "W45 2025",
+            notes: "All PRs merged on time",
+          },
+          {
+            id: 483,
+            employeeId: 3,
+            kpiId: 9,
+            value: 4,
+            period: "W45 2025",
+            notes: "",
+          },
+          {
+            id: 484,
+            employeeId: 3,
+            kpiId: 12,
+            value: 4,
+            period: "W45 2025",
+            notes: "",
+          },
+          {
+            id: 485,
+            employeeId: 4,
+            kpiId: 9,
+            value: 4,
+            period: "W45 2025",
+            notes: "Strong defect resolution",
+          },
+          {
+            id: 486,
+            employeeId: 4,
+            kpiId: 12,
+            value: 5,
+            period: "W45 2025",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 487,
+            employeeId: 5,
+            kpiId: 9,
+            value: 4,
+            period: "W45 2025",
+            notes: "Low week — planning overhead",
+          },
+          {
+            id: 488,
+            employeeId: 5,
+            kpiId: 12,
+            value: 3,
+            period: "W45 2025",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 489,
+            employeeId: 2,
+            kpiId: 9,
+            value: 3,
+            period: "W46 2025",
+            notes: "Low week — planning overhead",
+          },
+          {
+            id: 490,
+            employeeId: 2,
+            kpiId: 12,
+            value: 5,
+            period: "W46 2025",
+            notes: "2 PRs pending at week end",
+          },
+          {
+            id: 491,
+            employeeId: 3,
+            kpiId: 9,
+            value: 5,
+            period: "W46 2025",
+            notes: "Strong defect resolution",
+          },
+          {
+            id: 492,
+            employeeId: 3,
+            kpiId: 12,
+            value: 3,
+            period: "W46 2025",
+            notes: "All PRs merged on time",
+          },
+          {
+            id: 493,
+            employeeId: 4,
+            kpiId: 9,
+            value: 3,
+            period: "W46 2025",
+            notes: "",
+          },
+          {
+            id: 494,
+            employeeId: 4,
+            kpiId: 12,
+            value: 5,
+            period: "W46 2025",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 495,
+            employeeId: 5,
+            kpiId: 9,
+            value: 3,
+            period: "W46 2025",
+            notes: "",
+          },
+          {
+            id: 496,
+            employeeId: 5,
+            kpiId: 12,
+            value: 4,
+            period: "W46 2025",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 497,
+            employeeId: 2,
+            kpiId: 9,
+            value: 3,
+            period: "W47 2025",
+            notes: "Capacity was limited",
+          },
+          {
+            id: 498,
+            employeeId: 2,
+            kpiId: 12,
+            value: 4,
+            period: "W47 2025",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 499,
+            employeeId: 3,
+            kpiId: 9,
+            value: 5,
+            period: "W47 2025",
+            notes: "Low week — planning overhead",
+          },
+          {
+            id: 500,
+            employeeId: 3,
+            kpiId: 12,
+            value: 4,
+            period: "W47 2025",
+            notes: "Backlog of reviews carried over",
+          },
+          {
+            id: 501,
+            employeeId: 4,
+            kpiId: 9,
+            value: 5,
+            period: "W47 2025",
+            notes: "Low week — planning overhead",
+          },
+          {
+            id: 502,
+            employeeId: 4,
+            kpiId: 12,
+            value: 5,
+            period: "W47 2025",
+            notes: "Perfect merge week",
+          },
+          {
+            id: 503,
+            employeeId: 5,
+            kpiId: 9,
+            value: 3,
+            period: "W47 2025",
+            notes: "Low week — planning overhead",
+          },
+          {
+            id: 504,
+            employeeId: 5,
+            kpiId: 12,
+            value: 4,
+            period: "W47 2025",
+            notes: "Perfect merge week",
+          },
+          {
+            id: 505,
+            employeeId: 2,
+            kpiId: 9,
+            value: 4,
+            period: "W48 2025",
+            notes: "Strong defect resolution",
+          },
+          {
+            id: 506,
+            employeeId: 2,
+            kpiId: 12,
+            value: 5,
+            period: "W48 2025",
+            notes: "All PRs merged on time",
+          },
+          {
+            id: 507,
+            employeeId: 3,
+            kpiId: 9,
+            value: 3,
+            period: "W48 2025",
+            notes: "Strong defect resolution",
+          },
+          {
+            id: 508,
+            employeeId: 3,
+            kpiId: 12,
+            value: 4,
+            period: "W48 2025",
+            notes: "",
+          },
+          {
+            id: 509,
+            employeeId: 4,
+            kpiId: 9,
+            value: 4,
+            period: "W48 2025",
+            notes: "Strong defect resolution",
+          },
+          {
+            id: 510,
+            employeeId: 4,
+            kpiId: 12,
+            value: 5,
+            period: "W48 2025",
+            notes: "Perfect merge week",
+          },
+          {
+            id: 511,
+            employeeId: 5,
+            kpiId: 9,
+            value: 5,
+            period: "W48 2025",
+            notes: "High productivity week",
+          },
+          {
+            id: 512,
+            employeeId: 5,
+            kpiId: 12,
+            value: 4,
+            period: "W48 2025",
+            notes: "All PRs merged on time",
+          },
+          {
+            id: 513,
+            employeeId: 2,
+            kpiId: 9,
+            value: 4,
+            period: "W49 2025",
+            notes: "Strong defect resolution",
+          },
+          {
+            id: 514,
+            employeeId: 2,
+            kpiId: 12,
+            value: 4,
+            period: "W49 2025",
+            notes: "All PRs merged on time",
+          },
+          {
+            id: 515,
+            employeeId: 3,
+            kpiId: 9,
+            value: 4,
+            period: "W49 2025",
+            notes: "Outstanding week",
+          },
+          {
+            id: 516,
+            employeeId: 3,
+            kpiId: 12,
+            value: 3,
+            period: "W49 2025",
+            notes: "",
+          },
+          {
+            id: 517,
+            employeeId: 4,
+            kpiId: 9,
+            value: 5,
+            period: "W49 2025",
+            notes: "Low week — planning overhead",
+          },
+          {
+            id: 518,
+            employeeId: 4,
+            kpiId: 12,
+            value: 4,
+            period: "W49 2025",
+            notes: "All PRs merged on time",
+          },
+          {
+            id: 519,
+            employeeId: 5,
+            kpiId: 9,
+            value: 3,
+            period: "W49 2025",
+            notes: "Outstanding week",
+          },
+          {
+            id: 520,
+            employeeId: 5,
+            kpiId: 12,
+            value: 4,
+            period: "W49 2025",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 521,
+            employeeId: 2,
+            kpiId: 9,
+            value: 4,
+            period: "W50 2025",
+            notes: "",
+          },
+          {
+            id: 522,
+            employeeId: 2,
+            kpiId: 12,
+            value: 4,
+            period: "W50 2025",
+            notes: "All PRs merged on time",
+          },
+          {
+            id: 523,
+            employeeId: 3,
+            kpiId: 9,
+            value: 3,
+            period: "W50 2025",
+            notes: "Strong defect resolution",
+          },
+          {
+            id: 524,
+            employeeId: 3,
+            kpiId: 12,
+            value: 5,
+            period: "W50 2025",
+            notes: "Backlog of reviews carried over",
+          },
+          {
+            id: 525,
+            employeeId: 4,
+            kpiId: 9,
+            value: 4,
+            period: "W50 2025",
+            notes: "Low week — planning overhead",
+          },
+          {
+            id: 526,
+            employeeId: 4,
+            kpiId: 12,
+            value: 5,
+            period: "W50 2025",
+            notes: "Perfect merge week",
+          },
+          {
+            id: 527,
+            employeeId: 5,
+            kpiId: 9,
+            value: 3,
+            period: "W50 2025",
+            notes: "High productivity week",
+          },
+          {
+            id: 528,
+            employeeId: 5,
+            kpiId: 12,
+            value: 5,
+            period: "W50 2025",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 529,
+            employeeId: 2,
+            kpiId: 9,
+            value: 3,
+            period: "W51 2025",
+            notes: "",
+          },
+          {
+            id: 530,
+            employeeId: 2,
+            kpiId: 12,
+            value: 3,
+            period: "W51 2025",
+            notes: "2 PRs pending at week end",
+          },
+          {
+            id: 531,
+            employeeId: 3,
+            kpiId: 9,
+            value: 5,
+            period: "W51 2025",
+            notes: "High productivity week",
+          },
+          {
+            id: 532,
+            employeeId: 3,
+            kpiId: 12,
+            value: 5,
+            period: "W51 2025",
+            notes: "Perfect merge week",
+          },
+          {
+            id: 533,
+            employeeId: 4,
+            kpiId: 9,
+            value: 3,
+            period: "W51 2025",
+            notes: "Capacity was limited",
+          },
+          {
+            id: 534,
+            employeeId: 4,
+            kpiId: 12,
+            value: 3,
+            period: "W51 2025",
+            notes: "Perfect merge week",
+          },
+          {
+            id: 535,
+            employeeId: 5,
+            kpiId: 9,
+            value: 3,
+            period: "W51 2025",
+            notes: "",
+          },
+          {
+            id: 536,
+            employeeId: 5,
+            kpiId: 12,
+            value: 3,
+            period: "W51 2025",
+            notes: "Perfect merge week",
+          },
+          {
+            id: 537,
+            employeeId: 2,
+            kpiId: 9,
+            value: 5,
+            period: "W52 2025",
+            notes: "Strong defect resolution",
+          },
+          {
+            id: 538,
+            employeeId: 2,
+            kpiId: 12,
+            value: 5,
+            period: "W52 2025",
+            notes: "",
+          },
+          {
+            id: 539,
+            employeeId: 3,
+            kpiId: 9,
+            value: 4,
+            period: "W52 2025",
+            notes: "Low week — planning overhead",
+          },
+          {
+            id: 540,
+            employeeId: 3,
+            kpiId: 12,
+            value: 4,
+            period: "W52 2025",
+            notes: "Perfect merge week",
+          },
+          {
+            id: 541,
+            employeeId: 4,
+            kpiId: 9,
+            value: 3,
+            period: "W52 2025",
+            notes: "Low week — planning overhead",
+          },
+          {
+            id: 542,
+            employeeId: 4,
+            kpiId: 12,
+            value: 5,
+            period: "W52 2025",
+            notes: "Backlog of reviews carried over",
+          },
+          {
+            id: 543,
+            employeeId: 5,
+            kpiId: 9,
+            value: 4,
+            period: "W52 2025",
+            notes: "Capacity was limited",
+          },
+          {
+            id: 544,
+            employeeId: 5,
+            kpiId: 12,
+            value: 5,
+            period: "W52 2025",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 545,
+            employeeId: 2,
+            kpiId: 9,
+            value: 5,
+            period: "W1 2026",
+            notes: "Capacity was limited",
+          },
+          {
+            id: 546,
+            employeeId: 2,
+            kpiId: 12,
+            value: 3,
+            period: "W1 2026",
+            notes: "2 PRs pending at week end",
+          },
+          {
+            id: 547,
+            employeeId: 3,
+            kpiId: 9,
+            value: 5,
+            period: "W1 2026",
+            notes: "Strong defect resolution",
+          },
+          {
+            id: 548,
+            employeeId: 3,
+            kpiId: 12,
+            value: 4,
+            period: "W1 2026",
+            notes: "All PRs merged on time",
+          },
+          {
+            id: 549,
+            employeeId: 4,
+            kpiId: 9,
+            value: 4,
+            period: "W1 2026",
+            notes: "",
+          },
+          {
+            id: 550,
+            employeeId: 4,
+            kpiId: 12,
+            value: 4,
+            period: "W1 2026",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 551,
+            employeeId: 5,
+            kpiId: 9,
+            value: 5,
+            period: "W1 2026",
+            notes: "",
+          },
+          {
+            id: 552,
+            employeeId: 5,
+            kpiId: 12,
+            value: 4,
+            period: "W1 2026",
+            notes: "Backlog of reviews carried over",
+          },
+          {
+            id: 553,
+            employeeId: 2,
+            kpiId: 9,
+            value: 4,
+            period: "W2 2026",
+            notes: "Outstanding week",
+          },
+          {
+            id: 554,
+            employeeId: 2,
+            kpiId: 12,
+            value: 4,
+            period: "W2 2026",
+            notes: "2 PRs pending at week end",
+          },
+          {
+            id: 555,
+            employeeId: 3,
+            kpiId: 9,
+            value: 4,
+            period: "W2 2026",
+            notes: "Outstanding week",
+          },
+          {
+            id: 556,
+            employeeId: 3,
+            kpiId: 12,
+            value: 5,
+            period: "W2 2026",
+            notes: "Perfect merge week",
+          },
+          {
+            id: 557,
+            employeeId: 4,
+            kpiId: 9,
+            value: 4,
+            period: "W2 2026",
+            notes: "Strong defect resolution",
+          },
+          {
+            id: 558,
+            employeeId: 4,
+            kpiId: 12,
+            value: 3,
+            period: "W2 2026",
+            notes: "",
+          },
+          {
+            id: 559,
+            employeeId: 5,
+            kpiId: 9,
+            value: 3,
+            period: "W2 2026",
+            notes: "Outstanding week",
+          },
+          {
+            id: 560,
+            employeeId: 5,
+            kpiId: 12,
+            value: 4,
+            period: "W2 2026",
+            notes: "Backlog of reviews carried over",
+          },
+          {
+            id: 561,
+            employeeId: 2,
+            kpiId: 9,
+            value: 4,
+            period: "W3 2026",
+            notes: "High productivity week",
+          },
+          {
+            id: 562,
+            employeeId: 2,
+            kpiId: 12,
+            value: 4,
+            period: "W3 2026",
+            notes: "",
+          },
+          {
+            id: 563,
+            employeeId: 3,
+            kpiId: 9,
+            value: 4,
+            period: "W3 2026",
+            notes: "",
+          },
+          {
+            id: 564,
+            employeeId: 3,
+            kpiId: 12,
+            value: 4,
+            period: "W3 2026",
+            notes: "Perfect merge week",
+          },
+          {
+            id: 565,
+            employeeId: 4,
+            kpiId: 9,
+            value: 5,
+            period: "W3 2026",
+            notes: "",
+          },
+          {
+            id: 566,
+            employeeId: 4,
+            kpiId: 12,
+            value: 3,
+            period: "W3 2026",
+            notes: "Perfect merge week",
+          },
+          {
+            id: 567,
+            employeeId: 5,
+            kpiId: 9,
+            value: 3,
+            period: "W3 2026",
+            notes: "Capacity was limited",
+          },
+          {
+            id: 568,
+            employeeId: 5,
+            kpiId: 12,
+            value: 5,
+            period: "W3 2026",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 569,
+            employeeId: 2,
+            kpiId: 9,
+            value: 4,
+            period: "W4 2026",
+            notes: "High productivity week",
+          },
+          {
+            id: 570,
+            employeeId: 2,
+            kpiId: 12,
+            value: 4,
+            period: "W4 2026",
+            notes: "All PRs merged on time",
+          },
+          {
+            id: 571,
+            employeeId: 3,
+            kpiId: 9,
+            value: 5,
+            period: "W4 2026",
+            notes: "Low week — planning overhead",
+          },
+          {
+            id: 572,
+            employeeId: 3,
+            kpiId: 12,
+            value: 3,
+            period: "W4 2026",
+            notes: "",
+          },
+          {
+            id: 573,
+            employeeId: 4,
+            kpiId: 9,
+            value: 3,
+            period: "W4 2026",
+            notes: "Low week — planning overhead",
+          },
+          {
+            id: 574,
+            employeeId: 4,
+            kpiId: 12,
+            value: 5,
+            period: "W4 2026",
+            notes: "Backlog of reviews carried over",
+          },
+          {
+            id: 575,
+            employeeId: 5,
+            kpiId: 9,
+            value: 3,
+            period: "W4 2026",
+            notes: "Low week — planning overhead",
+          },
+          {
+            id: 576,
+            employeeId: 5,
+            kpiId: 12,
+            value: 4,
+            period: "W4 2026",
+            notes: "2 PRs pending at week end",
+          },
+          {
+            id: 577,
+            employeeId: 2,
+            kpiId: 9,
+            value: 5,
+            period: "W5 2026",
+            notes: "",
+          },
+          {
+            id: 578,
+            employeeId: 2,
+            kpiId: 12,
+            value: 4,
+            period: "W5 2026",
+            notes: "",
+          },
+          {
+            id: 579,
+            employeeId: 3,
+            kpiId: 9,
+            value: 3,
+            period: "W5 2026",
+            notes: "Strong defect resolution",
+          },
+          {
+            id: 580,
+            employeeId: 3,
+            kpiId: 12,
+            value: 5,
+            period: "W5 2026",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 581,
+            employeeId: 4,
+            kpiId: 9,
+            value: 4,
+            period: "W5 2026",
+            notes: "Strong defect resolution",
+          },
+          {
+            id: 582,
+            employeeId: 4,
+            kpiId: 12,
+            value: 5,
+            period: "W5 2026",
+            notes: "",
+          },
+          {
+            id: 583,
+            employeeId: 5,
+            kpiId: 9,
+            value: 4,
+            period: "W5 2026",
+            notes: "Outstanding week",
+          },
+          {
+            id: 584,
+            employeeId: 5,
+            kpiId: 12,
+            value: 3,
+            period: "W5 2026",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 585,
+            employeeId: 2,
+            kpiId: 9,
+            value: 3,
+            period: "W6 2026",
+            notes: "Capacity was limited",
+          },
+          {
+            id: 586,
+            employeeId: 2,
+            kpiId: 12,
+            value: 5,
+            period: "W6 2026",
+            notes: "",
+          },
+          {
+            id: 587,
+            employeeId: 3,
+            kpiId: 9,
+            value: 4,
+            period: "W6 2026",
+            notes: "Capacity was limited",
+          },
+          {
+            id: 588,
+            employeeId: 3,
+            kpiId: 12,
+            value: 5,
+            period: "W6 2026",
+            notes: "All PRs merged on time",
+          },
+          {
+            id: 589,
+            employeeId: 4,
+            kpiId: 9,
+            value: 4,
+            period: "W6 2026",
+            notes: "High productivity week",
+          },
+          {
+            id: 590,
+            employeeId: 4,
+            kpiId: 12,
+            value: 5,
+            period: "W6 2026",
+            notes: "",
+          },
+          {
+            id: 591,
+            employeeId: 5,
+            kpiId: 9,
+            value: 3,
+            period: "W6 2026",
+            notes: "Low week — planning overhead",
+          },
+          {
+            id: 592,
+            employeeId: 5,
+            kpiId: 12,
+            value: 3,
+            period: "W6 2026",
+            notes: "",
+          },
+          {
+            id: 593,
+            employeeId: 2,
+            kpiId: 9,
+            value: 4,
+            period: "W7 2026",
+            notes: "High productivity week",
+          },
+          {
+            id: 594,
+            employeeId: 2,
+            kpiId: 12,
+            value: 3,
+            period: "W7 2026",
+            notes: "2 PRs pending at week end",
+          },
+          {
+            id: 595,
+            employeeId: 3,
+            kpiId: 9,
+            value: 3,
+            period: "W7 2026",
+            notes: "Strong defect resolution",
+          },
+          {
+            id: 596,
+            employeeId: 3,
+            kpiId: 12,
+            value: 4,
+            period: "W7 2026",
+            notes: "2 PRs pending at week end",
+          },
+          {
+            id: 597,
+            employeeId: 4,
+            kpiId: 9,
+            value: 4,
+            period: "W7 2026",
+            notes: "Capacity was limited",
+          },
+          {
+            id: 598,
+            employeeId: 4,
+            kpiId: 12,
+            value: 3,
+            period: "W7 2026",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 599,
+            employeeId: 5,
+            kpiId: 9,
+            value: 4,
+            period: "W7 2026",
+            notes: "Outstanding week",
+          },
+          {
+            id: 600,
+            employeeId: 5,
+            kpiId: 12,
+            value: 5,
+            period: "W7 2026",
+            notes: "Backlog of reviews carried over",
+          },
+          {
+            id: 601,
+            employeeId: 2,
+            kpiId: 9,
+            value: 3,
+            period: "W8 2026",
+            notes: "Capacity was limited",
+          },
+          {
+            id: 602,
+            employeeId: 2,
+            kpiId: 12,
+            value: 3,
+            period: "W8 2026",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 603,
+            employeeId: 3,
+            kpiId: 9,
+            value: 4,
+            period: "W8 2026",
+            notes: "Outstanding week",
+          },
+          {
+            id: 604,
+            employeeId: 3,
+            kpiId: 12,
+            value: 5,
+            period: "W8 2026",
+            notes: "Backlog of reviews carried over",
+          },
+          {
+            id: 605,
+            employeeId: 4,
+            kpiId: 9,
+            value: 4,
+            period: "W8 2026",
+            notes: "Outstanding week",
+          },
+          {
+            id: 606,
+            employeeId: 4,
+            kpiId: 12,
+            value: 3,
+            period: "W8 2026",
+            notes: "Backlog of reviews carried over",
+          },
+          {
+            id: 607,
+            employeeId: 5,
+            kpiId: 9,
+            value: 4,
+            period: "W8 2026",
+            notes: "",
+          },
+          {
+            id: 608,
+            employeeId: 5,
+            kpiId: 12,
+            value: 4,
+            period: "W8 2026",
+            notes: "Perfect merge week",
+          },
+          {
+            id: 609,
+            employeeId: 2,
+            kpiId: 9,
+            value: 4,
+            period: "W9 2026",
+            notes: "",
+          },
+          {
+            id: 610,
+            employeeId: 2,
+            kpiId: 12,
+            value: 3,
+            period: "W9 2026",
+            notes: "Perfect merge week",
+          },
+          {
+            id: 611,
+            employeeId: 3,
+            kpiId: 9,
+            value: 4,
+            period: "W9 2026",
+            notes: "",
+          },
+          {
+            id: 612,
+            employeeId: 3,
+            kpiId: 12,
+            value: 5,
+            period: "W9 2026",
+            notes: "Backlog of reviews carried over",
+          },
+          {
+            id: 613,
+            employeeId: 4,
+            kpiId: 9,
+            value: 3,
+            period: "W9 2026",
+            notes: "Low week — planning overhead",
+          },
+          {
+            id: 614,
+            employeeId: 4,
+            kpiId: 12,
+            value: 4,
+            period: "W9 2026",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 615,
+            employeeId: 5,
+            kpiId: 9,
+            value: 4,
+            period: "W9 2026",
+            notes: "",
+          },
+          {
+            id: 616,
+            employeeId: 5,
+            kpiId: 12,
+            value: 4,
+            period: "W9 2026",
+            notes: "",
+          },
+          {
+            id: 617,
+            employeeId: 2,
+            kpiId: 9,
+            value: 4,
+            period: "W10 2026",
+            notes: "Low week — planning overhead",
+          },
+          {
+            id: 618,
+            employeeId: 2,
+            kpiId: 12,
+            value: 4,
+            period: "W10 2026",
+            notes: "Backlog of reviews carried over",
+          },
+          {
+            id: 619,
+            employeeId: 3,
+            kpiId: 9,
+            value: 5,
+            period: "W10 2026",
+            notes: "Low week — planning overhead",
+          },
+          {
+            id: 620,
+            employeeId: 3,
+            kpiId: 12,
+            value: 2,
+            period: "W10 2026",
+            notes: "Backlog of reviews carried over",
+          },
+          {
+            id: 621,
+            employeeId: 4,
+            kpiId: 9,
+            value: 4,
+            period: "W10 2026",
+            notes: "Outstanding week",
+          },
+          {
+            id: 622,
+            employeeId: 4,
+            kpiId: 12,
+            value: 4,
+            period: "W10 2026",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 623,
+            employeeId: 5,
+            kpiId: 9,
+            value: 4,
+            period: "W10 2026",
+            notes: "",
+          },
+          {
+            id: 624,
+            employeeId: 5,
+            kpiId: 12,
+            value: 4,
+            period: "W10 2026",
+            notes: "All PRs merged on time",
+          },
+          {
+            id: 625,
+            employeeId: 2,
+            kpiId: 9,
+            value: 5,
+            period: "W11 2026",
+            notes: "Low week — planning overhead",
+          },
+          {
+            id: 626,
+            employeeId: 2,
+            kpiId: 12,
+            value: 4,
+            period: "W11 2026",
+            notes: "All PRs merged on time",
+          },
+          {
+            id: 627,
+            employeeId: 3,
+            kpiId: 9,
+            value: 2,
+            period: "W11 2026",
+            notes: "Outstanding week",
+          },
+          {
+            id: 628,
+            employeeId: 3,
+            kpiId: 12,
+            value: 5,
+            period: "W11 2026",
+            notes: "2 PRs pending at week end",
+          },
+          {
+            id: 629,
+            employeeId: 4,
+            kpiId: 9,
+            value: 3,
+            period: "W11 2026",
+            notes: "Outstanding week",
+          },
+          {
+            id: 630,
+            employeeId: 4,
+            kpiId: 12,
+            value: 4,
+            period: "W11 2026",
+            notes: "Backlog of reviews carried over",
+          },
+          {
+            id: 631,
+            employeeId: 5,
+            kpiId: 9,
+            value: 5,
+            period: "W11 2026",
+            notes: "Capacity was limited",
+          },
+          {
+            id: 632,
+            employeeId: 5,
+            kpiId: 12,
+            value: 5,
+            period: "W11 2026",
+            notes: "2 PRs pending at week end",
+          },
+          {
+            id: 633,
+            employeeId: 2,
+            kpiId: 9,
+            value: 5,
+            period: "W12 2026",
+            notes: "",
+          },
+          {
+            id: 634,
+            employeeId: 2,
+            kpiId: 12,
+            value: 5,
+            period: "W12 2026",
+            notes: "",
+          },
+          {
+            id: 635,
+            employeeId: 3,
+            kpiId: 9,
+            value: 3,
+            period: "W12 2026",
+            notes: "",
+          },
+          {
+            id: 636,
+            employeeId: 3,
+            kpiId: 12,
+            value: 2,
+            period: "W12 2026",
+            notes: "",
+          },
+          {
+            id: 637,
+            employeeId: 4,
+            kpiId: 9,
+            value: 5,
+            period: "W12 2026",
+            notes: "High productivity week",
+          },
+          {
+            id: 638,
+            employeeId: 4,
+            kpiId: 12,
+            value: 4,
+            period: "W12 2026",
+            notes: "Perfect merge week",
+          },
+          {
+            id: 639,
+            employeeId: 5,
+            kpiId: 9,
+            value: 3,
+            period: "W12 2026",
+            notes: "Outstanding week",
+          },
+          {
+            id: 640,
+            employeeId: 5,
+            kpiId: 12,
+            value: 4,
+            period: "W12 2026",
+            notes: "",
+          },
+          {
+            id: 641,
+            employeeId: 2,
+            kpiId: 9,
+            value: 3,
+            period: "W13 2026",
+            notes: "High productivity week",
+          },
+          {
+            id: 642,
+            employeeId: 2,
+            kpiId: 12,
+            value: 4,
+            period: "W13 2026",
+            notes: "2 PRs pending at week end",
+          },
+          {
+            id: 643,
+            employeeId: 3,
+            kpiId: 9,
+            value: 5,
+            period: "W13 2026",
+            notes: "Capacity was limited",
+          },
+          {
+            id: 644,
+            employeeId: 3,
+            kpiId: 12,
+            value: 3,
+            period: "W13 2026",
+            notes: "Backlog of reviews carried over",
+          },
+          {
+            id: 645,
+            employeeId: 4,
+            kpiId: 9,
+            value: 5,
+            period: "W13 2026",
+            notes: "Strong defect resolution",
+          },
+          {
+            id: 646,
+            employeeId: 4,
+            kpiId: 12,
+            value: 5,
+            period: "W13 2026",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 647,
+            employeeId: 5,
+            kpiId: 9,
+            value: 4,
+            period: "W13 2026",
+            notes: "Capacity was limited",
+          },
+          {
+            id: 648,
+            employeeId: 5,
+            kpiId: 12,
+            value: 4,
+            period: "W13 2026",
+            notes: "Perfect merge week",
+          },
+          {
+            id: 649,
+            employeeId: 2,
+            kpiId: 9,
+            value: 4,
+            period: "W14 2026",
+            notes: "",
+          },
+          {
+            id: 650,
+            employeeId: 2,
+            kpiId: 12,
+            value: 4,
+            period: "W14 2026",
+            notes: "All PRs merged on time",
+          },
+          {
+            id: 651,
+            employeeId: 3,
+            kpiId: 9,
+            value: 5,
+            period: "W14 2026",
+            notes: "High productivity week",
+          },
+          {
+            id: 652,
+            employeeId: 3,
+            kpiId: 12,
+            value: 3,
+            period: "W14 2026",
+            notes: "Backlog of reviews carried over",
+          },
+          {
+            id: 653,
+            employeeId: 4,
+            kpiId: 9,
+            value: 5,
+            period: "W14 2026",
+            notes: "",
+          },
+          {
+            id: 654,
+            employeeId: 4,
+            kpiId: 12,
+            value: 5,
+            period: "W14 2026",
+            notes: "Perfect merge week",
+          },
+          {
+            id: 655,
+            employeeId: 5,
+            kpiId: 9,
+            value: 5,
+            period: "W14 2026",
+            notes: "Strong defect resolution",
+          },
+          {
+            id: 656,
+            employeeId: 5,
+            kpiId: 12,
+            value: 3,
+            period: "W14 2026",
+            notes: "Perfect merge week",
+          },
+          {
+            id: 657,
+            employeeId: 2,
+            kpiId: 9,
+            value: 3,
+            period: "W15 2026",
+            notes: "Strong defect resolution",
+          },
+          {
+            id: 658,
+            employeeId: 2,
+            kpiId: 12,
+            value: 5,
+            period: "W15 2026",
+            notes: "All PRs merged on time",
+          },
+          {
+            id: 659,
+            employeeId: 3,
+            kpiId: 9,
+            value: 5,
+            period: "W15 2026",
+            notes: "Strong defect resolution",
+          },
+          {
+            id: 660,
+            employeeId: 3,
+            kpiId: 12,
+            value: 4,
+            period: "W15 2026",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 661,
+            employeeId: 4,
+            kpiId: 9,
+            value: 4,
+            period: "W15 2026",
+            notes: "",
+          },
+          {
+            id: 662,
+            employeeId: 4,
+            kpiId: 12,
+            value: 4,
+            period: "W15 2026",
+            notes: "All PRs merged on time",
+          },
+          {
+            id: 663,
+            employeeId: 5,
+            kpiId: 9,
+            value: 5,
+            period: "W15 2026",
+            notes: "Capacity was limited",
+          },
+          {
+            id: 664,
+            employeeId: 5,
+            kpiId: 12,
+            value: 4,
+            period: "W15 2026",
+            notes: "All PRs merged on time",
+          },
+          {
+            id: 665,
+            employeeId: 2,
+            kpiId: 9,
+            value: 5,
+            period: "W16 2026",
+            notes: "Outstanding week",
+          },
+          {
+            id: 666,
+            employeeId: 2,
+            kpiId: 12,
+            value: 4,
+            period: "W16 2026",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 667,
+            employeeId: 3,
+            kpiId: 9,
+            value: 3,
+            period: "W16 2026",
+            notes: "",
+          },
+          {
+            id: 668,
+            employeeId: 3,
+            kpiId: 12,
+            value: 2,
+            period: "W16 2026",
+            notes: "",
+          },
+          {
+            id: 669,
+            employeeId: 4,
+            kpiId: 9,
+            value: 4,
+            period: "W16 2026",
+            notes: "",
+          },
+          {
+            id: 670,
+            employeeId: 4,
+            kpiId: 12,
+            value: 4,
+            period: "W16 2026",
+            notes: "",
+          },
+          {
+            id: 671,
+            employeeId: 5,
+            kpiId: 9,
+            value: 4,
+            period: "W16 2026",
+            notes: "High productivity week",
+          },
+          {
+            id: 672,
+            employeeId: 5,
+            kpiId: 12,
+            value: 3,
+            period: "W16 2026",
+            notes: "All PRs merged on time",
+          },
+          {
+            id: 673,
+            employeeId: 2,
+            kpiId: 9,
+            value: 3,
+            period: "W17 2026",
+            notes: "Strong defect resolution",
+          },
+          {
+            id: 674,
+            employeeId: 2,
+            kpiId: 12,
+            value: 4,
+            period: "W17 2026",
+            notes: "All PRs merged on time",
+          },
+          {
+            id: 675,
+            employeeId: 3,
+            kpiId: 9,
+            value: 2,
+            period: "W17 2026",
+            notes: "Capacity was limited",
+          },
+          {
+            id: 676,
+            employeeId: 3,
+            kpiId: 12,
+            value: 3,
+            period: "W17 2026",
+            notes: "Perfect merge week",
+          },
+          {
+            id: 677,
+            employeeId: 4,
+            kpiId: 9,
+            value: 4,
+            period: "W17 2026",
+            notes: "Strong defect resolution",
+          },
+          {
+            id: 678,
+            employeeId: 4,
+            kpiId: 12,
+            value: 5,
+            period: "W17 2026",
+            notes: "",
+          },
+          {
+            id: 679,
+            employeeId: 5,
+            kpiId: 9,
+            value: 5,
+            period: "W17 2026",
+            notes: "Outstanding week",
+          },
+          {
+            id: 680,
+            employeeId: 5,
+            kpiId: 12,
+            value: 4,
+            period: "W17 2026",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 681,
+            employeeId: 2,
+            kpiId: 9,
+            value: 5,
+            period: "W18 2026",
+            notes: "",
+          },
+          {
+            id: 682,
+            employeeId: 2,
+            kpiId: 12,
+            value: 3,
+            period: "W18 2026",
+            notes: "Perfect merge week",
+          },
+          {
+            id: 683,
+            employeeId: 3,
+            kpiId: 9,
+            value: 2,
+            period: "W18 2026",
+            notes: "Low week — planning overhead",
+          },
+          {
+            id: 684,
+            employeeId: 3,
+            kpiId: 12,
+            value: 5,
+            period: "W18 2026",
+            notes: "2 PRs pending at week end",
+          },
+          {
+            id: 685,
+            employeeId: 4,
+            kpiId: 9,
+            value: 3,
+            period: "W18 2026",
+            notes: "",
+          },
+          {
+            id: 686,
+            employeeId: 4,
+            kpiId: 12,
+            value: 4,
+            period: "W18 2026",
+            notes: "Backlog of reviews carried over",
+          },
+          {
+            id: 687,
+            employeeId: 5,
+            kpiId: 9,
+            value: 4,
+            period: "W18 2026",
+            notes: "Low week — planning overhead",
+          },
+          {
+            id: 688,
+            employeeId: 5,
+            kpiId: 12,
+            value: 3,
+            period: "W18 2026",
+            notes: "2 PRs pending at week end",
+          },
+          {
+            id: 689,
+            employeeId: 2,
+            kpiId: 9,
+            value: 3,
+            period: "W19 2026",
+            notes: "",
+          },
+          {
+            id: 690,
+            employeeId: 2,
+            kpiId: 12,
+            value: 4,
+            period: "W19 2026",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 691,
+            employeeId: 3,
+            kpiId: 9,
+            value: 4,
+            period: "W19 2026",
+            notes: "High productivity week",
+          },
+          {
+            id: 692,
+            employeeId: 3,
+            kpiId: 12,
+            value: 5,
+            period: "W19 2026",
+            notes: "2 PRs pending at week end",
+          },
+          {
+            id: 693,
+            employeeId: 4,
+            kpiId: 9,
+            value: 3,
+            period: "W19 2026",
+            notes: "High productivity week",
+          },
+          {
+            id: 694,
+            employeeId: 4,
+            kpiId: 12,
+            value: 4,
+            period: "W19 2026",
+            notes: "All PRs merged on time",
+          },
+          {
+            id: 695,
+            employeeId: 5,
+            kpiId: 9,
+            value: 5,
+            period: "W19 2026",
+            notes: "Capacity was limited",
+          },
+          {
+            id: 696,
+            employeeId: 5,
+            kpiId: 12,
+            value: 5,
+            period: "W19 2026",
+            notes: "",
+          },
+          {
+            id: 697,
+            employeeId: 2,
+            kpiId: 9,
+            value: 5,
+            period: "W20 2026",
+            notes: "High productivity week",
+          },
+          {
+            id: 698,
+            employeeId: 2,
+            kpiId: 12,
+            value: 3,
+            period: "W20 2026",
+            notes: "2 PRs pending at week end",
+          },
+          {
+            id: 699,
+            employeeId: 3,
+            kpiId: 9,
+            value: 3,
+            period: "W20 2026",
+            notes: "Capacity was limited",
+          },
+          {
+            id: 700,
+            employeeId: 3,
+            kpiId: 12,
+            value: 5,
+            period: "W20 2026",
+            notes: "Backlog of reviews carried over",
+          },
+          {
+            id: 701,
+            employeeId: 4,
+            kpiId: 9,
+            value: 3,
+            period: "W20 2026",
+            notes: "Outstanding week",
+          },
+          {
+            id: 702,
+            employeeId: 4,
+            kpiId: 12,
+            value: 3,
+            period: "W20 2026",
+            notes: "Strong review throughput",
+          },
+          {
+            id: 703,
+            employeeId: 5,
+            kpiId: 9,
+            value: 3,
+            period: "W20 2026",
+            notes: "Capacity was limited",
+          },
+          {
+            id: 704,
+            employeeId: 5,
+            kpiId: 12,
+            value: 4,
+            period: "W20 2026",
+            notes: "Backlog of reviews carried over",
+          },
         ],
       };
 
       function db() {
-        const raw = localStorage.getItem("kpiPortal_v6");
+        const raw = localStorage.getItem("kpiPortal_v7");
         return raw ? JSON.parse(raw) : (save(SEED), SEED);
       }
       function save(d) {
-        localStorage.setItem("kpiPortal_v6", JSON.stringify(d));
+        localStorage.setItem("kpiPortal_v7", JSON.stringify(d));
       }
       function nid(arr) {
         return arr.length ? Math.max(...arr.map((x) => x.id)) + 1 : 1;
@@ -1557,10 +7138,10 @@
       // AUTH
       // ──────────────────────────────────────────
       let me = null;
-      let _empDashType = 'all';
-      let _reportType = 'all';
-      let _kpisType = 'all';
-      let _assignType = 'all';
+      let _empDashType = "all";
+      let _reportType = "all";
+      let _kpisType = "all";
+      let _assignType = "all";
 
       function fc(u, p) {
         document.getElementById("lu").value = u;
@@ -1720,36 +7301,124 @@
       }
       function periodsForType(type) {
         const d = db();
-        const ids = new Set(d.kpis.filter(k => (k.periodType || 'month') === type).map(k => k.id));
-        return [...new Set(
-          d.assignments.filter(a => ids.has(a.kpiId)).map(a => a.period)
-        )].sort().reverse();
+        const ids = new Set(
+          d.kpis
+            .filter((k) => (k.periodType || "month") === type)
+            .map((k) => k.id),
+        );
+        return [
+          ...new Set(
+            d.assignments.filter((a) => ids.has(a.kpiId)).map((a) => a.period),
+          ),
+        ]
+          .sort()
+          .reverse();
       }
       function empPeriodsForType(empId, type) {
         const d = db();
-        const ids = new Set(d.kpis.filter(k => (k.periodType || 'month') === type).map(k => k.id));
+        const ids = new Set(
+          d.kpis
+            .filter((k) => (k.periodType || "month") === type)
+            .map((k) => k.id),
+        );
+        return [
+          ...new Set(
+            d.assignments
+              .filter((a) => a.employeeId === empId && ids.has(a.kpiId))
+              .map((a) => a.period),
+          ),
+        ]
+          .sort()
+          .reverse();
+      }
+
+      function yearsForType(type, empId) {
+        const d = db();
+        const ids = (type && type !== 'all')
+          ? new Set(d.kpis.filter(k => (k.periodType||'month') === type).map(k => k.id))
+          : null;
         return [...new Set(
-          d.assignments.filter(a => a.employeeId === empId && ids.has(a.kpiId)).map(a => a.period)
+          d.assignments
+            .filter(a => (!empId || a.employeeId === empId) && (!ids || ids.has(a.kpiId)))
+            .map(a => { const m = a.period.match(/\d{4}$/); return m ? m[0] : null; })
+            .filter(Boolean)
         )].sort().reverse();
       }
+
+      function subsectionsForType(type) {
+        if (type === 'month')   return ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        if (type === 'quarter') return ['Q1','Q2','Q3','Q4'];
+        if (type === 'week')    return Array.from({length:52}, (_,i) => `W${i+1}`);
+        return [];
+      }
+
+      function latestSubForYear(type, year, empId) {
+        const d = db();
+        const ids = new Set(d.kpis.filter(k => (k.periodType||'month') === type).map(k => k.id));
+        const existing = new Set(
+          d.assignments
+            .filter(a => (!empId || a.employeeId === empId) && ids.has(a.kpiId) && a.period.endsWith(' ' + year))
+            .map(a => a.period)
+        );
+        const subs = subsectionsForType(type);
+        return [...subs].reverse().find(s => existing.has(`${s} ${year}`)) || subs[0] || '';
+      }
+
+      function periodFilterHtml(type, years, yearId, subId, onchangeFn, empId) {
+        const selStyle = 'padding:8px 14px;border:1px solid var(--border);border-radius:9px;font-family:inherit;font-size:13px;outline:none';
+        const lbl = t => `<div style="font-size:12px;font-weight:600;color:var(--muted);margin-bottom:5px">${t}</div>`;
+        if (!years.length) return '<span style="font-size:13px;color:var(--muted)">No data yet</span>';
+        const yearOpts = years.map((y,i) => `<option value="${y}"${i===0?' selected':''}>${y}</option>`).join('');
+        if (type === 'year') {
+          return `<div style="display:flex;align-items:flex-end;gap:12px;margin-bottom:16px;flex-wrap:wrap">
+            <div>${lbl('Year')}<select id="${yearId}" style="${selStyle}" onchange="${onchangeFn}">${yearOpts}</select></div>
+          </div>`;
+        }
+        const subs = subsectionsForType(type);
+        const defaultSub = latestSubForYear(type, years[0], empId);
+        const subOpts = subs.map(s => `<option value="${s}"${s===defaultSub?' selected':''}>${s}</option>`).join('');
+        const subLabel = type === 'month' ? 'Month' : type === 'quarter' ? 'Quarter' : 'Week';
+        return `<div style="display:flex;align-items:flex-end;gap:12px;margin-bottom:16px;flex-wrap:wrap">
+          <div>${lbl('Year')}<select id="${yearId}" style="${selStyle}" onchange="${onchangeFn}">${yearOpts}</select></div>
+          <div>${lbl(subLabel)}<select id="${subId}" style="${selStyle}" onchange="${onchangeFn}">${subOpts}</select></div>
+        </div>`;
+      }
+
+      function readPeriod(type, yearId, subId) {
+        const year = v(yearId);
+        const sub  = v(subId);
+        return type === 'year' ? year : (sub && year ? `${sub} ${year}` : '');
+      }
       function ptBadge(type) {
-        const colors = { year: 'excellent', quarter: 'good', month: 'neutral', week: 'warning' };
-        const labels = { year: 'Yearly', quarter: 'Quarterly', month: 'Monthly', week: 'Weekly' };
-        const t = type || 'month';
+        const colors = {
+          year: "excellent",
+          quarter: "good",
+          month: "neutral",
+          week: "warning",
+        };
+        const labels = {
+          year: "Yearly",
+          quarter: "Quarterly",
+          month: "Monthly",
+          week: "Weekly",
+        };
+        const t = type || "month";
         return `<span class="badge ${colors[t]}" style="font-size:10px">${labels[t]}</span>`;
       }
       function latestAssignments(empId) {
         const d = db();
         const byKpi = {};
-        d.assignments.filter(a => a.employeeId === empId).forEach(a => {
-          if (!byKpi[a.kpiId] || a.id > byKpi[a.kpiId].id) byKpi[a.kpiId] = a;
-        });
+        d.assignments
+          .filter((a) => a.employeeId === empId)
+          .forEach((a) => {
+            if (!byKpi[a.kpiId] || a.id > byKpi[a.kpiId].id) byKpi[a.kpiId] = a;
+          });
         return Object.values(byKpi);
       }
       function latestAssignmentsAll() {
         const d = db();
         const byEmpKpi = {};
-        d.assignments.forEach(a => {
+        d.assignments.forEach((a) => {
           const key = `${a.employeeId}-${a.kpiId}`;
           if (!byEmpKpi[key] || a.id > byEmpKpi[key].id) byEmpKpi[key] = a;
         });
@@ -1847,13 +7516,27 @@
       function kpis() {
         const d = db();
         const type = _kpisType;
-        const ptLabelMap = {all:'Overview', year:'Yearly', quarter:'Quarterly', month:'Monthly', week:'Weekly'};
-        const typeTabs = ['all','year','quarter','month','week'].map(t =>
-          `<button class="type-tab ${t === type ? 'active' : ''}" onclick="setKpisType('${t}')">${ptLabelMap[t]}</button>`
-        ).join('');
+        const ptLabelMap = {
+          all: "Overview",
+          year: "Yearly",
+          quarter: "Quarterly",
+          month: "Monthly",
+          week: "Weekly",
+        };
+        const typeTabs = ["all", "year", "quarter", "month", "week"]
+          .map(
+            (t) =>
+              `<button class="type-tab ${t === type ? "active" : ""}" onclick="setKpisType('${t}')">${ptLabelMap[t]}</button>`,
+          )
+          .join("");
 
-        const filtered = type === 'all' ? d.kpis : d.kpis.filter(k => (k.periodType || 'month') === type);
-        const rows = filtered.map((k) => `<tr>
+        const filtered =
+          type === "all"
+            ? d.kpis
+            : d.kpis.filter((k) => (k.periodType || "month") === type);
+        const rows = filtered
+          .map(
+            (k) => `<tr>
     <td><strong>${k.name}</strong></td>
     <td style="color:var(--muted);max-width:200px">${k.description || "—"}</td>
     <td><span class="badge neutral">${k.category || "General"}</span></td>
@@ -1862,12 +7545,14 @@
       <button class="btn btn-ghost btn-sm" onclick="editKpi(${k.id})"><i class="fas fa-edit"></i></button>
       <button class="btn btn-danger btn-sm" onclick="delKpi(${k.id})"><i class="fas fa-trash"></i></button>
     </div></td>
-  </tr>`).join("");
+  </tr>`,
+          )
+          .join("");
 
         return `
     <div class="type-tabs">${typeTabs}</div>
     <div class="card">
-      <div class="card-head"><h3>${type === 'all' ? `All KPIs (${filtered.length})` : `${ptLabelMap[type]} KPIs (${filtered.length})`}</h3>
+      <div class="card-head"><h3>${type === "all" ? `All KPIs (${filtered.length})` : `${ptLabelMap[type]} KPIs (${filtered.length})`}</h3>
         <button class="btn btn-primary" onclick="addKpi()"><i class="fas fa-plus"></i> Add KPI</button></div>
       <div class="tbl-wrap"><table>
         <thead><tr><th>Name</th><th>Description</th><th>Category</th><th>Period</th><th>Actions</th></tr></thead>
@@ -1875,7 +7560,6 @@
       </table>
       ${filtered.length === 0 ? '<div class="empty"><i class="fas fa-bullseye"></i><h3>No KPIs yet</h3><p>Click "Add KPI" to create your first metric</p></div>' : ""}</div>
     </div>`;
-
       }
 
       function setKpisType(type) {
@@ -1884,7 +7568,7 @@
       }
 
       function kpiForm(k) {
-        const pt = k?.periodType || 'month';
+        const pt = k?.periodType || "month";
         return `
     <div class="ff"><label>KPI Name *</label><input id="kn" value="${k ? k.name : ""}" placeholder="e.g. Defects Aging XP"></div>
     <div class="ff"><label>Description</label><textarea id="kd" placeholder="What does this KPI measure?">${k ? k.description : ""}</textarea></div>
@@ -1892,10 +7576,10 @@
       <div class="ff"><label>Category</label><input id="kc" value="${k ? k.category || "" : ""}" placeholder="e.g. Quality"></div>
       <div class="ff"><label>Period Type *</label>
         <select id="kpt">
-          <option value="month" ${pt === 'month' ? 'selected' : ''}>Monthly</option>
-          <option value="quarter" ${pt === 'quarter' ? 'selected' : ''}>Quarterly</option>
-          <option value="year" ${pt === 'year' ? 'selected' : ''}>Yearly</option>
-          <option value="week" ${pt === 'week' ? 'selected' : ''}>Weekly</option>
+          <option value="month" ${pt === "month" ? "selected" : ""}>Monthly</option>
+          <option value="quarter" ${pt === "quarter" ? "selected" : ""}>Quarterly</option>
+          <option value="year" ${pt === "year" ? "selected" : ""}>Yearly</option>
+          <option value="week" ${pt === "week" ? "selected" : ""}>Weekly</option>
         </select>
       </div>
     </div>`;
@@ -1923,15 +7607,27 @@
       }
 
       function saveKpi(id) {
-        const name = v("kn"), desc = v("kd"), cat = v("kc");
+        const name = v("kn"),
+          desc = v("kd"),
+          cat = v("kc");
         const periodType = v("kpt") || "month";
         if (!name) return toast("KPI name is required", "error");
         const d = db();
         if (id) {
-          Object.assign(d.kpis.find((x) => x.id === id), { name, description: desc, category: cat, periodType });
+          Object.assign(
+            d.kpis.find((x) => x.id === id),
+            { name, description: desc, category: cat, periodType },
+          );
           toast("KPI updated", "success");
         } else {
-          d.kpis.push({ id: nid(d.kpis), name, description: desc, category: cat, target: 5, periodType });
+          d.kpis.push({
+            id: nid(d.kpis),
+            name,
+            description: desc,
+            category: cat,
+            target: 5,
+            periodType,
+          });
           toast("KPI added", "success");
         }
         save(d);
@@ -1962,22 +7658,38 @@
         const d = db();
         const emps = d.users.filter((u) => u.role === "employee");
         const type = _assignType;
-        const ptLabelMap = {all:'Overview', year:'Yearly', quarter:'Quarterly', month:'Monthly', week:'Weekly'};
+        const ptLabelMap = {
+          all: "Overview",
+          year: "Yearly",
+          quarter: "Quarterly",
+          month: "Monthly",
+          week: "Weekly",
+        };
 
         const empOpts = emps
-          .map((e) => `<option value="${e.id}">${e.name} (${e.department || "No dept"})</option>`)
+          .map(
+            (e) =>
+              `<option value="${e.id}">${e.name} (${e.department || "No dept"})</option>`,
+          )
           .join("");
         const kpiOpts = d.kpis
-          .map((k) => `<option value="${k.id}">${k.name} [${ptLabelMap[k.periodType||'month']}]</option>`)
+          .map(
+            (k) =>
+              `<option value="${k.id}">${k.name} [${ptLabelMap[k.periodType || "month"]}]</option>`,
+          )
           .join("");
 
-        const typeTabs = ['all','year','quarter','month','week'].map(t =>
-          `<button class="type-tab ${t === type ? 'active' : ''}" onclick="setAssignType('${t}')">${ptLabelMap[t]}</button>`
-        ).join('');
-        const pp = type === 'all' ? periods() : periodsForType(type);
-        const pillsHtml = pp.map((p, i) =>
-          `<button class="pp ${i === 0 ? 'active' : ''}" onclick="filterAssign('${p}',this)">${p}</button>`
-        ).join('');
+        const typeTabs = ["all", "year", "quarter", "month", "week"]
+          .map(
+            (t) =>
+              `<button class="type-tab ${t === type ? "active" : ""}" onclick="setAssignType('${t}')">${ptLabelMap[t]}</button>`,
+          )
+          .join("");
+
+        const years = yearsForType(type);
+        const filterHtml = type === 'all' ? '' : periodFilterHtml(type, years, 'aFYear', 'aFSub', 'applyAssignFilter()');
+        const defaultSub = type !== 'all' && type !== 'year' ? latestSubForYear(type, years[0]||'', null) : '';
+        const initPeriod = type === 'all' ? '' : type === 'year' ? (years[0]||'') : (defaultSub && years[0] ? `${defaultSub} ${years[0]}` : '');
 
         return `
     <div class="assign-layout">
@@ -1986,11 +7698,21 @@
         <div class="card-body">
           <div class="ff"><label>Employee *</label>
             <select id="aEmp"><option value="">Select employee…</option>${empOpts}</select></div>
-          <div class="ff"><label>KPI Metric *</label>
-            <select id="aKpi" onchange="updatePeriodHint()"><option value="">Select KPI…</option>${kpiOpts}</select></div>
+          <div class="form-grid">
+            <div class="ff"><label>Period Type *</label>
+              <select id="aPeriodType" onchange="filterKpiByType()">
+                <option value="">All types</option>
+                <option value="month">Monthly</option>
+                <option value="quarter">Quarterly</option>
+                <option value="year">Yearly</option>
+                <option value="week">Weekly</option>
+              </select></div>
+            <div class="ff"><label>KPI Metric *</label>
+              <select id="aKpi" onchange="updatePeriodHint()"><option value="">Select KPI…</option>${kpiOpts}</select></div>
+          </div>
           <div class="form-grid">
             <div class="ff"><label>Score (0–5) *</label><input id="aVal" type="number" placeholder="e.g. 4" min="0" max="5" step="0.5"></div>
-            <div class="ff"><label>Period *</label><input id="aPer" placeholder="Select a KPI first…"><small id="aPeriodHint" style="font-size:11px;color:var(--muted);margin-top:4px;display:block"></small></div>
+            <div class="ff"><label>Period *</label><div id="aPerWrap"><input id="aPer" placeholder="Select a period type first…" disabled style="background:var(--surface);color:var(--muted)"></div></div>
           </div>
           <div class="ff"><label>Notes</label><textarea id="aNotes" placeholder="Optional notes…"></textarea></div>
           <button class="btn btn-primary" style="width:100%" onclick="doAssign()">
@@ -2002,9 +7724,9 @@
         <div class="card-head"><h3>Current Assignments</h3></div>
         <div style="padding:14px 22px 0">
           <div class="type-tabs">${typeTabs}</div>
-          <div class="period-pills" id="assignPills" style="margin-bottom:14px">${pillsHtml || '<span style="font-size:13px;color:var(--muted)">No periods yet</span>'}</div>
+          ${filterHtml}
         </div>
-        <div id="assignTbl">${assignTable(type, pp[0] || "")}</div>
+        <div id="assignTbl">${assignTable(type, initPeriod)}</div>
       </div>
     </div>`;
       }
@@ -2016,9 +7738,20 @@
 
       function assignTable(type, period) {
         const d = db();
-        const typeIds = (type && type !== 'all') ? new Set(d.kpis.filter(k => (k.periodType||'month') === type).map(k => k.id)) : null;
+        const typeIds =
+          type && type !== "all"
+            ? new Set(
+                d.kpis
+                  .filter((k) => (k.periodType || "month") === type)
+                  .map((k) => k.id),
+              )
+            : null;
         const rows = d.assignments
-          .filter((a) => (!period || a.period === period) && (!typeIds || typeIds.has(a.kpiId)))
+          .filter(
+            (a) =>
+              (!period || a.period === period) &&
+              (!typeIds || typeIds.has(a.kpiId)),
+          )
           .map((a) => {
             const emp = d.users.find((u) => u.id === a.employeeId);
             const kpi = d.kpis.find((k) => k.id === a.kpiId);
@@ -2041,9 +7774,8 @@
   </table></div>`;
       }
 
-      function filterAssign(period, btn) {
-        document.querySelectorAll("#assignPills .pp").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
+      function applyAssignFilter() {
+        const period = readPeriod(_assignType, 'aFYear', 'aFSub');
         document.getElementById("assignTbl").innerHTML = assignTable(_assignType, period);
       }
 
@@ -2051,12 +7783,16 @@
         const empId = parseInt(v("aEmp")),
           kpiId = parseInt(v("aKpi"));
         const val = parseFloat(v("aVal")),
-          per = v("aPer").trim(),
           notes = v("aNotes").trim();
+        const pt = v("aPeriodType"),
+          year = v("aYear"),
+          sub = v("aPer");
+        const per = pt === "year" ? year : sub && year ? `${sub} ${year}` : "";
         if (!empId) return toast("Select an employee", "error");
         if (!kpiId) return toast("Select a KPI", "error");
-        if (isNaN(val) || val < 0 || val > 5) return toast("Score must be between 0 and 5", "error");
-        if (!per) return toast("Enter a period", "error");
+        if (isNaN(val) || val < 0 || val > 5)
+          return toast("Score must be between 0 and 5", "error");
+        if (!per) return toast("Select a year and period", "error");
         const d = db();
         const existing = d.assignments.find(
           (a) =>
@@ -2092,16 +7828,90 @@
 
       function updatePeriodHint() {
         const kpiId = parseInt(v("aKpi"));
-        const kpi = kpiId ? db().kpis.find(k => k.id === kpiId) : null;
-        const hint = document.getElementById('aPeriodHint');
-        const inp = document.getElementById('aPer');
-        if (!hint || !inp) return;
-        if (!kpi) { hint.textContent = ''; inp.placeholder = 'Select a KPI first…'; return; }
-        const examples = {year:'e.g. 2026, 2025', quarter:'e.g. Q2 2026, Q1 2026', month:'e.g. May 2026, April 2026', week:'e.g. W19 2026, W18 2026'};
-        const labels = {year:'Yearly', quarter:'Quarterly', month:'Monthly', week:'Weekly'};
-        const pt = kpi.periodType || 'month';
-        hint.textContent = `${labels[pt]} KPI — ${examples[pt]}`;
-        inp.placeholder = examples[pt].replace('e.g. ','').split(',')[0].trim();
+        const kpi = kpiId ? db().kpis.find((k) => k.id === kpiId) : null;
+        const ptSel = document.getElementById("aPeriodType");
+        if (!kpi) return;
+        const pt = kpi.periodType || "month";
+        if (ptSel && ptSel.value !== pt) {
+          ptSel.value = pt;
+        }
+        updatePeriodField(pt);
+      }
+
+      function filterKpiByType() {
+        const type = v("aPeriodType");
+        const d = db();
+        const ptLabelMap = {
+          year: "Yearly",
+          quarter: "Quarterly",
+          month: "Monthly",
+          week: "Weekly",
+        };
+        const filtered = type
+          ? d.kpis.filter((k) => (k.periodType || "month") === type)
+          : d.kpis;
+        const sel = document.getElementById("aKpi");
+        const curVal = sel.value;
+        sel.innerHTML =
+          `<option value="">Select KPI…</option>` +
+          filtered
+            .map(
+              (k) =>
+                `<option value="${k.id}">${k.name} [${ptLabelMap[k.periodType || "month"]}]</option>`,
+            )
+            .join("");
+        sel.value = filtered.find((k) => k.id === parseInt(curVal))
+          ? curVal
+          : "";
+        updatePeriodField(type);
+      }
+
+      function updatePeriodField(pt) {
+        const wrap = document.getElementById("aPerWrap");
+        if (!wrap) return;
+        const yr = new Date().getFullYear();
+        const yearOpts = [yr + 1, yr, yr - 1, yr - 2]
+          .map(
+            (y) =>
+              `<option value="${y}"${y === yr ? " selected" : ""}>${y}</option>`,
+          )
+          .join("");
+        const yearSel = `<select id="aYear">${yearOpts}</select>`;
+        const months = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        let html;
+        if (pt === "month") {
+          const opts = months.map((m) => `<option>${m}</option>`).join("");
+          html = `<div style="display:flex;gap:6px">${yearSel}<select id="aPer" style="flex:1">${opts}</select></div>`;
+        } else if (pt === "quarter") {
+          const opts = [1, 2, 3, 4]
+            .map((q) => `<option>Q${q}</option>`)
+            .join("");
+          html = `<div style="display:flex;gap:6px">${yearSel}<select id="aPer" style="flex:1">${opts}</select></div>`;
+        } else if (pt === "week") {
+          const opts = Array.from(
+            { length: 52 },
+            (_, i) => `<option>W${i + 1}</option>`,
+          ).join("");
+          html = `<div style="display:flex;gap:6px">${yearSel}<select id="aPer" style="flex:1">${opts}</select></div>`;
+        } else if (pt === "year") {
+          html = yearSel;
+        } else {
+          html = `<input id="aPer" placeholder="Select a period type first…" disabled style="background:var(--surface);color:var(--muted)">`;
+        }
+        wrap.innerHTML = html;
       }
 
       // ──────────────────────────────────────────
@@ -2230,26 +8040,31 @@
       // ──────────────────────────────────────────
       function report() {
         const type = _reportType;
-        const ptLabelMap = {all:'Overview', year:'Yearly', quarter:'Quarterly', month:'Monthly', week:'Weekly'};
-        const typeTabs = ['all','year','quarter','month','week'].map(t =>
-          `<button class="type-tab ${t === type ? 'active' : ''}" onclick="setReportType('${t}')">${ptLabelMap[t]}</button>`
-        ).join('');
-        if (type === 'all') {
+        const ptLabelMap = {
+          all: "Overview",
+          year: "Yearly",
+          quarter: "Quarterly",
+          month: "Monthly",
+          week: "Weekly",
+        };
+        const typeTabs = ["all", "year", "quarter", "month", "week"]
+          .map(
+            (t) =>
+              `<button class="type-tab ${t === type ? "active" : ""}" onclick="setReportType('${t}')">${ptLabelMap[t]}</button>`,
+          )
+          .join("");
+        if (type === "all") {
           return `
     <div class="type-tabs">${typeTabs}</div>
-    <div id="repContent">${reportContent(null, 'all')}</div>`;
+    <div id="repContent">${reportContent(null, "all")}</div>`;
         }
-        const pp = periodsForType(type);
+        const years = yearsForType(type);
+        const defaultSub = type !== 'year' ? latestSubForYear(type, years[0]||'', null) : '';
+        const initPeriod = type === 'year' ? (years[0]||'') : (defaultSub && years[0] ? `${defaultSub} ${years[0]}` : '');
         return `
     <div class="type-tabs">${typeTabs}</div>
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px">
-      <label style="font-size:13px;font-weight:600">Period:</label>
-      <select id="repSel" onchange="updReport(this.value)"
-        style="padding:8px 14px;border:1px solid var(--border);border-radius:9px;font-family:inherit;font-size:13px;outline:none">
-        ${pp.map((p) => `<option value="${p}">${p}</option>`).join("")}
-      </select>
-    </div>
-    <div id="repContent">${reportContent(pp[0] || "", type)}</div>`;
+    ${periodFilterHtml(type, years, 'rFYear', 'rFSub', 'applyReportFilter()')}
+    <div id="repContent">${reportContent(initPeriod, type)}</div>`;
       }
 
       function setReportType(type) {
@@ -2259,15 +8074,21 @@
 
       function reportContent(period, type) {
         const d = db();
-        const resolvedType = type || _reportType || 'month';
+        const resolvedType = type || _reportType || "month";
         const emps = d.users.filter((u) => u.role === "employee");
-        const isAll = resolvedType === 'all';
+        const isAll = resolvedType === "all";
         let pAssign;
         if (isAll) {
           pAssign = latestAssignmentsAll();
         } else {
-          const typeIds = new Set(d.kpis.filter(k => (k.periodType||'month') === resolvedType).map(k => k.id));
-          pAssign = d.assignments.filter((a) => a.period === period && typeIds.has(a.kpiId));
+          const typeIds = new Set(
+            d.kpis
+              .filter((k) => (k.periodType || "month") === resolvedType)
+              .map((k) => k.id),
+          );
+          pAssign = d.assignments.filter(
+            (a) => a.period === period && typeIds.has(a.kpiId),
+          );
         }
         if (!pAssign.length)
           return '<div class="empty"><i class="fas fa-chart-bar"></i><h3>No data for this period</h3><p>Assign KPI values to generate a report</p></div>';
@@ -2288,7 +8109,7 @@
                 return `<tr>
         <td><strong>${kpi ? kpi.name : "?"}</strong></td>
         <td><span class="badge neutral">${kpi ? kpi.category || "General" : ""}</span></td>
-        ${isAll ? `<td>${ptBadge(kpi?.periodType)} <span style="font-size:11px;color:var(--muted)">${a.period}</span></td>` : ''}
+        ${isAll ? `<td>${ptBadge(kpi?.periodType)} <span style="font-size:11px;color:var(--muted)">${a.period}</span></td>` : ""}
         <td>${valDisp}</td>
         <td>${tgtDisp}</td>
         <td>${pct !== null ? `<span class="badge ${st}">${sl} (${pct}%)</span>` : "—"}</td>
@@ -2303,12 +8124,12 @@
           <div style="display:flex;align-items:center;gap:12px">
             ${empAvatar(emp, 42)}
             <div><div style="font-weight:700;font-size:15px">${emp.name}</div>
-            <div style="font-size:12px;color:var(--muted)">${emp.department || ""}${emp.department ? " • " : ""}${isAll ? 'All KPIs — Latest' : period}</div></div>
+            <div style="font-size:12px;color:var(--muted)">${emp.department || ""}${emp.department ? " • " : ""}${isAll ? "All KPIs — Latest" : period}</div></div>
           </div>
           ${sc !== null ? `<div style="text-align:right"><div style="font-size:26px;font-weight:800;color:var(--primary)">${sc}%</div><div style="font-size:12px;color:var(--muted)">Overall Score</div></div>` : ""}
         </div>
         <div class="tbl-wrap"><table>
-          <thead><tr><th>KPI</th><th>Category</th>${isAll ? '<th>Period</th>' : ''}<th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
+          <thead><tr><th>KPI</th><th>Category</th>${isAll ? "<th>Period</th>" : ""}<th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
           <tbody>${rows}</tbody>
         </table></div>
       </div>`;
@@ -2316,8 +8137,9 @@
           .join("");
       }
 
-      function updReport(p) {
-        document.getElementById("repContent").innerHTML = reportContent(p, _reportType);
+      function applyReportFilter() {
+        const period = readPeriod(_reportType, 'rFYear', 'rFSub');
+        document.getElementById("repContent").innerHTML = reportContent(period, _reportType);
       }
 
       // ──────────────────────────────────────────
@@ -2326,37 +8148,59 @@
       function empDashboard() {
         const d = db();
         const type = _empDashType;
-        const ptLabelMap = {all:'Overview', year:'Yearly', quarter:'Quarterly', month:'Monthly', week:'Weekly'};
+        const ptLabelMap = {
+          all: "Overview",
+          year: "Yearly",
+          quarter: "Quarterly",
+          month: "Monthly",
+          week: "Weekly",
+        };
 
-        let la, periodLabel, sectionContent, cur = '';
-        if (type === 'all') {
+        let la, periodLabel, sectionContent, cur = "";
+        if (type === "all") {
           la = latestAssignments(me.id);
-          periodLabel = 'All KPIs — Latest Values';
+          periodLabel = "All KPIs — Latest Values";
           sectionContent = `<div class="section-head"><h2>All KPIs — Latest Results</h2></div>`;
         } else {
-          const pp = empPeriodsForType(me.id, type);
-          cur = pp[0] || '';
+          const years = yearsForType(type, me.id);
+          const defaultSub = type !== 'year' ? latestSubForYear(type, years[0]||'', me.id) : '';
+          cur = type === 'year' ? (years[0]||'') : (defaultSub && years[0] ? `${defaultSub} ${years[0]}` : '');
           const typeIds = new Set(d.kpis.filter(k => (k.periodType||'month') === type).map(k => k.id));
           la = d.assignments.filter(a => a.employeeId === me.id && a.period === cur && typeIds.has(a.kpiId));
-          periodLabel = `${ptLabelMap[type]} — ${cur || 'No period'}`;
-          const pills = pp.map((p, i) =>
-            `<button class="pp ${i === 0 ? 'active' : ''}" onclick="filterEmpDash('${p}',this)">${p}</button>`
-          ).join('');
+          periodLabel = `${ptLabelMap[type]} — ${cur || "No period"}`;
           sectionContent = `
     <div class="section-head">
       <h2>KPI Results — ${ptLabelMap[type]}</h2>
-      <div class="period-pills" id="empPills">${pills || '<span style="font-size:13px;color:var(--muted)">No periods assigned yet</span>'}</div>
+      ${periodFilterHtml(type, years, 'eFYear', 'eFSub', 'applyEmpDashFilter()', me.id)}
     </div>`;
         }
 
         const sc = avgPercent(la, d.kpis);
-        const excellent = la.filter(a => { const k = d.kpis.find(k => k.id === a.kpiId); return k && calcPct(a.value, k) >= 90; }).length;
-        const needsWork = la.filter(a => { const k = d.kpis.find(k => k.id === a.kpiId); return k && calcPct(a.value, k) < 60; }).length;
-        const sl = sc === null ? "No Data" : sc >= 90 ? "Excellent Performance" : sc >= 75 ? "Good Performance" : sc >= 60 ? "Fair Performance" : "Needs Improvement";
+        const excellent = la.filter((a) => {
+          const k = d.kpis.find((k) => k.id === a.kpiId);
+          return k && calcPct(a.value, k) >= 90;
+        }).length;
+        const needsWork = la.filter((a) => {
+          const k = d.kpis.find((k) => k.id === a.kpiId);
+          return k && calcPct(a.value, k) < 60;
+        }).length;
+        const sl =
+          sc === null
+            ? "No Data"
+            : sc >= 90
+              ? "Excellent Performance"
+              : sc >= 75
+                ? "Good Performance"
+                : sc >= 60
+                  ? "Fair Performance"
+                  : "Needs Improvement";
 
-        const typeTabs = ['all','year','quarter','month','week'].map(t =>
-          `<button class="type-tab ${t === type ? 'active' : ''}" onclick="setEmpDashType('${t}')">${ptLabelMap[t]}</button>`
-        ).join('');
+        const typeTabs = ["all", "year", "quarter", "month", "week"]
+          .map(
+            (t) =>
+              `<button class="type-tab ${t === type ? "active" : ""}" onclick="setEmpDashType('${t}')">${ptLabelMap[t]}</button>`,
+          )
+          .join("");
 
         return `
     <div class="perf-hero">
@@ -2378,38 +8222,44 @@
 
       function empDashTable(la, type) {
         const d = db();
-        const isAll = type === 'all';
+        const isAll = type === "all";
         if (!la.length)
           return '<div class="empty"><i class="fas fa-chart-line"></i><h3>No KPIs assigned yet</h3><p>Your manager will assign KPI values to track your performance</p></div>';
         const sc = avgPercent(la, d.kpis);
-        const rows = la.map((a) => {
-          const kpi = d.kpis.find((k) => k.id === a.kpiId);
-          const pct = kpi ? calcPct(a.value, kpi) : null;
-          const st = pct !== null ? status(pct) : "";
-          return `<tr>
+        const rows = la
+          .map((a) => {
+            const kpi = d.kpis.find((k) => k.id === a.kpiId);
+            const pct = kpi ? calcPct(a.value, kpi) : null;
+            const st = pct !== null ? status(pct) : "";
+            return `<tr>
       <td><strong>${kpi ? kpi.name : "?"}</strong></td>
       <td><span class="badge neutral">${kpi ? kpi.category || "General" : ""}</span></td>
-      ${isAll ? `<td>${ptBadge(kpi?.periodType)} <span style="font-size:11px;color:var(--muted)">${a.period}</span></td>` : ''}
+      ${isAll ? `<td>${ptBadge(kpi?.periodType)} <span style="font-size:11px;color:var(--muted)">${a.period}</span></td>` : ""}
       <td>${a.value} / 5</td>
       <td>5</td>
-      <td>${pct !== null ? `
+      <td>${
+        pct !== null
+          ? `
         <div style="display:flex;align-items:center;gap:8px">
           <div style="width:72px;height:5px;background:#edeff1;border-radius:20px;overflow:hidden">
             <div style="width:${pct}%;height:100%;border-radius:20px;background:${pct >= 90 ? "#10b981" : pct >= 75 ? "#837fd8" : pct >= 60 ? "#f59e0b" : "#ef4444"}"></div>
           </div>
           <span class="badge ${st}">${pct}%</span>
-        </div>` : "—"}</td>
+        </div>`
+          : "—"
+      }</td>
       <td style="font-size:12px;color:var(--muted)">${a.notes || "—"}</td>
     </tr>`;
-        }).join("");
+          })
+          .join("");
         return `
     <div class="card" style="margin-bottom:20px">
       <div class="card-head">
-        <h3>${isAll ? 'Overview — All KPIs (Latest)' : 'Performance Summary'}</h3>
+        <h3>${isAll ? "Overview — All KPIs (Latest)" : "Performance Summary"}</h3>
         ${sc !== null ? `<div style="font-size:22px;font-weight:800;color:var(--primary)">${sc}% Overall</div>` : ""}
       </div>
       <div class="tbl-wrap"><table>
-        <thead><tr><th>KPI</th><th>Category</th>${isAll ? '<th>Period</th>' : ''}<th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
+        <thead><tr><th>KPI</th><th>Category</th>${isAll ? "<th>Period</th>" : ""}<th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
         <tbody>${rows}</tbody>
       </table></div>
     </div>`;
@@ -2420,13 +8270,15 @@
         document.getElementById("content").innerHTML = empDashboard();
       }
 
-      function filterEmpDash(period, btn) {
-        document.querySelectorAll("#empPills .pp").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
+      function applyEmpDashFilter() {
+        const period = readPeriod(_empDashType, 'eFYear', 'eFSub');
         const d = db();
         const typeIds = new Set(d.kpis.filter(k => (k.periodType||'month') === _empDashType).map(k => k.id));
         const la = d.assignments.filter(a => a.employeeId === me.id && a.period === period && typeIds.has(a.kpiId));
-        document.getElementById("empDashContent").innerHTML = empDashTable(la, _empDashType);
+        document.getElementById("empDashContent").innerHTML = empDashTable(
+          la,
+          _empDashType,
+        );
       }
 
       function kpiCards(period, type, overrideList) {
@@ -2435,9 +8287,19 @@
         if (overrideList) {
           assignments = overrideList;
         } else {
-          const typeIds = (type && type !== 'all') ? new Set(d.kpis.filter(k => (k.periodType||'month') === type).map(k => k.id)) : null;
+          const typeIds =
+            type && type !== "all"
+              ? new Set(
+                  d.kpis
+                    .filter((k) => (k.periodType || "month") === type)
+                    .map((k) => k.id),
+                )
+              : null;
           assignments = d.assignments.filter(
-            (a) => a.employeeId === me.id && a.period === period && (!typeIds || typeIds.has(a.kpiId)),
+            (a) =>
+              a.employeeId === me.id &&
+              a.period === period &&
+              (!typeIds || typeIds.has(a.kpiId)),
           );
         }
         return assignments
