@@ -7369,7 +7369,7 @@
         const lbl = t => `<div style="font-size:12px;font-weight:600;color:var(--muted);margin-bottom:5px">${t}</div>`;
         if (!years.length) return '<span style="font-size:13px;color:var(--muted)">No data yet</span>';
         const yearOpts = years.map((y,i) => `<option value="${y}"${i===0?' selected':''}>${y}</option>`).join('');
-        if (type === 'year') {
+        if (type === 'year' || type === 'all') {
           return `<div style="display:flex;align-items:flex-end;gap:12px;margin-bottom:16px;flex-wrap:wrap">
             <div>${lbl('Year')}<select id="${yearId}" style="${selStyle}" onchange="${onchangeFn}">${yearOpts}</select></div>
           </div>`;
@@ -7405,23 +7405,25 @@
         const t = type || "month";
         return `<span class="badge ${colors[t]}" style="font-size:10px">${labels[t]}</span>`;
       }
-      function latestAssignments(empId) {
+      function latestAssignments(empId, year) {
         const d = db();
         const byKpi = {};
         d.assignments
-          .filter((a) => a.employeeId === empId)
-          .forEach((a) => {
+          .filter(a => a.employeeId === empId && (!year || a.period.endsWith(year)))
+          .forEach(a => {
             if (!byKpi[a.kpiId] || a.id > byKpi[a.kpiId].id) byKpi[a.kpiId] = a;
           });
         return Object.values(byKpi);
       }
-      function latestAssignmentsAll() {
+      function latestAssignmentsAll(year) {
         const d = db();
         const byEmpKpi = {};
-        d.assignments.forEach((a) => {
-          const key = `${a.employeeId}-${a.kpiId}`;
-          if (!byEmpKpi[key] || a.id > byEmpKpi[key].id) byEmpKpi[key] = a;
-        });
+        d.assignments
+          .filter(a => !year || a.period.endsWith(year))
+          .forEach(a => {
+            const key = `${a.employeeId}-${a.kpiId}`;
+            if (!byEmpKpi[key] || a.id > byEmpKpi[key].id) byEmpKpi[key] = a;
+          });
         return Object.values(byEmpKpi);
       }
       function calcPct(value, kpi) {
@@ -7687,9 +7689,9 @@
           .join("");
 
         const years = yearsForType(type);
-        const filterHtml = type === 'all' ? '' : periodFilterHtml(type, years, 'aFYear', 'aFSub', 'applyAssignFilter()');
-        const defaultSub = type !== 'all' && type !== 'year' ? latestSubForYear(type, years[0]||'', null) : '';
-        const initPeriod = type === 'all' ? '' : type === 'year' ? (years[0]||'') : (defaultSub && years[0] ? `${defaultSub} ${years[0]}` : '');
+        const filterHtml = periodFilterHtml(type, years, 'aFYear', 'aFSub', 'applyAssignFilter()');
+        const defaultSub = (type !== 'all' && type !== 'year') ? latestSubForYear(type, years[0]||'', null) : '';
+        const initPeriod = (type === 'all' || type === 'year') ? (years[0]||'') : (defaultSub && years[0] ? `${defaultSub} ${years[0]}` : '');
 
         return `
     <div class="assign-layout">
@@ -7726,7 +7728,7 @@
           <div class="type-tabs">${typeTabs}</div>
           ${filterHtml}
         </div>
-        <div id="assignTbl">${assignTable(type, initPeriod)}</div>
+        <div id="assignTbl">${type === 'all' ? assignTable('all', '', initPeriod) : assignTable(type, initPeriod)}</div>
       </div>
     </div>`;
       }
@@ -7736,7 +7738,7 @@
         document.getElementById("content").innerHTML = assign();
       }
 
-      function assignTable(type, period) {
+      function assignTable(type, period, yearFilter) {
         const d = db();
         const typeIds =
           type && type !== "all"
@@ -7750,7 +7752,8 @@
           .filter(
             (a) =>
               (!period || a.period === period) &&
-              (!typeIds || typeIds.has(a.kpiId)),
+              (!typeIds || typeIds.has(a.kpiId)) &&
+              (!yearFilter || a.period.endsWith(yearFilter)),
           )
           .map((a) => {
             const emp = d.users.find((u) => u.id === a.employeeId);
@@ -7775,8 +7778,12 @@
       }
 
       function applyAssignFilter() {
-        const period = readPeriod(_assignType, 'aFYear', 'aFSub');
-        document.getElementById("assignTbl").innerHTML = assignTable(_assignType, period);
+        if (_assignType === 'all') {
+          document.getElementById("assignTbl").innerHTML = assignTable('all', '', v('aFYear'));
+        } else {
+          const period = readPeriod(_assignType, 'aFYear', 'aFSub');
+          document.getElementById("assignTbl").innerHTML = assignTable(_assignType, period);
+        }
       }
 
       function doAssign() {
@@ -8053,18 +8060,13 @@
               `<button class="type-tab ${t === type ? "active" : ""}" onclick="setReportType('${t}')">${ptLabelMap[t]}</button>`,
           )
           .join("");
-        if (type === "all") {
-          return `
-    <div class="type-tabs">${typeTabs}</div>
-    <div id="repContent">${reportContent(null, "all")}</div>`;
-        }
         const years = yearsForType(type);
-        const defaultSub = type !== 'year' ? latestSubForYear(type, years[0]||'', null) : '';
-        const initPeriod = type === 'year' ? (years[0]||'') : (defaultSub && years[0] ? `${defaultSub} ${years[0]}` : '');
+        const defaultSub = (type !== 'all' && type !== 'year') ? latestSubForYear(type, years[0]||'', null) : '';
+        const initPeriod = (type === 'all' || type === 'year') ? (years[0]||'') : (defaultSub && years[0] ? `${defaultSub} ${years[0]}` : '');
         return `
     <div class="type-tabs">${typeTabs}</div>
     ${periodFilterHtml(type, years, 'rFYear', 'rFSub', 'applyReportFilter()')}
-    <div id="repContent">${reportContent(initPeriod, type)}</div>`;
+    <div id="repContent">${type === 'all' ? reportContent(null, 'all', initPeriod) : reportContent(initPeriod, type)}</div>`;
       }
 
       function setReportType(type) {
@@ -8072,14 +8074,14 @@
         document.getElementById("content").innerHTML = report();
       }
 
-      function reportContent(period, type) {
+      function reportContent(period, type, yearFilter) {
         const d = db();
         const resolvedType = type || _reportType || "month";
         const emps = d.users.filter((u) => u.role === "employee");
         const isAll = resolvedType === "all";
         let pAssign;
         if (isAll) {
-          pAssign = latestAssignmentsAll();
+          pAssign = latestAssignmentsAll(yearFilter);
         } else {
           const typeIds = new Set(
             d.kpis
@@ -8138,8 +8140,12 @@
       }
 
       function applyReportFilter() {
-        const period = readPeriod(_reportType, 'rFYear', 'rFSub');
-        document.getElementById("repContent").innerHTML = reportContent(period, _reportType);
+        if (_reportType === 'all') {
+          document.getElementById("repContent").innerHTML = reportContent(null, 'all', v('rFYear'));
+        } else {
+          const period = readPeriod(_reportType, 'rFYear', 'rFSub');
+          document.getElementById("repContent").innerHTML = reportContent(period, _reportType);
+        }
       }
 
       // ──────────────────────────────────────────
@@ -8157,12 +8163,17 @@
         };
 
         let la, periodLabel, sectionContent, cur = "";
+        const years = yearsForType(type, me.id);
         if (type === "all") {
-          la = latestAssignments(me.id);
-          periodLabel = "All KPIs — Latest Values";
-          sectionContent = `<div class="section-head"><h2>All KPIs — Latest Results</h2></div>`;
+          const initYear = years[0] || '';
+          la = latestAssignments(me.id, initYear);
+          periodLabel = initYear ? `All KPIs — ${initYear}` : "All KPIs — Latest Values";
+          sectionContent = `
+    <div class="section-head">
+      <h2>All KPIs — Overview</h2>
+      ${periodFilterHtml('all', years, 'eFYear', 'eFSub', 'applyEmpDashFilter()', me.id)}
+    </div>`;
         } else {
-          const years = yearsForType(type, me.id);
           const defaultSub = type !== 'year' ? latestSubForYear(type, years[0]||'', me.id) : '';
           cur = type === 'year' ? (years[0]||'') : (defaultSub && years[0] ? `${defaultSub} ${years[0]}` : '');
           const typeIds = new Set(d.kpis.filter(k => (k.periodType||'month') === type).map(k => k.id));
@@ -8271,14 +8282,16 @@
       }
 
       function applyEmpDashFilter() {
-        const period = readPeriod(_empDashType, 'eFYear', 'eFSub');
-        const d = db();
-        const typeIds = new Set(d.kpis.filter(k => (k.periodType||'month') === _empDashType).map(k => k.id));
-        const la = d.assignments.filter(a => a.employeeId === me.id && a.period === period && typeIds.has(a.kpiId));
-        document.getElementById("empDashContent").innerHTML = empDashTable(
-          la,
-          _empDashType,
-        );
+        let la;
+        if (_empDashType === 'all') {
+          la = latestAssignments(me.id, v('eFYear'));
+        } else {
+          const period = readPeriod(_empDashType, 'eFYear', 'eFSub');
+          const d = db();
+          const typeIds = new Set(d.kpis.filter(k => (k.periodType||'month') === _empDashType).map(k => k.id));
+          la = d.assignments.filter(a => a.employeeId === me.id && a.period === period && typeIds.has(a.kpiId));
+        }
+        document.getElementById("empDashContent").innerHTML = empDashTable(la, _empDashType);
       }
 
       function kpiCards(period, type, overrideList) {
