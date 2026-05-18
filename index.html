@@ -8212,32 +8212,29 @@
         if (!pAssign.length)
           return '<div class="empty"><i class="fas fa-chart-bar"></i><h3>No data for this period</h3><p>Assign KPI values to generate a report</p><button class="btn btn-primary" style="margin-top:12px" onclick="go(\'assign\')"><i class="fas fa-plus"></i> Assign KPIs</button></div>';
 
+        const buildReportRows = (assignments) => assignments.map((a) => {
+          const kpi = d.kpis.find((k) => k.id === a.kpiId);
+          const pct = kpi ? calcPct(a.value, kpi) : null;
+          const st = pct !== null ? status(pct) : "";
+          const sl = pct !== null ? achievement(pct) : "—";
+          return `<tr>
+        <td><strong>${kpi ? kpi.name : "?"}</strong></td>
+        <td>${categoryBadge(kpi ? kpi.category : null)}</td>
+        <td style="font-size:12px;color:var(--muted)">${a.period}</td>
+        <td>${a.value} / 5</td>
+        <td>5</td>
+        <td>${pct !== null ? `<span class="badge ${st}">${sl} (${pct}%)</span>` : "—"}</td>
+        <td style="font-size:12px;color:var(--muted)">${a.notes || "—"}</td>
+      </tr>`;
+        }).join("");
+
         return emps
           .map((emp) => {
             const ea = pAssign.filter((a) => a.employeeId === emp.id);
             if (!ea.length) return "";
             const sc = avgPercent(ea, d.kpis);
-            const rows = ea
-              .map((a) => {
-                const kpi = d.kpis.find((k) => k.id === a.kpiId);
-                const pct = kpi ? calcPct(a.value, kpi) : null;
-                const st = pct !== null ? status(pct) : "";
-                const sl = pct !== null ? achievement(pct) : "—";
-                const valDisp = `${a.value} / 5`;
-                const tgtDisp = "5";
-                return `<tr>
-        <td><strong>${kpi ? kpi.name : "?"}</strong></td>
-        <td>${categoryBadge(kpi ? kpi.category : null)}</td>
-        ${isAll ? `<td>${ptBadge(kpi?.periodType)} <span style="font-size:11px;color:var(--muted)">${a.period}</span></td>` : ""}
-        <td>${valDisp}</td>
-        <td>${tgtDisp}</td>
-        <td>${pct !== null ? `<span class="badge ${st}">${sl} (${pct}%)</span>` : "—"}</td>
-        <td style="font-size:12px;color:var(--muted)">${a.notes || "—"}</td>
-      </tr>`;
-              })
-              .join("");
 
-            return `
+            const empHeader = `
       <div class="card" style="margin-bottom:18px">
         <div class="card-head">
           <div style="display:flex;align-items:center;gap:12px">
@@ -8246,10 +8243,40 @@
             <div style="font-size:12px;color:var(--muted)">${emp.department || ""}${emp.department ? " • " : ""}${isAll ? "All KPIs — Latest" : period}</div></div>
           </div>
           ${sc !== null ? `<div style="text-align:right"><div style="font-size:26px;font-weight:800;color:var(--primary)">${sc}%</div><div style="font-size:12px;color:var(--muted)">Overall Score</div></div>` : ""}
-        </div>
+        </div>`;
+
+            if (isAll) {
+              const order = ["year", "quarter", "month", "week"];
+              const groupLabels = { year: "Yearly KPIs", quarter: "Quarterly KPIs", month: "Monthly KPIs", week: "Weekly KPIs" };
+              const grouped = {};
+              ea.forEach(a => {
+                const kpi = d.kpis.find(k => k.id === a.kpiId);
+                const pt = (kpi && kpi.periodType) || "month";
+                if (!grouped[pt]) grouped[pt] = [];
+                grouped[pt].push(a);
+              });
+              const groupTables = order.filter(pt => grouped[pt] && grouped[pt].length).map(pt => {
+                const grp = grouped[pt];
+                const grpSc = avgPercent(grp, d.kpis);
+                return `
+        <div style="margin-bottom:16px">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:var(--bg);border-radius:10px;margin-bottom:8px">
+            <span style="font-weight:700;font-size:13px;display:flex;align-items:center;gap:8px">${ptBadge(pt)} ${groupLabels[pt]} <span style="font-size:12px;font-weight:400;color:var(--muted)">(${grp.length})</span></span>
+            ${grpSc !== null ? `<span style="font-size:15px;font-weight:800;color:var(--primary)">${grpSc}% avg</span>` : ""}
+          </div>
+          <div class="tbl-wrap"><table>
+            <thead><tr><th>KPI</th><th>Category</th><th>Period</th><th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
+            <tbody>${buildReportRows(grp)}</tbody>
+          </table></div>
+        </div>`;
+              }).join("");
+              return empHeader + `<div style="padding:0 4px">${groupTables}</div></div>`;
+            }
+
+            return empHeader + `
         <div class="tbl-wrap"><table>
-          <thead><tr><th>KPI</th><th>Category</th>${isAll ? "<th>Period</th>" : ""}<th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
-          <tbody>${rows}</tbody>
+          <thead><tr><th>KPI</th><th>Category</th><th>Period</th><th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
+          <tbody>${buildReportRows(ea)}</tbody>
         </table></div>
       </div>`;
           })
@@ -8353,22 +8380,20 @@
         const isAll = type === "all";
         if (!la.length)
           return '<div class="empty"><i class="fas fa-chart-line"></i><h3>No KPIs assigned yet</h3><p>Your manager will assign KPI values to track your performance</p></div>';
-        const sc = avgPercent(la, d.kpis);
-        const rows = la
-          .map((a) => {
-            const kpi = d.kpis.find((k) => k.id === a.kpiId);
-            const pct = kpi ? calcPct(a.value, kpi) : null;
-            const st = pct !== null ? status(pct) : "";
-            return `<tr>
+
+        const buildRows = (assignments) => assignments.map((a) => {
+          const kpi = d.kpis.find((k) => k.id === a.kpiId);
+          const pct = kpi ? calcPct(a.value, kpi) : null;
+          const st = pct !== null ? status(pct) : "";
+          return `<tr>
       <td><strong>${kpi ? kpi.name : "?"}</strong></td>
       <td>${categoryBadge(kpi ? kpi.category : null)}</td>
-      ${isAll ? `<td>${ptBadge(kpi?.periodType)} <span style="font-size:11px;color:var(--muted)">${a.period}</span></td>` : ""}
+      <td style="font-size:12px;color:var(--muted)">${a.period}</td>
       <td>${a.value} / 5</td>
       <td>5</td>
       <td>${
         pct !== null
-          ? `
-        <div style="display:flex;align-items:center;gap:8px">
+          ? `<div style="display:flex;align-items:center;gap:8px">
           <div style="width:72px;height:5px;background:#edeff1;border-radius:20px;overflow:hidden">
             <div style="width:${pct}%;height:100%;border-radius:20px;background:${pct >= 90 ? "#10b981" : pct >= 75 ? "#837fd8" : pct >= 60 ? "#f59e0b" : "#ef4444"}"></div>
           </div>
@@ -8378,17 +8403,46 @@
       }</td>
       <td style="font-size:12px;color:var(--muted)">${a.notes || "—"}</td>
     </tr>`;
-          })
-          .join("");
+        }).join("");
+
+        if (isAll) {
+          const order = ["year", "quarter", "month", "week"];
+          const groupLabels = { year: "Yearly KPIs", quarter: "Quarterly KPIs", month: "Monthly KPIs", week: "Weekly KPIs" };
+          const grouped = {};
+          la.forEach(a => {
+            const kpi = d.kpis.find(k => k.id === a.kpiId);
+            const pt = (kpi && kpi.periodType) || "month";
+            if (!grouped[pt]) grouped[pt] = [];
+            grouped[pt].push(a);
+          });
+          const overallSc = avgPercent(la, d.kpis);
+          return order.filter(pt => grouped[pt] && grouped[pt].length).map(pt => {
+            const grp = grouped[pt];
+            const grpSc = avgPercent(grp, d.kpis);
+            return `
+    <div class="card" style="margin-bottom:20px">
+      <div class="card-head">
+        <h3>${ptBadge(pt)} ${groupLabels[pt]} <span style="font-size:13px;font-weight:400;color:var(--muted)">(${grp.length})</span></h3>
+        ${grpSc !== null ? `<div style="font-size:20px;font-weight:800;color:var(--primary)">${grpSc}% avg</div>` : ""}
+      </div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>KPI</th><th>Category</th><th>Period</th><th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
+        <tbody>${buildRows(grp)}</tbody>
+      </table></div>
+    </div>`;
+          }).join("") || '<div class="empty"><i class="fas fa-chart-line"></i><h3>No KPI data</h3></div>';
+        }
+
+        const sc = avgPercent(la, d.kpis);
         return `
     <div class="card" style="margin-bottom:20px">
       <div class="card-head">
-        <h3>${isAll ? "Overview — All KPIs (Latest)" : "Performance Summary"}</h3>
+        <h3>Performance Summary</h3>
         ${sc !== null ? `<div style="font-size:22px;font-weight:800;color:var(--primary)">${sc}% Overall</div>` : ""}
       </div>
       <div class="tbl-wrap"><table>
-        <thead><tr><th>KPI</th><th>Category</th>${isAll ? "<th>Period</th>" : ""}<th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
-        <tbody>${rows}</tbody>
+        <thead><tr><th>KPI</th><th>Category</th><th>Period</th><th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
+        <tbody>${buildRows(la)}</tbody>
       </table></div>
     </div>`;
       }
@@ -8614,14 +8668,14 @@
           kpisByCategory[cat].push({ a, kpi });
         });
 
-        const rows = la.map(a => {
+        const buildDirRows = (assignments) => assignments.map(a => {
           const kpi = d.kpis.find(k => k.id === a.kpiId);
           const pct = kpi ? calcPct(a.value, kpi) : null;
           const pst = pct !== null ? status(pct) : "neutral";
           return `<tr>
             <td><strong>${kpi ? kpi.name : "?"}</strong></td>
             <td>${categoryBadge(kpi ? kpi.category : null)}</td>
-            ${isAll ? `<td style="font-size:12px;color:var(--muted)">${a.period}</td>` : ""}
+            <td style="font-size:12px;color:var(--muted)">${a.period}</td>
             <td>${a.value} / 5</td>
             <td>5</td>
             <td>${pct !== null ? `<span class="badge ${pst}">${pct}%</span>` : "—"}</td>
@@ -8668,20 +8722,46 @@
             ${catCards}
           </div>` : ""}
 
+          ${(() => {
+            if (!la.length) return `<div class="card" style="margin-bottom:0"><div class="card-head"><h3>KPI Performance Breakdown</h3></div><div class="card-body"><div class="empty" style="padding:32px 0"><i class="fas fa-chart-line"></i><h3>No data for this period</h3><p>No KPIs have been assigned for the selected period</p></div></div></div>`;
+            if (isAll) {
+              const order = ["year", "quarter", "month", "week"];
+              const groupLabels = { year: "Yearly KPIs", quarter: "Quarterly KPIs", month: "Monthly KPIs", week: "Weekly KPIs" };
+              const grouped = {};
+              la.forEach(a => {
+                const kpi = d.kpis.find(k => k.id === a.kpiId);
+                const pt = (kpi && kpi.periodType) || "month";
+                if (!grouped[pt]) grouped[pt] = [];
+                grouped[pt].push(a);
+              });
+              return order.filter(pt => grouped[pt] && grouped[pt].length).map(pt => {
+                const grp = grouped[pt];
+                const grpSc = avgPercent(grp, d.kpis);
+                return `
+          <div class="card" style="margin-bottom:18px">
+            <div class="card-head">
+              <h3>${ptBadge(pt)} ${groupLabels[pt]} <span style="font-size:13px;font-weight:400;color:var(--muted)">(${grp.length})</span></h3>
+              ${grpSc !== null ? `<div style="font-size:20px;font-weight:800;color:var(--primary)">${grpSc}% avg</div>` : ""}
+            </div>
+            <div class="tbl-wrap"><table>
+              <thead><tr><th>KPI</th><th>Category</th><th>Period</th><th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th><th></th></tr></thead>
+              <tbody>${buildDirRows(grp)}</tbody>
+            </table></div>
+          </div>`;
+              }).join("");
+            }
+            return `
           <div class="card" style="margin-bottom:0">
             <div class="card-head">
               <h3>KPI Performance Breakdown</h3>
               <span style="font-size:13px;color:var(--muted)">${la.length} KPI${la.length !== 1 ? "s" : ""} tracked</span>
             </div>
-            <div class="card-body" style="padding-top:0">
-              ${la.length
-                ? `<div class="tbl-wrap"><table>
-                    <thead><tr><th>KPI</th><th>Category</th>${isAll ? "<th>Period</th>" : ""}<th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th><th></th></tr></thead>
-                    <tbody>${rows}</tbody>
-                  </table></div>`
-                : `<div class="empty" style="padding:32px 0"><i class="fas fa-chart-line"></i><h3>No data for this period</h3><p>No KPIs have been assigned for the selected period</p></div>`}
-            </div>
+            <div class="tbl-wrap"><table>
+              <thead><tr><th>KPI</th><th>Category</th><th>Period</th><th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th><th></th></tr></thead>
+              <tbody>${buildDirRows(la)}</tbody>
+            </table></div>
           </div>`;
+          })()}`;
       }
 
       function dirEditScore(assignId, empId) {
