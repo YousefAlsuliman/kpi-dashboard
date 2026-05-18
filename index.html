@@ -28,7 +28,7 @@
         --success: #10b981;
         --warning: #f59e0b;
         --danger: #ef4444;
-        --purple: #856043;
+        --brown: #856043;
         --sidebar: #002134;
         --bg: #edeff1;
         --card: #fdf8f5;
@@ -349,7 +349,7 @@
         color: #fff;
       }
       .avatar.employee {
-        background: linear-gradient(135deg, #856043, #a07d56);
+        background: linear-gradient(135deg, var(--brown), #a07d56);
         color: #fff;
       }
       .avatar.director {
@@ -1184,11 +1184,40 @@
         color: var(--text);
       }
 
+      .hamburger {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 6px;
+        color: var(--text);
+        font-size: 20px;
+        line-height: 1;
+      }
+      .sidebar-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.4);
+        z-index: 199;
+      }
       @media (max-width: 900px) {
         .two-col,
         .assign-layout {
           grid-template-columns: 1fr;
         }
+        .hamburger { display: block; }
+        .sidebar {
+          transform: translateX(-100%);
+          transition: transform 0.25s ease;
+        }
+        .sidebar.open {
+          transform: translateX(0);
+        }
+        .sidebar-overlay.open {
+          display: block;
+        }
+        .main { margin-left: 0 !important; }
       }
 
       /* ── DIRECTOR EMPLOYEE CARD ────────────── */
@@ -1345,12 +1374,18 @@
       <!-- Main -->
       <div class="main">
         <header class="topbar">
-          <h1 id="pageTitle">Dashboard</h1>
+          <div style="display:flex;align-items:center;gap:12px">
+            <button class="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+            <h1 id="pageTitle">Dashboard</h1>
+          </div>
           <span class="topbar-date" id="topDate"></span>
         </header>
         <main class="content" id="content"></main>
       </div>
     </div>
+
+    <!-- Sidebar overlay for mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
     <!-- Modal -->
     <div id="modalBg" onclick="bgClose(event)">
@@ -7188,11 +7223,11 @@
       // AUTH
       // ──────────────────────────────────────────
       let me = null;
-      let _empDashType = "all";
-      let _reportType = "all";
-      let _kpisType = "all";
-      let _assignType = "all";
-      let _directorType = "all";
+      let _empDashType = sessionStorage.getItem("_empDashType") || "all";
+      let _reportType = sessionStorage.getItem("_reportType") || "all";
+      let _kpisType = sessionStorage.getItem("_kpisType") || "all";
+      let _assignType = sessionStorage.getItem("_assignType") || "all";
+      let _directorType = sessionStorage.getItem("_directorType") || "all";
 
       function fc(u, p) {
         document.getElementById("lu").value = u;
@@ -7225,6 +7260,12 @@
         document.getElementById("lu").value = "";
         document.getElementById("lp").value = "";
       }
+      function toggleSidebar() {
+        const sb = document.querySelector(".sidebar");
+        const ov = document.getElementById("sidebarOverlay");
+        sb.classList.toggle("open");
+        ov.classList.toggle("open");
+      }
 
       // ──────────────────────────────────────────
       // BOOT
@@ -7237,13 +7278,14 @@
         const rb = document.getElementById("sbRole");
         rb.textContent = me.role;
         rb.className = `role-pill ${me.role}`;
-        document.getElementById("topDate").textContent =
-          new Date().toLocaleDateString("en-US", {
-            weekday: "long",
-            year: "numeric",
-            month: "long",
-            day: "numeric",
+        function refreshDate() {
+          const el = document.getElementById("topDate");
+          if (el) el.textContent = new Date().toLocaleDateString("en-US", {
+            weekday: "long", year: "numeric", month: "long", day: "numeric",
           });
+        }
+        refreshDate();
+        setInterval(refreshDate, 60000);
         buildNav();
         go(me.role === "admin" ? "dashboard" : me.role === "director" ? "director-dashboard" : "emp-dashboard");
       }
@@ -7284,6 +7326,8 @@
       }
 
       function go(v) {
+        document.querySelector(".sidebar")?.classList.remove("open");
+        document.getElementById("sidebarOverlay")?.classList.remove("open");
         document
           .querySelectorAll(".nav-item")
           .forEach((n) => n.classList.toggle("active", n.dataset.v === v));
@@ -7340,6 +7384,11 @@
             : pct >= 60
               ? "Fair"
               : "Needs Work";
+      }
+      function categoryBadge(cat) {
+        const c = (cat || 'General').toLowerCase();
+        const cls = c === 'quality' ? 'excellent' : c === 'delivery' ? 'good' : c === 'learning' ? 'warning' : 'neutral';
+        return `<span class="badge ${cls}">${cat || 'General'}</span>`;
       }
       function periods() {
         return [...new Set(db().assignments.map((a) => a.period))]
@@ -7485,7 +7534,8 @@
         return Object.values(byEmpKpi);
       }
       function calcPct(value, kpi) {
-        return Math.max(0, Math.min(100, Math.round((value / 5) * 100)));
+        const target = (kpi && kpi.target) ? kpi.target : 5;
+        return Math.max(0, Math.min(100, Math.round((value / target) * 100)));
       }
       function avgPercent(assignments, kpis) {
         if (!assignments.length) return null;
@@ -7500,7 +7550,8 @@
           : null;
       }
       function empAvatar(emp, size = 34) {
-        return `<div class="avatar employee" style="width:${size}px;height:${size}px;font-size:${Math.round(size * 0.36)}px;border-radius:${Math.round(size * 0.26)}px;flex-shrink:0">${initials(emp.name)}</div>`;
+        const role = emp.role || 'employee';
+        return `<div class="avatar ${role}" style="width:${size}px;height:${size}px;font-size:${Math.round(size * 0.36)}px;border-radius:${Math.round(size * 0.26)}px;flex-shrink:0">${initials(emp.name)}</div>`;
       }
 
       // ──────────────────────────────────────────
@@ -7519,7 +7570,7 @@
             const sc = avgPercent(ea, d.kpis);
             const st = sc === null ? "neutral" : status(sc);
             const sl = sc === null ? "No Data" : achievement(sc);
-            return `<tr>
+            return `<tr style="cursor:pointer" onclick="go('report')" title="View performance report">
       <td><div style="display:flex;align-items:center;gap:10px">
         ${empAvatar(emp)}
         <div><div style="font-weight:600">${emp.name}</div><div style="font-size:12px;color:var(--muted)">${emp.department || ""}</div></div>
@@ -7527,6 +7578,7 @@
       <td>${ea.length}</td>
       <td><strong>${sc !== null ? sc + "%" : "—"}</strong></td>
       <td><span class="badge ${st}">${sl}</span></td>
+      <td><button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();go('report')"><i class="fas fa-chart-bar"></i></button></td>
     </tr>`;
           })
           .join("");
@@ -7536,7 +7588,7 @@
             const cnt = la.filter((a) => a.kpiId === kpi.id).length;
             return `<tr>
       <td><strong>${kpi.name}</strong></td>
-      <td><span class="badge neutral">${kpi.category || "General"}</span></td>
+      <td>${categoryBadge(kpi.category)}</td>
       <td>${cnt} employee${cnt !== 1 ? "s" : ""}</td>
     </tr>`;
           })
@@ -7547,14 +7599,14 @@
       <div class="stat-card"><div class="stat-ico blue"><i class="fas fa-users"></i></div><div class="stat-info"><h3>${emps.length}</h3><p>Total Employees</p></div></div>
       <div class="stat-card"><div class="stat-ico green"><i class="fas fa-bullseye"></i></div><div class="stat-info"><h3>${d.kpis.length}</h3><p>KPI Metrics</p></div></div>
       <div class="stat-card"><div class="stat-ico purple"><i class="fas fa-tasks"></i></div><div class="stat-info"><h3>${la.length}</h3><p>Assignments (${latest || "—"})</p></div></div>
-      <div class="stat-card"><div class="stat-ico amber"><i class="fas fa-chart-line"></i></div><div class="stat-info"><h3>${avg !== null ? avg + "%" : "—"}</h3><p>Avg Performance</p></div></div>
+      <div class="stat-card"><div class="stat-ico amber"><i class="fas fa-chart-line"></i></div><div class="stat-info"><h3>${avg !== null ? avg + "%" : "—"}</h3><p>Avg Performance <span style="font-size:11px;color:var(--muted);display:block">${latest || "—"}</span></p></div></div>
     </div>
     <div class="two-col">
       <div class="card">
         <div class="card-head"><h3>Employee Performance — ${latest || "No data"}</h3>
           <button class="btn btn-primary btn-sm" onclick="go('assign')"><i class="fas fa-plus"></i> Assign</button></div>
         <div class="tbl-wrap"><table>
-          <thead><tr><th>Employee</th><th>KPIs</th><th>Avg Score</th><th>Status</th></tr></thead>
+          <thead><tr><th>Employee</th><th>KPIs</th><th>Avg Score</th><th>Status</th><th></th></tr></thead>
           <tbody>${empRows}</tbody>
         </table></div>
       </div>
@@ -7599,7 +7651,7 @@
             (k) => `<tr>
     <td><strong>${k.name}</strong></td>
     <td style="color:var(--muted);max-width:200px">${k.description || "—"}</td>
-    <td><span class="badge neutral">${k.category || "General"}</span></td>
+    <td>${categoryBadge(k.category)}</td>
     <td>${ptBadge(k.periodType)}</td>
     <td><div style="display:flex;gap:6px">
       <button class="btn btn-ghost btn-sm" onclick="editKpi(${k.id})"><i class="fas fa-edit"></i></button>
@@ -7618,12 +7670,13 @@
         <thead><tr><th>Name</th><th>Description</th><th>Category</th><th>Period</th><th>Actions</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
-      ${filtered.length === 0 ? '<div class="empty"><i class="fas fa-bullseye"></i><h3>No KPIs yet</h3><p>Click "Add KPI" to create your first metric</p></div>' : ""}</div>
+      ${filtered.length === 0 ? '<div class="empty"><i class="fas fa-bullseye"></i><h3>No KPIs yet</h3><p>Click "Add KPI" to create your first metric</p><button class="btn btn-primary" style="margin-top:12px" onclick="addKpi()"><i class="fas fa-plus"></i> Add KPI</button></div>' : ""}</div>
     </div>`;
       }
 
       function setKpisType(type) {
         _kpisType = type;
+        sessionStorage.setItem("_kpisType", type);
         document.getElementById("content").innerHTML = kpis();
       }
 
@@ -7771,7 +7824,7 @@
               <select id="aKpi" onchange="updatePeriodHint()"><option value="">Select KPI…</option>${kpiOpts}</select></div>
           </div>
           <div class="form-grid">
-            <div class="ff"><label>Score (0–5) *</label><input id="aVal" type="number" placeholder="e.g. 4" min="0" max="5" step="0.5"></div>
+            <div class="ff"><label>Score (0–5) *</label><input id="aVal" type="number" placeholder="e.g. 4" min="0" max="5" step="0.5"><small style="color:var(--muted);font-size:11px;margin-top:4px;display:block">0 = No performance &nbsp;·&nbsp; 3 = Average &nbsp;·&nbsp; 5 = Target / Excellent</small></div>
             <div class="ff"><label>Period *</label><div id="aPerWrap"><input id="aPer" placeholder="Select a period type first…" disabled style="background:var(--surface);color:var(--muted)"></div></div>
           </div>
           <div class="ff"><label>Notes</label><textarea id="aNotes" placeholder="Optional notes…"></textarea></div>
@@ -7793,6 +7846,7 @@
 
       function setAssignType(type) {
         _assignType = type;
+        sessionStorage.setItem("_assignType", type);
         document.getElementById("content").innerHTML = assign();
       }
 
@@ -7816,10 +7870,14 @@
           .map((a) => {
             const emp = d.users.find((u) => u.id === a.employeeId);
             const kpi = d.kpis.find((k) => k.id === a.kpiId);
+            const pct = kpi ? calcPct(a.value, kpi) : null;
+            const st = pct === null ? 'neutral' : status(pct);
+            const sl = pct === null ? '—' : statusLabel(pct);
             return `<tr>
       <td>${emp ? emp.name : "?"}</td>
       <td>${kpi ? kpi.name : "?"}</td>
-      <td><strong>${a.value} / 5</strong></td>
+      <td><strong>${a.value} / 5</strong><span style="color:var(--muted);font-size:12px;margin-left:4px">(${pct !== null ? pct + '%' : '—'})</span></td>
+      <td><span class="badge ${st}">${sl}</span></td>
       <td>${a.period}</td>
       <td style="font-size:12px;color:var(--muted);max-width:140px">${a.notes || "—"}</td>
       <td><button class="btn btn-danger btn-sm" onclick="delAssign(${a.id})"><i class="fas fa-trash"></i></button></td>
@@ -7828,9 +7886,9 @@
           .join("");
 
         if (!rows)
-          return '<div class="empty"><i class="fas fa-tasks"></i><h3>No assignments</h3><p>No KPI assignments for this period</p></div>';
+          return '<div class="empty"><i class="fas fa-tasks"></i><h3>No assignments</h3><p>No KPI assignments for this period</p><button class="btn btn-primary" style="margin-top:12px" onclick="go(\'assign\')"><i class="fas fa-plus"></i> Add Assignment</button></div>';
         return `<div class="tbl-wrap"><table>
-    <thead><tr><th>Employee</th><th>KPI</th><th>Value</th><th>Period</th><th>Notes</th><th></th></tr></thead>
+    <thead><tr><th>Employee</th><th>KPI</th><th>Score</th><th>Status</th><th>Period</th><th>Notes</th><th></th></tr></thead>
     <tbody>${rows}</tbody>
   </table></div>`;
       }
@@ -8014,7 +8072,7 @@
         <thead><tr><th>Name</th><th>Username</th><th>Email</th><th>Department</th><th>Assignments</th><th>Actions</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
-      ${emps.length === 0 ? '<div class="empty"><i class="fas fa-users"></i><h3>No employees</h3><p>Add employees to start tracking performance</p></div>' : ""}</div>
+      ${emps.length === 0 ? '<div class="empty"><i class="fas fa-users"></i><h3>No employees</h3><p>Add employees to start tracking performance</p><button class="btn btn-primary" style="margin-top:12px" onclick="addEmp()"><i class="fas fa-plus"></i> Add Employee</button></div>' : ""}</div>
     </div>`;
       }
 
@@ -8129,6 +8187,7 @@
 
       function setReportType(type) {
         _reportType = type;
+        sessionStorage.setItem("_reportType", type);
         document.getElementById("content").innerHTML = report();
       }
 
@@ -8151,7 +8210,7 @@
           );
         }
         if (!pAssign.length)
-          return '<div class="empty"><i class="fas fa-chart-bar"></i><h3>No data for this period</h3><p>Assign KPI values to generate a report</p></div>';
+          return '<div class="empty"><i class="fas fa-chart-bar"></i><h3>No data for this period</h3><p>Assign KPI values to generate a report</p><button class="btn btn-primary" style="margin-top:12px" onclick="go(\'assign\')"><i class="fas fa-plus"></i> Assign KPIs</button></div>';
 
         return emps
           .map((emp) => {
@@ -8168,7 +8227,7 @@
                 const tgtDisp = "5";
                 return `<tr>
         <td><strong>${kpi ? kpi.name : "?"}</strong></td>
-        <td><span class="badge neutral">${kpi ? kpi.category || "General" : ""}</span></td>
+        <td>${categoryBadge(kpi ? kpi.category : null)}</td>
         ${isAll ? `<td>${ptBadge(kpi?.periodType)} <span style="font-size:11px;color:var(--muted)">${a.period}</span></td>` : ""}
         <td>${valDisp}</td>
         <td>${tgtDisp}</td>
@@ -8302,7 +8361,7 @@
             const st = pct !== null ? status(pct) : "";
             return `<tr>
       <td><strong>${kpi ? kpi.name : "?"}</strong></td>
-      <td><span class="badge neutral">${kpi ? kpi.category || "General" : ""}</span></td>
+      <td>${categoryBadge(kpi ? kpi.category : null)}</td>
       ${isAll ? `<td>${ptBadge(kpi?.periodType)} <span style="font-size:11px;color:var(--muted)">${a.period}</span></td>` : ""}
       <td>${a.value} / 5</td>
       <td>5</td>
@@ -8336,6 +8395,7 @@
 
       function setEmpDashType(type) {
         _empDashType = type;
+        sessionStorage.setItem("_empDashType", type);
         document.getElementById("content").innerHTML = empDashboard();
       }
 
@@ -8505,6 +8565,7 @@
 
       function setDirectorType(type) {
         _directorType = type;
+        sessionStorage.setItem("_directorType", type);
         document.getElementById("content").innerHTML = directorDashboard();
       }
 
@@ -8559,7 +8620,7 @@
           const pst = pct !== null ? status(pct) : "neutral";
           return `<tr>
             <td><strong>${kpi ? kpi.name : "?"}</strong></td>
-            <td><span class="badge neutral" style="font-size:10px">${kpi ? kpi.category || "General" : ""}</span></td>
+            <td>${categoryBadge(kpi ? kpi.category : null)}</td>
             ${isAll ? `<td style="font-size:12px;color:var(--muted)">${a.period}</td>` : ""}
             <td>${a.value} / 5</td>
             <td>5</td>
