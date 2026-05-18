@@ -8530,17 +8530,29 @@
         if (!emp) return;
         const type = _directorType;
         const isAll = type === "all";
-        let la;
+        let la, periodLabel;
         if (type === "all") {
-          la = latestAssignments(empId, v("dirFYear"));
+          const yr = v("dirFYear");
+          la = latestAssignments(empId, yr);
+          periodLabel = yr || "All Periods";
         } else {
           const period = type === "year" ? v("dirFYear") : readPeriod(type, "dirFYear", "dirFSub");
           const typeIds = new Set(d.kpis.filter(k => (k.periodType || "month") === type).map(k => k.id));
           la = d.assignments.filter(a => a.employeeId === empId && a.period === period && typeIds.has(a.kpiId));
+          periodLabel = period || "—";
         }
         const sc = avgPercent(la, d.kpis);
         const st = sc === null ? "neutral" : status(sc);
         const scoreColor = sc !== null ? (sc >= 90 ? "#10b981" : sc >= 75 ? "#837fd8" : sc >= 60 ? "#f59e0b" : "#ef4444") : "var(--muted)";
+
+        const kpisByCategory = {};
+        la.forEach(a => {
+          const kpi = d.kpis.find(k => k.id === a.kpiId);
+          const cat = kpi ? (kpi.category || "General") : "General";
+          if (!kpisByCategory[cat]) kpisByCategory[cat] = [];
+          kpisByCategory[cat].push({ a, kpi });
+        });
+
         const rows = la.map(a => {
           const kpi = d.kpis.find(k => k.id === a.kpiId);
           const pct = kpi ? calcPct(a.value, kpi) : null;
@@ -8555,25 +8567,59 @@
             <td style="font-size:12px;color:var(--muted);max-width:160px">${a.notes || "—"}</td>
           </tr>`;
         }).join("");
-        const body = `
-          <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:16px;border-bottom:1px solid var(--border)">
-            ${empAvatar(emp, 48)}
-            <div>
-              <div style="font-size:16px;font-weight:700">${emp.name}</div>
-              <div style="font-size:13px;color:var(--muted)">${emp.department || "—"}</div>
-            </div>
-            <div style="margin-left:auto;text-align:right">
-              <div style="font-size:28px;font-weight:800;color:${scoreColor}">${sc !== null ? sc + "%" : "—"}</div>
-              <span class="badge ${st}">${sc !== null ? statusLabel(sc) : "No Data"}</span>
+
+        const catCards = Object.entries(kpisByCategory).map(([cat, items]) => {
+          const catScores = items.map(({ a, kpi }) => kpi ? calcPct(a.value, kpi) : null).filter(s => s !== null);
+          const catAvg = catScores.length ? Math.round(catScores.reduce((a, b) => a + b, 0) / catScores.length) : null;
+          const catColor = catAvg !== null ? (catAvg >= 90 ? "#10b981" : catAvg >= 75 ? "#837fd8" : catAvg >= 60 ? "#f59e0b" : "#ef4444") : "var(--muted)";
+          return `<div style="background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 20px;min-width:160px;flex:1">
+            <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px">${cat}</div>
+            <div style="font-size:32px;font-weight:800;color:${catColor};line-height:1">${catAvg !== null ? catAvg + "%" : "—"}</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:4px">${items.length} KPI${items.length !== 1 ? "s" : ""}</div>
+          </div>`;
+        }).join("");
+
+        document.getElementById("pageTitle").textContent = emp.name;
+        document.getElementById("content").innerHTML = `
+          <button class="btn btn-ghost btn-sm" onclick="go('director-dashboard')" style="margin-bottom:20px;display:inline-flex;align-items:center;gap:6px">
+            <i class="fas fa-arrow-left"></i> Back to Department Overview
+          </button>
+
+          <div style="background:linear-gradient(135deg,#002134,#003557);border-radius:20px;padding:28px;color:#fff;margin-bottom:26px;position:relative;overflow:hidden">
+            <div style="position:absolute;right:-60px;top:-60px;width:240px;height:240px;background:rgba(131,127,216,0.15);border-radius:50%;pointer-events:none"></div>
+            <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap">
+              ${empAvatar(emp, 60)}
+              <div style="flex:1;min-width:0">
+                <div style="font-size:11px;color:#64748b;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:4px">Employee</div>
+                <div style="font-size:24px;font-weight:800;margin-bottom:2px">${emp.name}</div>
+                <div style="font-size:13px;color:#94a3b8">${emp.department || "—"} &nbsp;·&nbsp; ${periodLabel}</div>
+              </div>
+              <div style="text-align:right">
+                <div style="font-size:48px;font-weight:800;line-height:1;color:${scoreColor}">${sc !== null ? sc + "%" : "—"}</div>
+                <span class="badge ${st}" style="font-size:13px;padding:5px 14px">${sc !== null ? statusLabel(sc) : "No Data"}</span>
+              </div>
             </div>
           </div>
-          ${la.length
-            ? `<div class="tbl-wrap"><table>
-                <thead><tr><th>KPI</th><th>Category</th>${isAll ? "<th>Period</th>" : ""}<th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
-                <tbody>${rows}</tbody>
-              </table></div>`
-            : `<div class="empty" style="padding:24px 0"><i class="fas fa-chart-line"></i><h3>No data for this period</h3><p>No KPIs have been assigned for the selected period</p></div>`}`;
-        modal(`${emp.name} — Performance Detail`, body, `<button class="btn btn-ghost" onclick="closeModal()">Close</button>`);
+
+          ${Object.keys(kpisByCategory).length > 1 ? `
+          <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px">
+            ${catCards}
+          </div>` : ""}
+
+          <div class="card" style="margin-bottom:0">
+            <div class="card-head">
+              <h3>KPI Performance Breakdown</h3>
+              <span style="font-size:13px;color:var(--muted)">${la.length} KPI${la.length !== 1 ? "s" : ""} tracked</span>
+            </div>
+            <div class="card-body" style="padding-top:0">
+              ${la.length
+                ? `<div class="tbl-wrap"><table>
+                    <thead><tr><th>KPI</th><th>Category</th>${isAll ? "<th>Period</th>" : ""}<th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
+                    <tbody>${rows}</tbody>
+                  </table></div>`
+                : `<div class="empty" style="padding:32px 0"><i class="fas fa-chart-line"></i><h3>No data for this period</h3><p>No KPIs have been assigned for the selected period</p></div>`}
+            </div>
+          </div>`;
       }
 
       // ──────────────────────────────────────────
