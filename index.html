@@ -8626,6 +8626,7 @@
             <td>5</td>
             <td>${pct !== null ? `<span class="badge ${pst}">${pct}%</span>` : "—"}</td>
             <td style="font-size:12px;color:var(--muted);max-width:160px">${a.notes || "—"}</td>
+            <td><button class="btn btn-ghost btn-sm" onclick="dirEditScore(${a.id},${empId})"><i class="fas fa-edit"></i></button></td>
           </tr>`;
         }).join("");
 
@@ -8675,12 +8676,48 @@
             <div class="card-body" style="padding-top:0">
               ${la.length
                 ? `<div class="tbl-wrap"><table>
-                    <thead><tr><th>KPI</th><th>Category</th>${isAll ? "<th>Period</th>" : ""}<th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th></tr></thead>
+                    <thead><tr><th>KPI</th><th>Category</th>${isAll ? "<th>Period</th>" : ""}<th>Value</th><th>Target</th><th>Achievement</th><th>Notes</th><th></th></tr></thead>
                     <tbody>${rows}</tbody>
                   </table></div>`
                 : `<div class="empty" style="padding:32px 0"><i class="fas fa-chart-line"></i><h3>No data for this period</h3><p>No KPIs have been assigned for the selected period</p></div>`}
             </div>
           </div>`;
+      }
+
+      function dirEditScore(assignId, empId) {
+        const d = db();
+        const a = d.assignments.find(x => x.id === assignId);
+        if (!a) return;
+        const kpi = d.kpis.find(k => k.id === a.kpiId);
+        modal(
+          `Edit Score — ${kpi ? kpi.name : "KPI"}`,
+          `<div class="ff">
+            <label>Score (0–5) *</label>
+            <input id="dEditVal" type="number" value="${a.value}" min="0" max="5" step="0.5" style="width:100%">
+            <small style="color:var(--muted);font-size:11px;margin-top:4px;display:block">0 = No performance &nbsp;·&nbsp; 3 = Average &nbsp;·&nbsp; 5 = Target / Excellent</small>
+          </div>
+          <div class="ff" style="margin-top:14px">
+            <label>Notes</label>
+            <textarea id="dEditNotes" rows="3" style="width:100%;resize:vertical">${a.notes || ""}</textarea>
+          </div>`,
+          `<button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+           <button class="btn btn-primary" onclick="dirSaveScore(${assignId},${empId})">Save</button>`
+        );
+      }
+
+      function dirSaveScore(assignId, empId) {
+        const val = parseFloat(document.getElementById("dEditVal").value);
+        const notes = document.getElementById("dEditNotes").value.trim();
+        if (isNaN(val) || val < 0 || val > 5) return toast("Score must be between 0 and 5", "error");
+        const d = db();
+        const a = d.assignments.find(x => x.id === assignId);
+        if (!a) return;
+        a.value = val;
+        a.notes = notes;
+        save(d);
+        closeModal();
+        toast("Score updated", "success");
+        dirEmpDetail(empId);
       }
 
       // ──────────────────────────────────────────
